@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MainMenu">
+    <!--    tools:openDrawer="start">-->
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/tablayout"
+            android:layout_marginBottom="10dp">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="?attr/actionBarTheme"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:navigationIcon="@drawable/ic_menu" />
+
+                <RelativeLayout
+                    android:id="@+id/imagelayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_below="@+id/toolbar">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="180dp"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:src="@drawable/app_icon" />
+
+                        <ImageView
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:src="@drawable/mainpicture" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtWelcome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:fontFamily="@font/roboto"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_below="@+id/imagelayout"
+                    android:background="@drawable/component_1___1">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardSimplyRelief"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/linearLayout2"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="#F8FEFF"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="180dp"
+                            android:visibility="gone">
+
+                            <Button
+                                android:id="@+id/go_simply_relief"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="Go"
+                                app:strokeColor="#2595C7" />
+
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_above="@+id/go_simply_relief">
+
+                                <ImageView
+                                    android:id="@+id/img_relief"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:src="@drawable/ic_speack_to_doc" />
+
+                                <TextView
+                                    android:id="@+id/txtReliefTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="40dp"
+                                    android:layout_toRightOf="@+id/img_relief"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Simply Relief"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/txtReliefSubTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtReliefTitle"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_toRightOf="@+id/img_relief"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="How are you feeling ?"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardsymptomchecker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cardSimplyRelief"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="#F8FEFF"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="180dp">
+
+                            <Button
+                                android:id="@+id/go_symptomchecker"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="Go"
+                                app:strokeColor="#2595C7" />
+
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_above="@+id/go_symptomchecker">
+
+                                <ImageView
+                                    android:id="@+id/img_sympton"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:src="@drawable/ic_speack_to_doc"
+                                    app:tint="@color/colorPrimary" />
+
+                                <TextView
+                                    android:id="@+id/txtSymptonTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="40dp"
+                                    android:layout_toRightOf="@+id/img_sympton"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Symptom Checker"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/txtSymptonSubTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtSymptonTitle"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_toRightOf="@+id/img_sympton"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="How are you feeling ?"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_otc_naturaldrugs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cardsymptomchecker"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="#F8FEFF"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="180dp">
+
+                            <Button
+                                android:id="@+id/go_diary"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="Go"
+                                app:strokeColor="#2595C7" />
+
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_above="@+id/go_diary">
+
+                                <ImageView
+                                    android:id="@+id/img_otc"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:src="@drawable/note_96px" />
+
+                                <TextView
+                                    android:id="@+id/txtOTCTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="40dp"
+                                    android:layout_toRightOf="@+id/img_otc"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="@string/otc_and_natural_drugs"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/txtOTCSubTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtOTCTitle"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_toRightOf="@+id/img_otc"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Keep Track of Medical Events"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_allergy_finder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/card_otc_naturaldrugs"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="#F8FEFF"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="180dp">
+
+                            <Button
+                                android:id="@+id/go_symptom"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="Go"
+                                app:strokeColor="#2595C7" />
+
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_above="@+id/go_symptom">
+
+                                <ImageView
+                                    android:id="@+id/img_allergy"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:src="@drawable/thermometer_96px" />
+
+                                <TextView
+                                    android:id="@+id/txtAllergyFinderTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="40dp"
+                                    android:layout_toRightOf="@+id/img_allergy"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Fitness Center"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/txtAllergyFinderSubTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtAllergyFinderTitle"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_toRightOf="@+id/img_allergy"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Let's Get Physical"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_diet_nutiontion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/card_allergy_finder"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="#F8FEFF"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="180dp">
+
+                            <Button
+                                android:id="@+id/go_reminder"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="Go"
+                                app:strokeColor="#2595C7" />
+
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_above="@+id/go_reminder">
+
+                                <ImageView
+                                    android:id="@+id/img_reminder"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:src="@drawable/ic_diet_nutiontion" />
+
+                                <TextView
+                                    android:id="@+id/txtDietNutionTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="40dp"
+                                    android:layout_toRightOf="@+id/img_reminder"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Diet/Nutiontion"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/txtDietNutionSubTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtDietNutionTitle"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_toRightOf="@+id/img_reminder"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Keep Track of Medication and get Reminders"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_hospital_locater"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/card_diet_nutiontion"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="#F8FEFF"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="180dp">
+
+                            <Button
+                                android:id="@+id/go_locator"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="Go"
+                                app:strokeColor="#2595C7" />
+
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_above="@+id/go_locator">
+
+                                <ImageView
+                                    android:id="@+id/img_hospital_locater"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:src="@drawable/ic_hospital_locater" />
+
+                                <TextView
+                                    android:id="@+id/txtHospitallocater"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="40dp"
+                                    android:layout_toRightOf="@+id/img_hospital_locater"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Pharmacy locator"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/txtHospitallocaterSubTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtHospitallocater"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_toRightOf="@+id/img_hospital_locater"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Find Local Hospitals"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_activate_locator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/card_hospital_locater"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="#F8FEFF"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="180dp">
+
+                            <Button
+                                android:id="@+id/go_activate_locator"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="Go"
+                                app:strokeColor="#2595C7" />
+
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_above="@+id/go_activate_locator">
+
+                                <ImageView
+                                    android:id="@+id/img_activate_locator"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:padding="@dimen/_2sdp"
+                                    android:src="@drawable/activate_locator_icon" />
+
+                                <TextView
+                                    android:id="@+id/txtactivate_locatorTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="40dp"
+                                    android:layout_toRightOf="@+id/img_activate_locator"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Activate Locator"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/txtactivate_locatorSubTitle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtactivate_locatorTitle"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_toRightOf="@+id/img_activate_locator"
+                                    android:fontFamily="@font/roboto"
+                                    android:gravity="center"
+                                    android:text="Keep Track of Medication and get Reminders"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="180dp"
+                        android:layout_below="@+id/card_activate_locator"
+                        android:visibility="gone"
+                        android:weightSum="2">
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/tablayout"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:background="#00FFFFFF"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rel_home"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_home"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_home" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_home"
+                    android:gravity="center"
+                    android:text="Home"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_speak_doc"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_doc"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_tab_speack_to_doc" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_doc"
+                    android:gravity="center"
+                    android:text="Hey Doc"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_allergy_finder"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/img_allergy_finder"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_allergy_finder" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_allergy_finder"
+                    android:gravity="center"
+                    android:text="Allergy Finder"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_rx_management"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_rx_management"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_rx" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_rx_management"
+                    android:gravity="center"
+                    android:text="Rx"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_profile"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_person" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_profile"
+                    android:gravity="center"
+                    android:text="Profile"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

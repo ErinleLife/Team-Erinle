@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "411627683934",
+    "firebase_url": "https://erinle-e2681-default-rtdb.firebaseio.com",
+    "project_id": "erinle-e2681",
+    "storage_bucket": "erinle-e2681.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411627683934:android:fad09f53dda8d1af0cb4cf",
+        "android_client_info": {
+          "package_name": "com.arnav.pocdoc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411627683934-kgns5bo7g7idj3egu1ccm0c1r48pq4qg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arnav.pocdoc",
+            "certificate_hash": "86b81e03c3f0357b12a67204cc9beb16062b4f2f"
+          }
+        },
+        {
+          "client_id": "411627683934-p6f9knaso1ijcb60kanpoa2vk8liqghv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOSWBcjegZ4DP_pKsvtevtCWCg3mFYzao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411627683934-p6f9knaso1ijcb60kanpoa2vk8liqghv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

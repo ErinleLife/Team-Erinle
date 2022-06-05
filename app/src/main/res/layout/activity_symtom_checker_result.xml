@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.arnav.pocdoc.symptomchecker.SymptomResultActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivBG"
+                    android:layout_width="@dimen/_250sdp"
+                    android:layout_height="@dimen/_240sdp"
+                    android:background="@drawable/ic_symptom_result_bg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTC"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/ic_symptom_image"
+                    app:layout_constraintBottom_toBottomOf="@id/ivBG"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/ivBG" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivDocLogo"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/doc_logo"
+                    app:layout_constraintBottom_toBottomOf="@id/ivBG"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                   />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTC"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:text="@string/go_to_emergency"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivBG" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRecommendation"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:text="@string/recommendation"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTC" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRecommendationDesc"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:text="@string/recommendation_desc"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvRecommendation" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPrimarySymptomTitle"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/colorBGHeader"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_6sdp"
+                    android:text="@string/primary_symptom"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvRecommendationDesc" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPrimarySymptom"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="@id/tvRecommendation"
+                    app:layout_constraintStart_toStartOf="@id/tvRecommendation"
+                    app:layout_constraintTop_toBottomOf="@id/tvPrimarySymptomTitle"
+                    tools:text="● Sandy\n● Gritty feeling" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSymptomGroupTitle"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/colorBGHeader"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_6sdp"
+                    android:text="@string/symptom_group"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvPrimarySymptom" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSymptomGroup"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="@id/tvRecommendation"
+                    app:layout_constraintStart_toStartOf="@id/tvRecommendation"
+                    app:layout_constraintTop_toBottomOf="@id/tvSymptomGroupTitle"
+                    tools:text="● Mildly red eye\n● Sandy\n● Gritty feeling\n● Foreign body\n● Excessive tearing" />
+
+                <RelativeLayout
+                    android:id="@+id/rlAssessment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvSymptomGroup">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAssessmentTitle"
+                        style="@style/BoldTextViewExtraSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/colorBGHeader"
+                        android:drawablePadding="@dimen/_4sdp"
+                        android:lineSpacingExtra="@dimen/_2sdp"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:paddingTop="@dimen/_6sdp"
+                        android:paddingEnd="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_6sdp"
+                        android:text="@string/assessment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnHeyDoc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center_vertical"
+                        android:onClick="@{(v)->activity.onViewClick(v)}"
+                        android:padding="@dimen/_6sdp"
+                        android:text="@string/hey_doc"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp" />
+
+                </RelativeLayout>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAssessment"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="@id/tvRecommendation"
+                    app:layout_constraintStart_toStartOf="@id/tvRecommendation"
+                    app:layout_constraintTop_toBottomOf="@id/rlAssessment"
+                    tools:text="● Dry Eye" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRecommendationItemTitle"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/colorBGHeader"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_6sdp"
+                    android:text="@string/recommendation"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvAssessment" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingEnd="0dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tvRecommendationItemTitle"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/row_recommendation" />
+
+                <!--                <androidx.appcompat.widget.AppCompatTextView-->
+                <!--                    android:id="@+id/tvExclusionsTitle"-->
+                <!--                    style="@style/BoldTextViewExtraSmall"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="@dimen/_10sdp"-->
+                <!--                    android:background="@color/colorBGHeader"-->
+                <!--                    android:drawablePadding="@dimen/_4sdp"-->
+                <!--                    android:lineSpacingExtra="@dimen/_2sdp"-->
+                <!--                    android:paddingStart="@dimen/_12sdp"-->
+                <!--                    android:paddingTop="@dimen/_6sdp"-->
+                <!--                    android:paddingEnd="@dimen/_12sdp"-->
+                <!--                    android:paddingBottom="@dimen/_6sdp"-->
+                <!--                    android:text="@string/exclusions"-->
+                <!--                    android:textColor="@color/black"-->
+                <!--                    android:textSize="@dimen/_12ssp"-->
+                <!--                    android:textStyle="bold"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/rv" />-->
+
+                <!--                <androidx.appcompat.widget.AppCompatTextView-->
+                <!--                    android:id="@+id/tvExclusions"-->
+                <!--                    style="@style/BoldTextViewExtraSmall"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="@dimen/_6sdp"-->
+                <!--                    android:lineSpacingExtra="@dimen/_3sdp"-->
+                <!--                    android:textColor="@color/black"-->
+                <!--                    android:textSize="@dimen/_10ssp"-->
+                <!--                    app:layout_constraintEnd_toEndOf="@id/tvRecommendation"-->
+                <!--                    app:layout_constraintStart_toStartOf="@id/tvRecommendation"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/tvExclusionsTitle"-->
+                <!--                    tools:text="● Eye Pain\n● tBlurred Vision not associated with use of ophthalmic ointments\n● tHistory of contact lens wear\n● tBlunt Trauma to eye\n● tChemical exposure to eye\n● tEye Exposure to heat, excluding sun\n● tSymptoms perisisted more than 72 hours" />-->
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNaturalTitle"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/colorBGHeader"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_6sdp"
+                    android:text="@string/natural"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv" />
+
+                <!--                <androidx.appcompat.widget.AppCompatTextView-->
+                <!--                    android:id="@+id/tvNatural"-->
+                <!--                    style="@style/BoldTextViewExtraSmall"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="@dimen/_6sdp"-->
+                <!--                    android:lineSpacingExtra="@dimen/_3sdp"-->
+                <!--                    android:textColor="@color/black"-->
+                <!--                    android:textSize="@dimen/_10ssp"-->
+                <!--                    app:layout_constraintEnd_toEndOf="@id/tvRecommendation"-->
+                <!--                    app:layout_constraintStart_toStartOf="@id/tvRecommendation"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/tvNaturalTitle"-->
+                <!--                    tools:text="● Oceans Eye Drop and Eye Wash Solution" />-->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvNatural"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingEnd="0dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tvNaturalTitle"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/row_recommendation" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPreventionTitle"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/colorBGHeader"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_6sdp"
+                    android:text="@string/prevention"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvNatural" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPrevention"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingEnd="0dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tvPreventionTitle"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/row_recommendation" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSpecificTitle"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/colorBGHeader"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_6sdp"
+                    android:text="@string/specific"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvPrevention" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSpecific"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="@id/tvRecommendation"
+                    app:layout_constraintStart_toStartOf="@id/tvRecommendation"
+                    app:layout_constraintTop_toBottomOf="@id/tvSpecificTitle"
+                    tools:text="● Eyes" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPrimaryTitle"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/colorBGHeader"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_6sdp"
+                    android:text="@string/specific"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvSpecific" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPrimary"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="@id/tvRecommendation"
+                    app:layout_constraintStart_toStartOf="@id/tvRecommendation"
+                    app:layout_constraintTop_toBottomOf="@id/tvPrimaryTitle"
+                    tools:text="● Head" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:onClick="@{(v)->activity.onViewClick(v)}"
+                    android:padding="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_60sdp"
+                    android:paddingEnd="@dimen/_60sdp"
+                    android:src="@color/colorPrimary"
+                    android:text="@string/start_over"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    app:cornerRadius="@dimen/_6sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvPrimary" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clBottomReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{(v)->activity.onViewClick(v)}"
+                    app:elevation="@dimen/_3sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnNext">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvFeedback"
+                        style="@style/BoldTextViewExtraSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:drawablePadding="@dimen/_4sdp"
+                        android:text="@string/feedback"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvFeedbackDesc"
+                        style="@style/BoldTextViewExtraSmall"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:drawablePadding="@dimen/_4sdp"
+                        android:lineSpacingExtra="@dimen/_2sdp"
+                        android:text="@string/feedback_desc"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvFeedback" />
+
+                    <RatingBar
+                        android:id="@+id/rBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_6sdp"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:progressTint="@color/colorPrimary"
+                        android:rating="5"
+                        android:secondaryProgressTint="@android:color/transparent"
+                        android:stepSize="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvFeedbackDesc" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
