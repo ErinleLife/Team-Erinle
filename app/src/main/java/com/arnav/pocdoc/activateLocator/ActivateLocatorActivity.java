@@ -22,6 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -45,6 +46,10 @@ public class ActivateLocatorActivity extends AppCompatActivity implements OnMapR
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activate_locator);
+
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.white));
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.frg_map);
@@ -79,10 +84,17 @@ public class ActivateLocatorActivity extends AppCompatActivity implements OnMapR
 //        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
 //        mMap.animateCamera(cameraUpdate);
 
+//        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
+        boolean success = googleMap.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                        this, R.raw.silver_map));
+
+
         for (int i = 0; i < locationArrayList.size(); i++) {
 
             // below line is use to add marker to each location of our array list.
-            mMap.addMarker(new MarkerOptions().position(locationArrayList.get(i)).title("Marker").icon(BitmapFromVector(this,R.drawable.google_markers_icon)));
+            mMap.addMarker(new MarkerOptions().position(locationArrayList.get(i)).title("").icon(BitmapFromVector(this,R.drawable.google_markers_icon)));
 
             // below lin is use to zoom our camera on map.
 //            mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f));

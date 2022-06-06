@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.2101851851851852" />
+        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/edittext_bg.xml" value="0.23055555555555557" />
+        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/google_markers_icon.xml" value="0.27037037037037037" />
+        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/activity_activate_locator.xml" value="0.2609375" />
+        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/activity_hospital_locator.xml" value="0.2609375" />
+        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/bottom_sheet_activate_locator.xml" value="0.2609375" />
         <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/drawable-ldpi/bg_image_text_black.xml" value="0.23425925925925925" />
         <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/drawable/bg_edit_text_black.xml" value="0.27708333333333335" />
         <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.23425925925925925" />

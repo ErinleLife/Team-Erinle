@@ -161,5 +161,7 @@
     <string name="rx_id">RX ID #</string>
     <string name="rx_group">RX Group #</string>
     <string name="upload_image">Upload image</string>
+    <string name="send_screen_shot_insurance_info">Send Screen Shot insurance info.</string>
+    <string name="exclusions_no_scan_of_controlled_drugs_or_scheduled_drugs_hard_copies_prescriptions">Exclusions: No scan of controlled drugs or \nscheduled drugs hard copies prescriptions</string>
 
 </resources>

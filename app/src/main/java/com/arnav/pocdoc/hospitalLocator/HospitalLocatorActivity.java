@@ -86,9 +86,14 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    binding.checkboxScanPharmacy.setChecked(false);
+//                    binding.checkboxScanPharmacy.setChecked(false);
+//                    binding.llInputTablelayout.setVisibility(View.VISIBLE);
+//                    binding.llUploadImageTablelayout.setVisibility(View.GONE);
+
+                    setCheckBoxData();
+                    binding.checkboxEitherEnterPharmacyInsurance.setChecked(true);
                     binding.llInputTablelayout.setVisibility(View.VISIBLE);
-                    binding.llUploadImageTablelayout.setVisibility(View.GONE);
+
                 }
 
             }
@@ -98,13 +103,47 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    binding.checkboxEitherEnterPharmacyInsurance.setChecked(false);
-                    binding.llInputTablelayout.setVisibility(View.GONE);
+
+                    setCheckBoxData();
+                    binding.checkboxScanPharmacy.setChecked(true);
                     binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
+
+//                    binding.checkboxEitherEnterPharmacyInsurance.setChecked(false);
+//                    binding.llInputTablelayout.setVisibility(View.GONE);
+//                    binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
                 }
 
             }
         });
+
+        binding.checkboxSendScreen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+//                    binding.checkboxEitherEnterPharmacyInsurance.setChecked(false);
+//                    binding.llInputTablelayout.setVisibility(View.GONE);
+//                    binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
+
+                    setCheckBoxData();
+                    binding.checkboxSendScreen.setChecked(true);
+                    binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
+
+                }
+
+            }
+        });
+
+    }
+
+    private void setCheckBoxData()
+    {
+        binding.checkboxScanPharmacy.setChecked(false);
+        binding.checkboxEitherEnterPharmacyInsurance.setChecked(false);
+        binding.checkboxSendScreen.setChecked(false);
+
+        binding.llUploadImageTablelayout.setVisibility(View.GONE);
+        binding.llInputTablelayout.setVisibility(View.GONE);
+        binding.llUploadImageSendScreen.setVisibility(View.GONE);
 
     }
 
@@ -157,7 +196,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                binding.etCheckNODescription.setText(charSequence.length() + "/" + "500");
+                binding.tvCheckNOtextCount.setText(charSequence.length() + "/" + "500");
 
             }
 
@@ -166,6 +205,26 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
             }
         });
+
+        binding.uploadImageDescriptionSendScreen.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                binding.tvSendScreenUploadImageTextCount.setText(charSequence.length() + "/" + "150");
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
 
 
     }
