@@ -22,6 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -97,7 +98,7 @@ public class ActivateLocatorActivity extends AppCompatActivity implements OnMapR
             mMap.addMarker(new MarkerOptions().position(locationArrayList.get(i)).title("").icon(BitmapFromVector(this,R.drawable.google_markers_icon)));
 
             // below lin is use to zoom our camera on map.
-//            mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f));
+//            mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
 
             mMap.getFocusedBuilding();
 //            LatLng latLng = new LatLng(locationArrayList.get(i).longitude, locationArrayList.get(i).longitude);
@@ -105,6 +106,11 @@ public class ActivateLocatorActivity extends AppCompatActivity implements OnMapR
 //            mMap.animateCamera(cameraUpdate);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(locationArrayList.get(i)));
         }
+
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(6));
+
+//        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 15));
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override

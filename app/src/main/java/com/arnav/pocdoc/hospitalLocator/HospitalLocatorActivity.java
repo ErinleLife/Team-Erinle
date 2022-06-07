@@ -82,6 +82,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
         binding.setLifecycleOwner(this);
 
+
         binding.checkboxEitherEnterPharmacyInsurance.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -92,7 +93,10 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
                     setCheckBoxData();
                     binding.checkboxEitherEnterPharmacyInsurance.setChecked(true);
+                    binding.checkboxEitherEnterPharmacyInsurance.setEnabled(false);
                     binding.llInputTablelayout.setVisibility(View.VISIBLE);
+
+
 
                 }
 
@@ -106,6 +110,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
                     setCheckBoxData();
                     binding.checkboxScanPharmacy.setChecked(true);
+                    binding.checkboxScanPharmacy.setEnabled(false);
                     binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
 
 //                    binding.checkboxEitherEnterPharmacyInsurance.setChecked(false);
@@ -126,6 +131,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
                     setCheckBoxData();
                     binding.checkboxSendScreen.setChecked(true);
+                    binding.checkboxSendScreen.setEnabled(false);
                     binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
 
                 }
@@ -140,6 +146,10 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
         binding.checkboxScanPharmacy.setChecked(false);
         binding.checkboxEitherEnterPharmacyInsurance.setChecked(false);
         binding.checkboxSendScreen.setChecked(false);
+
+        binding.checkboxScanPharmacy.setEnabled(true);
+        binding.checkboxEitherEnterPharmacyInsurance.setEnabled(true);
+        binding.checkboxSendScreen.setEnabled(true);
 
         binding.llUploadImageTablelayout.setVisibility(View.GONE);
         binding.llInputTablelayout.setVisibility(View.GONE);
