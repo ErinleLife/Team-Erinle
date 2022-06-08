@@ -25,578 +25,594 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_above="@+id/tablayout"
+            android:background="@drawable/component_1___1"
             android:layout_marginBottom="10dp">
 
             <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
+                <LinearLayout
+                    android:id="@+id/header_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00FFFFFF"
-                    android:minHeight="?attr/actionBarSize"
-                    android:theme="?attr/actionBarTheme"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:navigationIcon="@drawable/ic_menu" />
+                    android:orientation="vertical">
 
-                <RelativeLayout
-                    android:id="@+id/imagelayout"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_below="@+id/toolbar">
 
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="180dp"
-                        android:weightSum="2">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize">
+
+                        <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:background="@color/toolbar_color"
+                            android:textAlignment="center"
+                            app:navigationIcon="@drawable/menu_icon"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/txtWelcome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text=""
+                            android:textSize="@dimen/_16sdp"
+                            android:maxLength="25"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/imagelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_180sdp"
+                        android:background="@drawable/home_image_bg"
+                        android:backgroundTint="@color/toolbar_color"
+                        android:baselineAligned="false">
 
                         <ImageView
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_weight="1"
-                            android:src="@drawable/app_icon" />
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/home_image" />
 
-                        <ImageView
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_weight="1"
-                            android:src="@drawable/mainpicture" />
+                    </RelativeLayout>
 
-                    </LinearLayout>
+                </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txtWelcome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:fontFamily="@font/roboto"
-                        android:text=""
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_below="@+id/imagelayout"
-                    android:background="@drawable/component_1___1">
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/header_layout"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:visibility="visible">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardSimplyRelief"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/linearLayout2"
                         android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="#F8FEFF"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="10dp">
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardElevation="10dp"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="180dp"
-                            android:visibility="gone">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_165sdp">
 
-                            <Button
-                                android:id="@+id/go_simply_relief"
-                                style="?attr/materialButtonOutlinedStyle"
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:text="Go"
-                                app:strokeColor="#2595C7" />
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_21sdp"
+                                android:orientation="vertical"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <RelativeLayout
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:layout_above="@+id/go_simply_relief">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/symtom_checker"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_18sdp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/how_are_you_feeling"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:textSize="@dimen/_9sdp" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_32sdp"
+                                    android:src="@color/colorPrimary"
+                                    android:text="@string/go"
+                                    android:textAllCaps="false"
+                                    android:onClick="symptom_checker_btn"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="@dimen/_9sdp"
+                                    app:cornerRadius="@dimen/_20sdp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:ignore="OnClick" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/_170sdp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/home_item_bg"
+                                android:gravity="right"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:id="@+id/img_relief"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/ic_speack_to_doc" />
+                                    android:layout_width="@dimen/_100sdp"
+                                    android:layout_height="match_parent"
+                                    android:padding="@dimen/_20sdp"
+                                    android:src="@drawable/symtom_checker_icon" />
 
-                                <TextView
-                                    android:id="@+id/txtReliefTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="40dp"
-                                    android:layout_toRightOf="@+id/img_relief"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Simply Relief"
-                                    android:textSize="20sp" />
 
-                                <TextView
-                                    android:id="@+id/txtReliefSubTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/txtReliefTitle"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_toRightOf="@+id/img_relief"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="How are you feeling ?"
-                                    android:textSize="14sp" />
-                            </RelativeLayout>
+                            </LinearLayout>
 
-                        </RelativeLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardsymptomchecker"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/cardSimplyRelief"
                         android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="#F8FEFF"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="10dp">
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardElevation="10dp"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="180dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_165sdp">
 
-                            <Button
-                                android:id="@+id/go_symptomchecker"
-                                style="?attr/materialButtonOutlinedStyle"
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:text="Go"
-                                app:strokeColor="#2595C7" />
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_21sdp"
+                                android:orientation="vertical"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <RelativeLayout
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:layout_above="@+id/go_symptomchecker">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/otc_and_natural_da"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_18sdp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/keep_track_of_medical_e"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:textSize="@dimen/_9sdp" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_32sdp"
+                                    android:src="@color/colorPrimary"
+                                    android:text="@string/go"
+                                    android:textAllCaps="false"
+                                    android:onClick="otc_natural_btn"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="@dimen/_9sdp"
+                                    app:cornerRadius="@dimen/_20sdp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:ignore="OnClick" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/_170sdp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/home_item_bg"
+                                android:gravity="right"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:id="@+id/img_sympton"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/ic_speack_to_doc"
-                                    app:tint="@color/colorPrimary" />
+                                    android:layout_width="@dimen/_120sdp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="@dimen/_5sdp"
+                                    android:padding="@dimen/_10sdp"
+                                    android:src="@drawable/otc_natural_icon" />
 
-                                <TextView
-                                    android:id="@+id/txtSymptonTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="40dp"
-                                    android:layout_toRightOf="@+id/img_sympton"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Symptom Checker"
-                                    android:textSize="20sp" />
 
-                                <TextView
-                                    android:id="@+id/txtSymptonSubTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/txtSymptonTitle"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_toRightOf="@+id/img_sympton"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="How are you feeling ?"
-                                    android:textSize="14sp" />
-                            </RelativeLayout>
+                            </LinearLayout>
 
-                        </RelativeLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_otc_naturaldrugs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/cardsymptomchecker"
                         android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="#F8FEFF"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="10dp">
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardElevation="10dp"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="180dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_165sdp">
 
-                            <Button
-                                android:id="@+id/go_diary"
-                                style="?attr/materialButtonOutlinedStyle"
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:text="Go"
-                                app:strokeColor="#2595C7" />
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_21sdp"
+                                android:orientation="vertical"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <RelativeLayout
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:layout_above="@+id/go_diary">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/fitness_center"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_18sdp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/let_s_get_physical"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:textSize="@dimen/_9sdp" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_32sdp"
+                                    android:src="@color/colorPrimary"
+                                    android:text="@string/go"
+                                    android:textAllCaps="false"
+                                    android:onClick="fitnes_center_btn"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="@dimen/_9sdp"
+                                    app:cornerRadius="@dimen/_20sdp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:ignore="OnClick" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/_170sdp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/home_item_bg"
+                                android:gravity="right"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:id="@+id/img_otc"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/note_96px" />
+                                    android:layout_width="@dimen/_120sdp"
+                                    android:layout_height="match_parent"
+                                   android:paddingRight="@dimen/_7sdp"
+                                    android:src="@drawable/fitnes_center_icon" />
 
-                                <TextView
-                                    android:id="@+id/txtOTCTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="40dp"
-                                    android:layout_toRightOf="@+id/img_otc"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="@string/otc_and_natural_drugs"
-                                    android:textSize="20sp" />
 
-                                <TextView
-                                    android:id="@+id/txtOTCSubTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/txtOTCTitle"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_toRightOf="@+id/img_otc"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Keep Track of Medical Events"
-                                    android:textSize="14sp" />
-                            </RelativeLayout>
+                            </LinearLayout>
 
-                        </RelativeLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_allergy_finder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/card_otc_naturaldrugs"
                         android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="#F8FEFF"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="10dp">
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardElevation="10dp"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="180dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_165sdp">
 
-                            <Button
-                                android:id="@+id/go_symptom"
-                                style="?attr/materialButtonOutlinedStyle"
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:text="Go"
-                                app:strokeColor="#2595C7" />
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_21sdp"
+                                android:orientation="vertical"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <RelativeLayout
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:layout_above="@+id/go_symptom">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/diet_nutiontion"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_18sdp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/keep_track_of_medication_and_get_remindersa"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="@dimen/_7sdp"
+                                    android:textSize="@dimen/_9sdp" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_32sdp"
+                                    android:src="@color/colorPrimary"
+                                    android:text="@string/go"
+                                    android:textAllCaps="false"
+                                    android:onClick="diet_nutiontion_btn"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="@dimen/_9sdp"
+                                    app:cornerRadius="@dimen/_20sdp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:ignore="OnClick" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/_170sdp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/home_item_bg"
+                                android:gravity="right"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:id="@+id/img_allergy"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/thermometer_96px" />
+                                    android:layout_width="@dimen/_110sdp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="@dimen/_12sdp"
+                                    android:src="@drawable/diet_nutiontion_icon" />
 
-                                <TextView
-                                    android:id="@+id/txtAllergyFinderTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="40dp"
-                                    android:layout_toRightOf="@+id/img_allergy"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Fitness Center"
-                                    android:textSize="20sp" />
 
-                                <TextView
-                                    android:id="@+id/txtAllergyFinderSubTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/txtAllergyFinderTitle"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_toRightOf="@+id/img_allergy"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Let's Get Physical"
-                                    android:textSize="14sp" />
-                            </RelativeLayout>
+                            </LinearLayout>
 
-                        </RelativeLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_diet_nutiontion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/card_allergy_finder"
                         android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="#F8FEFF"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="10dp">
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardElevation="10dp"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="180dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_165sdp">
 
-                            <Button
-                                android:id="@+id/go_reminder"
-                                style="?attr/materialButtonOutlinedStyle"
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:text="Go"
-                                app:strokeColor="#2595C7" />
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_21sdp"
+                                android:orientation="vertical"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <RelativeLayout
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:layout_above="@+id/go_reminder">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/pharmacy_locator_"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_18sdp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/find_local_hospitals"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:textSize="@dimen/_9sdp" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_32sdp"
+                                    android:src="@color/colorPrimary"
+                                    android:text="@string/go"
+                                    android:textAllCaps="false"
+                                    android:onClick="pharmacy_locator_btn"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="@dimen/_9sdp"
+                                    app:cornerRadius="@dimen/_20sdp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:ignore="OnClick" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/_170sdp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/home_item_bg"
+                                android:gravity="right"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:id="@+id/img_reminder"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/ic_diet_nutiontion" />
+                                    android:layout_width="@dimen/_120sdp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="@dimen/_15sdp"
+                                    android:src="@drawable/pharmacy_locator_icon" />
 
-                                <TextView
-                                    android:id="@+id/txtDietNutionTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="40dp"
-                                    android:layout_toRightOf="@+id/img_reminder"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Diet/Nutiontion"
-                                    android:textSize="20sp" />
 
-                                <TextView
-                                    android:id="@+id/txtDietNutionSubTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/txtDietNutionTitle"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_toRightOf="@+id/img_reminder"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Keep Track of Medication and get Reminders"
-                                    android:textSize="14sp" />
-                            </RelativeLayout>
+                            </LinearLayout>
 
-                        </RelativeLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_hospital_locater"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/card_diet_nutiontion"
                         android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="#F8FEFF"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="10dp">
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardElevation="10dp"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="180dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_165sdp">
 
-                            <Button
-                                android:id="@+id/go_locator"
-                                style="?attr/materialButtonOutlinedStyle"
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:text="Go"
-                                app:strokeColor="#2595C7" />
-
-                            <RelativeLayout
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:layout_above="@+id/go_locator">
-
-                                <ImageView
-                                    android:id="@+id/img_hospital_locater"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/ic_hospital_locater" />
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_21sdp"
+                                android:orientation="vertical"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <TextView
-                                    android:id="@+id/txtHospitallocater"
-                                    android:layout_width="fill_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="40dp"
-                                    android:layout_toRightOf="@+id/img_hospital_locater"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Pharmacy locator"
-                                    android:textSize="20sp" />
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/activate_locator_"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_18sdp" />
 
                                 <TextView
-                                    android:id="@+id/txtHospitallocaterSubTitle"
-                                    android:layout_width="fill_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_below="@+id/txtHospitallocater"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_toRightOf="@+id/img_hospital_locater"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Find Local Hospitals"
-                                    android:textSize="14sp" />
-                            </RelativeLayout>
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/dummy_text"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:textSize="@dimen/_9sdp" />
 
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_32sdp"
+                                    android:src="@color/colorPrimary"
+                                    android:text="@string/go"
+                                    android:textAllCaps="false"
+                                    android:onClick="activate_locator_btn"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="@dimen/_9sdp"
+                                    app:cornerRadius="@dimen/_20sdp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:ignore="OnClick" />
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/card_activate_locator"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/card_hospital_locater"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="#F8FEFF"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="10dp">
 
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="180dp">
+                            </LinearLayout>
 
-                            <Button
-                                android:id="@+id/go_activate_locator"
-                                style="?attr/materialButtonOutlinedStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:text="Go"
-                                app:strokeColor="#2595C7" />
-
-                            <RelativeLayout
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:layout_above="@+id/go_activate_locator">
+                            <LinearLayout
+                                android:layout_width="@dimen/_180sdp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/home_item_bg"
+                                android:gravity="right"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:id="@+id/img_activate_locator"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:padding="@dimen/_2sdp"
+                                    android:layout_width="@dimen/_150sdp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="@dimen/_5sdp"
                                     android:src="@drawable/activate_locator_icon" />
 
-                                <TextView
-                                    android:id="@+id/txtactivate_locatorTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="40dp"
-                                    android:layout_toRightOf="@+id/img_activate_locator"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Activate Locator"
-                                    android:textSize="20sp" />
 
-                                <TextView
-                                    android:id="@+id/txtactivate_locatorSubTitle"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/txtactivate_locatorTitle"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_toRightOf="@+id/img_activate_locator"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center"
-                                    android:text="Keep Track of Medication and get Reminders"
-                                    android:textSize="14sp" />
-                            </RelativeLayout>
+                            </LinearLayout>
 
-                        </RelativeLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </androidx.cardview.widget.CardView>
 
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="180dp"
-                        android:layout_below="@+id/card_activate_locator"
-                        android:visibility="gone"
-                        android:weightSum="2">
-
-                    </LinearLayout>
-                </RelativeLayout>
+                </LinearLayout>
 
             </RelativeLayout>
         </ScrollView>

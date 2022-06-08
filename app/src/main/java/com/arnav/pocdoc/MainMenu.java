@@ -1,5 +1,6 @@
 package com.arnav.pocdoc;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -54,9 +56,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar;
     ActionBarDrawerToggle toggle;
     CardView emergency;
-    Button med_diary, reminder, locator, allergy, go_symptomchecker, go_simply_relief , go_activate_locator;
+    Button  reminder;
 
-    Button go_remind;
     RelativeLayout rel_home, rel_speak_doc, rel_rx_management, rel_profile;
     private TextView txtWelcome;
     private GoogleSignInClient mGoogleSignInClient;
@@ -65,6 +66,9 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.toolbar_color));
 
         FirebaseDatabase.getInstance().getReference().child("medical_id").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,18 +108,16 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         toolbar = findViewById(R.id.toolbar);
 //        emergency = findViewById(R.id.emergency_call);
         txtWelcome = findViewById(R.id.txtWelcome);
-        med_diary = findViewById(R.id.go_diary);
-        locator = findViewById(R.id.go_locator);
-        go_activate_locator = findViewById(R.id.go_activate_locator);
-        allergy = findViewById(R.id.go_symptom);
-        go_remind = findViewById(R.id.go_reminder);
-        go_simply_relief = findViewById(R.id.go_simply_relief);
-        go_symptomchecker = findViewById(R.id.go_symptomchecker);
+//        med_diary = findViewById(R.id.go_diary);
+//        allergy = findViewById(R.id.go_symptom);
+//        go_simply_relief = findViewById(R.id.go_simply_relief);
+//        go_symptomchecker = findViewById(R.id.go_symptomchecker);
 
 
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.menu_icon);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
@@ -147,55 +149,55 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             startActivity(new Intent(getApplicationContext(), MedicalId.class));
         });
 
-        go_simply_relief.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SimplyReliefSearch.class));
-            }
-        });
+//        go_simply_relief.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), SimplyReliefSearch.class));
+//            }
+//        });
 
-        go_symptomchecker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SymptomCheckerActivity.class));
-            }
-        });
+//        go_symptomchecker.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), SymptomCheckerActivity.class));
+//            }
+//        });
 
-        med_diary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), OTCAndNaturalDrugsActivity.class));
-            }
-        });
+//        med_diary.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getApplicationContext(), OTCAndNaturalDrugsActivity.class));
+//            }
+//        });
 
-        locator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), HospitalLocatorActivity.class));
-            }
-        });
+//        locator.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getApplicationContext(), HospitalLocatorActivity.class));
+//            }
+//        });
 
-        go_activate_locator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ActivateLocatorActivity.class));
-            }
-        });
+//        go_activate_locator.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getApplicationContext(), ActivateLocatorActivity.class));
+//            }
+//        });
 
-        allergy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), FoodImageInput.class));
-            }
-        });
+//        allergy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getApplicationContext(), FoodImageInput.class));
+//            }
+//        });
 
-        go_remind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Reminder.class);
-                startActivity(intent);
-            }
-        });
+//        go_remind.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), Reminder.class);
+//                startActivity(intent);
+//            }
+//        });
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -213,11 +215,13 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         Log.e("FIREBASEUSER-->", "" + firebaseUser + " Referance-->" + reference);
 
         FirebaseDatabase.getInstance().getReference().child("medical_id").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     String firstName = snapshot.child("firstName").getValue().toString();
-                    toolbar.setTitle("Welcome, " + firstName);
+                    txtWelcome.setText("Welcome, " + firstName);
+
                 }
             }
 
@@ -315,4 +319,39 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
     }
 
+    public void symptom_checker_btn(View view) {
+
+        startActivity(new Intent(getApplicationContext(), SymptomCheckerActivity.class));
+
+    }
+
+    public void otc_natural_btn(View view) {
+        startActivity(new Intent(getApplicationContext(), OTCAndNaturalDrugsActivity.class));
+
+    }
+
+    public void fitnes_center_btn(View view) {
+
+        startActivity(new Intent(getApplicationContext(), FoodImageInput.class));
+
+    }
+
+    public void diet_nutiontion_btn(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), Reminder.class);
+        startActivity(intent);
+
+    }
+
+    public void pharmacy_locator_btn(View view) {
+
+        startActivity(new Intent(getApplicationContext(), HospitalLocatorActivity.class));
+
+    }
+
+    public void activate_locator_btn(View view) {
+
+        startActivity(new Intent(getApplicationContext(), ActivateLocatorActivity.class));
+
+    }
 }

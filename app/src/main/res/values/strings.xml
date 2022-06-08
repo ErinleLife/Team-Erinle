@@ -163,5 +163,18 @@
     <string name="upload_image">Upload image</string>
     <string name="send_screen_shot_insurance_info">Send Screen Shot insurance info.</string>
     <string name="exclusions_no_scan_of_controlled_drugs_or_scheduled_drugs_hard_copies_prescriptions">Exclusions: No scan of controlled drugs or \nscheduled drugs hard copies prescriptions</string>
+    <string name="symtom_checker">Symtom\nChecker</string>
+    <string name="how_are_you_feeling">How are you feeling?</string>
+    <string name="go">Go</string>
+    <string name="otc_and_natural_da">OTC and\nNatural Da</string>
+    <string name="keep_track_of_medical_e">Keep Track of medical e</string>
+    <string name="fitness_center">Fitness\nCenter</string>
+    <string name="let_s_get_physical">Let’s Get Physical</string>
+    <string name="diet_nutiontion">Diet/\nNutiontion</string>
+    <string name="keep_track_of_medication_and_get_remindersa">Keep Track of Medication\nand get Remindersa</string>
+    <string name="pharmacy_locator_">Pharmacy\nLocator</string>
+    <string name="find_local_hospitals">Find Local Hospitals</string>
+    <string name="activate_locator_">Activate\nLocator</string>
+    <string name="dummy_text">Dummy Text</string>
 
 </resources>
