@@ -87,16 +87,11 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-//                    binding.checkboxScanPharmacy.setChecked(false);
-//                    binding.llInputTablelayout.setVisibility(View.VISIBLE);
-//                    binding.llUploadImageTablelayout.setVisibility(View.GONE);
 
                     setCheckBoxData();
                     binding.checkboxEitherEnterPharmacyInsurance.setChecked(true);
                     binding.checkboxEitherEnterPharmacyInsurance.setEnabled(false);
                     binding.llInputTablelayout.setVisibility(View.VISIBLE);
-
-
 
                 }
 
@@ -113,9 +108,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                     binding.checkboxScanPharmacy.setEnabled(false);
                     binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
 
-//                    binding.checkboxEitherEnterPharmacyInsurance.setChecked(false);
-//                    binding.llInputTablelayout.setVisibility(View.GONE);
-//                    binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -125,9 +117,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-//                    binding.checkboxEitherEnterPharmacyInsurance.setChecked(false);
-//                    binding.llInputTablelayout.setVisibility(View.GONE);
-//                    binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
 
                     setCheckBoxData();
                     binding.checkboxSendScreen.setChecked(true);
@@ -135,6 +124,44 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                     binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
 
                 }
+
+            }
+        });
+
+
+        binding.clEitherEnterPharmacyInsurance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                setCheckBoxData();
+                binding.checkboxEitherEnterPharmacyInsurance.setChecked(true);
+                binding.checkboxEitherEnterPharmacyInsurance.setEnabled(false);
+                binding.llInputTablelayout.setVisibility(View.VISIBLE);
+
+
+            }
+        });
+
+        binding.clScanPharmacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                setCheckBoxData();
+                binding.checkboxScanPharmacy.setChecked(true);
+                binding.checkboxScanPharmacy.setEnabled(false);
+                binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        binding.clSendScreenShotInsuranceInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                setCheckBoxData();
+                binding.checkboxSendScreen.setChecked(true);
+                binding.checkboxSendScreen.setEnabled(false);
+                binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
 
             }
         });

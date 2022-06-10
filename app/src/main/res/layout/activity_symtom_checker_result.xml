@@ -47,8 +47,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivDocLogo"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:background="@drawable/doc_logo"
                     app:layout_constraintBottom_toBottomOf="@id/ivBG"
@@ -64,7 +64,8 @@
                     android:layout_marginStart="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:drawablePadding="@dimen/_4sdp"
-                    android:text="@string/go_to_emergency"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Consult with pharmacist for\nfurther expert recommendations"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"

@@ -195,6 +195,7 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     android:background="@drawable/bg_edit_text_black"
                     android:orientation="vertical"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/llImages">
@@ -228,7 +229,7 @@
                             android:layout_marginLeft="@dimen/_30sdp"
                             android:fontFamily="@font/poppins_regular"
                             android:checked="true"
-                            app:buttonTint="#1471C9"
+                            app:buttonTint="#2595C7"
                             android:onClick="onRadioButtonClicked"
                             android:text="@string/yes"
                             android:textColor="#333D48" />
@@ -238,7 +239,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_30sdp"
-                            app:buttonTint="#1471C9"
+                            app:buttonTint="#2595C7"
                             android:fontFamily="@font/poppins_regular"
                             android:onClick="onRadioButtonClicked"
                             android:text="@string/no"
@@ -264,6 +265,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:visibility="visible"
                         android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -296,7 +298,7 @@
                                 android:id="@+id/checkbox_either_enter_pharmacy_insurance"
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"
-                                android:button="@drawable/checkbox_selector"
+                                android:button="@drawable/checkbox_selector_pharmacy"
                                 android:checked="true"
                                 android:enabled="false"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -336,7 +338,7 @@
                                 android:id="@+id/checkbox_scan_pharmacy"
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"
-                                android:button="@drawable/checkbox_selector"
+                                android:button="@drawable/checkbox_selector_pharmacy"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -374,7 +376,7 @@
                                 android:id="@+id/checkbox_send_screen"
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"
-                                android:button="@drawable/checkbox_selector"
+                                android:button="@drawable/checkbox_selector_pharmacy"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -482,6 +484,8 @@
                                 android:gravity="top"
                                 android:hint="@string/enter_description"
                                 android:inputType="textMultiLine"
+                                android:textColorHint="#AFAFAF"
+                                android:textSize="@dimen/_11sdp"
                                 android:lines="3"
                                 android:maxLength="150"
                                 android:paddingTop="@dimen/_10sdp"
@@ -541,60 +545,112 @@
                             android:textStyle="bold" />
 
 
-                        <LinearLayout
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_150sdp"
                             android:layout_margin="@dimen/_12sdp"
-                            android:weightSum="2"
                             app:layout_constraintTop_toBottomOf="@+id/at_description">
 
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:id="@+id/iv_upload_image_1"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/cl_iv_upload_image_1"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginEnd="@dimen/_5sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_edit_text_black"
-                                android:onClick="@{(v)->activity.onViewClick(v)}"
-                                android:scaleType="centerCrop"
-                                android:visibility="gone"
-                                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent" />
+                                android:layout_marginRight="@dimen/_5sdp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toLeftOf="@+id/cl_iv_upload_image_2">
 
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:id="@+id/iv_upload_image_2"
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:id="@+id/iv_upload_image_1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_edit_text_black"
+                                    android:onClick="@{(v)->activity.onViewClick(v)}"
+                                    android:scaleType="centerCrop"
+                                    android:visibility="gone"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_image_text_black"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="#AFAFAF" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/_35sdp"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:src="@drawable/plus_icon"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/cl_iv_upload_image_2"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_edit_text_black"
-                                android:onClick="@{(v)->activity.onViewClick(v)}"
-                                android:scaleType="centerCrop"
-                                android:visibility="gone"
-                                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent" />
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toRightOf="@+id/cl_iv_upload_image_1">
 
-                            <TextView
-                                android:id="@+id/tv_upload_image_1"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginEnd="@dimen/_5sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_image_text_black"
-                                android:fontFamily="@font/poppins_regular"
-                                android:gravity="center"
-                                android:onClick="@{(v)->activity.onViewClick(v)}"
-                                android:textColor="#AFAFAF" />
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:id="@+id/iv_upload_image_2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_edit_text_black"
+                                    android:onClick="@{(v)->activity.onViewClick(v)}"
+                                    android:scaleType="centerCrop"
+                                    android:visibility="gone"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"/>
 
-                            <TextView
-                                android:id="@+id/tv_upload_image_2"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_image_text_black"
-                                android:fontFamily="@font/poppins_regular"
-                                android:gravity="center"
-                                android:onClick="@{(v)->activity.onViewClick(v)}"
-                                android:textColor="#AFAFAF" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_image_text_black"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="#AFAFAF" />
 
-                        </LinearLayout>
+
+                                <ImageView
+                                    android:layout_width="@dimen/_35sdp"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:src="@drawable/plus_icon"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -614,6 +670,8 @@
                                 android:inputType="textMultiLine"
                                 android:lines="3"
                                 android:maxLength="150"
+                                android:textColorHint="#AFAFAF"
+                                android:textSize="@dimen/_11sdp"
                                 android:paddingTop="@dimen/_10sdp"
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:paddingRight="@dimen/_10sdp"
@@ -671,61 +729,112 @@
                             android:textStyle="bold" />
 
 
-                        <LinearLayout
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_150sdp"
                             android:layout_margin="@dimen/_12sdp"
-                            android:weightSum="2"
                             app:layout_constraintTop_toBottomOf="@+id/at_description">
 
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:id="@+id/iv_Send_Screen_upload_image_1"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/cl_iv_Send_Screen_upload_image_1"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginEnd="@dimen/_5sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_edit_text_black"
-                                android:onClick="@{(v)->activity.onViewClick(v)}"
-                                android:scaleType="centerCrop"
-                                android:visibility="gone"
-                                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent" />
+                                android:layout_marginRight="@dimen/_5sdp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toLeftOf="@+id/cl_iv_Send_Screen_upload_image_2">
 
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:id="@+id/iv_Send_Screen_upload_image_2"
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:id="@+id/iv_Send_Screen_upload_image_1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_edit_text_black"
+                                    android:onClick="@{(v)->activity.onViewClick(v)}"
+                                    android:scaleType="centerCrop"
+                                    android:visibility="gone"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_image_text_black"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="#AFAFAF" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/_35sdp"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:src="@drawable/plus_icon"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/cl_iv_Send_Screen_upload_image_2"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_edit_text_black"
-                                android:onClick="@{(v)->activity.onViewClick(v)}"
-                                android:scaleType="centerCrop"
-                                android:visibility="gone"
-                                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent" />
 
-                            <TextView
-                                android:id="@+id/tv_Send_Screen_upload_image_1"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginEnd="@dimen/_5sdp"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_image_text_black"
-                                android:fontFamily="@font/poppins_regular"
-                                android:gravity="center"
-                                android:onClick="@{(v)->activity.onViewClick(v)}"
-                                android:textColor="#AFAFAF" />
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toRightOf="@+id/cl_iv_Send_Screen_upload_image_1">
 
-                            <TextView
-                                android:id="@+id/tv_Send_Screen_upload_image_2"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_image_text_black"
-                                android:fontFamily="@font/poppins_regular"
-                                android:gravity="center"
-                                android:onClick="@{(v)->activity.onViewClick(v)}"
-                                android:textColor="#AFAFAF" />
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:id="@+id/iv_Send_Screen_upload_image_2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_edit_text_black"
+                                    android:onClick="@{(v)->activity.onViewClick(v)}"
+                                    android:scaleType="centerCrop"
+                                    android:visibility="gone"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"/>
 
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_image_text_black"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="#AFAFAF" />
 
+                                <ImageView
+                                    android:layout_width="@dimen/_35sdp"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:src="@drawable/plus_icon"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -744,6 +853,8 @@
                                 android:inputType="textMultiLine"
                                 android:lines="3"
                                 android:maxLength="150"
+                                android:textColorHint="#AFAFAF"
+                                android:textSize="@dimen/_11sdp"
                                 android:paddingTop="@dimen/_10sdp"
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:paddingRight="@dimen/_10sdp"
@@ -803,7 +914,10 @@
                             android:gravity="top"
                             android:hint="@string/enter_description"
                             android:inputType="textMultiLine"
-                            android:lines="4"
+                            android:lines="3"
+                            android:textColorHint="#AFAFAF"
+                            android:textSize="@dimen/_11sdp"
+                            android:text="@string/cash_paying_please_apply_a_discount_card_must_bring_in_hard_copy_prescription_to_receive_medicine"
                             android:maxLength="500"
                             android:paddingTop="@dimen/_10sdp"
                             android:paddingLeft="@dimen/_10sdp"

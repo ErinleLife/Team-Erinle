@@ -255,6 +255,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_12sdp"
             android:background="@drawable/btn_bg"
+            android:backgroundTint="#2595C7"
             android:gravity="center"
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"

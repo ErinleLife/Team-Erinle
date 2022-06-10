@@ -21,12 +21,49 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_header_view"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/toolbar_color"
+                android:textAlignment="center"
+                app:navigationIcon="@drawable/menu_icon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/txtWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text=""
+                android:textSize="@dimen/_16sdp"
+                android:maxLength="25"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_above="@+id/tablayout"
-            android:background="@drawable/component_1___1"
-            android:layout_marginBottom="10dp">
+            android:background="#EDF6FD"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/cl_header_view">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -37,42 +74,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize">
-
-                        <androidx.appcompat.widget.Toolbar
-                            android:id="@+id/toolbar"
-                            android:layout_width="match_parent"
-                            android:layout_height="?attr/actionBarSize"
-                            android:background="@color/toolbar_color"
-                            android:textAlignment="center"
-                            app:navigationIcon="@drawable/menu_icon"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
-
-                        <TextView
-                            android:id="@+id/txtWelcome"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:text=""
-                            android:textSize="@dimen/_16sdp"
-                            android:maxLength="25"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                     <RelativeLayout
                         android:id="@+id/imagelayout"
@@ -141,7 +142,7 @@
                                     android:text="@string/how_are_you_feeling"
                                     android:textColor="@color/black"
                                     android:layout_marginTop="@dimen/_10sdp"
-                                    android:textSize="@dimen/_9sdp" />
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
@@ -215,7 +216,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_bold"
-                                    android:text="@string/otc_and_natural_da"
+                                    android:text="@string/otc_product"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_18sdp" />
 
@@ -224,9 +225,10 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/keep_track_of_medical_e"
+                                    android:visibility="invisible"
                                     android:textColor="@color/black"
                                     android:layout_marginTop="@dimen/_10sdp"
-                                    android:textSize="@dimen/_9sdp" />
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
@@ -258,10 +260,9 @@
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:layout_width="@dimen/_120sdp"
+                                    android:layout_width="@dimen/_140sdp"
                                     android:layout_height="match_parent"
                                     android:layout_marginRight="@dimen/_5sdp"
-                                    android:padding="@dimen/_10sdp"
                                     android:src="@drawable/otc_natural_icon" />
 
 
@@ -312,7 +313,7 @@
                                     android:text="@string/let_s_get_physical"
                                     android:textColor="@color/black"
                                     android:layout_marginTop="@dimen/_10sdp"
-                                    android:textSize="@dimen/_9sdp" />
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
@@ -397,7 +398,7 @@
                                     android:text="@string/keep_track_of_medication_and_get_remindersa"
                                     android:textColor="@color/black"
                                     android:layout_marginTop="@dimen/_7sdp"
-                                    android:textSize="@dimen/_9sdp" />
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
@@ -456,6 +457,177 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
+                            android:layout_height="@dimen/_180sdp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_21sdp"
+                                android:orientation="vertical"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/natural_alternative_medicine"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_18sdp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:visibility="invisible"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="@dimen/_7sdp"
+                                    android:textSize="@dimen/_10sdp" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_32sdp"
+                                    android:src="@color/colorPrimary"
+                                    android:text="@string/go"
+                                    android:textAllCaps="false"
+                                    android:onClick="diet_nutiontion_btn"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="@dimen/_9sdp"
+                                    app:cornerRadius="@dimen/_20sdp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:ignore="OnClick" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/_170sdp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/home_item_bg"
+                                android:gravity="right"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_110sdp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="@dimen/_12sdp"
+                                    android:src="@drawable/natura_alternative_icon" />
+
+
+                            </LinearLayout>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardElevation="10dp"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_180sdp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_21sdp"
+                                android:orientation="vertical"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/scan_and_send_rx_here"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_18sdp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/take_image_of_hardcopy_prescription_and_send_to_local_pharmacy"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="@dimen/_7sdp"
+                                    android:textSize="@dimen/_10sdp" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_32sdp"
+                                    android:src="@color/colorPrimary"
+                                    android:text="@string/go"
+                                    android:textAllCaps="false"
+                                    android:onClick="diet_nutiontion_btn"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="@dimen/_9sdp"
+                                    app:cornerRadius="@dimen/_20sdp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:ignore="OnClick" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/_170sdp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/home_item_bg"
+                                android:gravity="right"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_110sdp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="@dimen/_12sdp"
+                                    android:src="@drawable/scan_and_send_rx_here_icon" />
+
+
+                            </LinearLayout>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardElevation="10dp"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="@dimen/_165sdp">
 
                             <LinearLayout
@@ -479,10 +651,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:text="@string/find_local_hospitals"
+                                    android:text="@string/local_pharmacy_search"
                                     android:textColor="@color/black"
                                     android:layout_marginTop="@dimen/_10sdp"
-                                    android:textSize="@dimen/_9sdp" />
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"

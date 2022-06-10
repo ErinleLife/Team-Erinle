@@ -166,15 +166,19 @@
     <string name="symtom_checker">Symtom\nChecker</string>
     <string name="how_are_you_feeling">How are you feeling?</string>
     <string name="go">Go</string>
-    <string name="otc_and_natural_da">OTC and\nNatural Da</string>
     <string name="keep_track_of_medical_e">Keep Track of medical e</string>
     <string name="fitness_center">Fitness\nCenter</string>
     <string name="let_s_get_physical">Let’s Get Physical</string>
     <string name="diet_nutiontion">Diet/\nNutiontion</string>
     <string name="keep_track_of_medication_and_get_remindersa">Keep Track of Medication\nand get Remindersa</string>
     <string name="pharmacy_locator_">Pharmacy\nLocator</string>
-    <string name="find_local_hospitals">Find Local Hospitals</string>
     <string name="activate_locator_">Activate\nLocator</string>
     <string name="dummy_text">Dummy Text</string>
+    <string name="otc_product">OTC\nProduct</string>
+    <string name="scan_and_send_rx_here">Scan and\nSend RX Here</string>
+    <string name="take_image_of_hardcopy_prescription_and_send_to_local_pharmacy">Take Image of Hardcopy\nPrescription and Send to\nLocal Pharmacy</string>
+    <string name="natural_alternative_medicine">Natural/\nAlternative\nMedicine</string>
+    <string name="local_pharmacy_search">Local Pharmacy Search</string>
+    <string name="cash_paying_please_apply_a_discount_card_must_bring_in_hard_copy_prescription_to_receive_medicine">Cash paying please apply a discount card, must bring in hard copy prescription to receive medicine.</string>
 
 </resources>
