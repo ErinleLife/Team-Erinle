@@ -78,10 +78,27 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
         getSymptomsData();
         setDetailEditText();
-
+        setOnCheckBoxChange();
+        setOnClickListener();
 
         binding.setLifecycleOwner(this);
 
+    }
+
+    private void setOnClickListener() {
+
+        binding.ivUploadImage1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                openFrontImageDialog();
+
+            }
+        });
+
+    }
+
+    private void setOnCheckBoxChange() {
 
         binding.checkboxEitherEnterPharmacyInsurance.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -128,7 +145,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
             }
         });
 
-
         binding.clEitherEnterPharmacyInsurance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,8 +184,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
     }
 
-    private void setCheckBoxData()
-    {
+    private void setCheckBoxData() {
         binding.checkboxScanPharmacy.setChecked(false);
         binding.checkboxEitherEnterPharmacyInsurance.setChecked(false);
         binding.checkboxSendScreen.setChecked(false);
@@ -263,7 +278,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
         });
 
 
-
     }
 
     private void getSymptomsData() {
@@ -294,9 +308,11 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
     public void onViewClick(View view) {
         if (view == binding.tvBackImage || view == binding.ivBackImage) {
             isFrontImage = false;
+            isBackImage = true;
             openFrontImageDialog();
         } else if (view == binding.tvFrontImage || view == binding.ivFrontImage) {
             isFrontImage = true;
+            isBackImage = false;
             openFrontImageDialog();
         } else if (view == binding.btnNext) {
 //            if (binding.autoCompleteTextView1.getText().toString().isEmpty()) {
@@ -346,6 +362,8 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
     private MediaFile imageFront, imageBack;
     private boolean isFrontImage = false;
+    private boolean isBackImage = false;
+
 
     private void openFrontImageDialog() {
         Intent intent = new Intent(this, FilePickerActivity.class);
@@ -368,19 +386,32 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                         if (result.getData().getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES) != null) {
                             ArrayList<MediaFile> files = result.getData().getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES);
                             if (files == null || files.size() == 0) return;
-                            if (isFrontImage) {
-                                imageFront = files.get(0);
-                                binding.tvFrontImage.setVisibility(View.GONE);
-                                binding.ivFrontImage.setVisibility(View.VISIBLE);
+                            if (isFrontImage || isBackImage) {
+                                if (isFrontImage) {
+                                    imageFront = files.get(0);
+                                    binding.tvFrontImage.setVisibility(View.GONE);
+                                    binding.ivFrontImage.setVisibility(View.VISIBLE);
+                                } else {
+                                    imageBack = files.get(0);
+                                    binding.tvBackImage.setVisibility(View.GONE);
+                                    binding.ivBackImage.setVisibility(View.VISIBLE);
+                                }
+                                Glide.with(this)
+                                        .load(files.get(0).getPath())
+                                        .centerCrop()
+                                        .into(isFrontImage ? binding.ivFrontImage : binding.ivBackImage);
+
                             } else {
-                                imageBack = files.get(0);
-                                binding.tvBackImage.setVisibility(View.GONE);
-                                binding.ivBackImage.setVisibility(View.VISIBLE);
+
+                                binding.ivUploadImagePlusIcon.setVisibility(View.GONE);
+                                binding.tvUploadImage1Bg.setVisibility(View.GONE);
+                                Glide.with(this)
+                                        .load(files.get(0).getPath())
+                                        .centerCrop()
+                                        .into(binding.ivUploadImage1);
+
                             }
-                            Glide.with(this)
-                                    .load(files.get(0).getPath())
-                                    .centerCrop()
-                                    .into(isFrontImage ? binding.ivFrontImage : binding.ivBackImage);
+
                         }
                     }
                 }
@@ -393,20 +424,18 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
         // Check which radio button was clicked
         switch (view.getId()) {
             case R.id.radio_yes:
-                if (checked)
-                {
+                if (checked) {
                     binding.llCheckyesLayout.setVisibility(View.VISIBLE);
                     binding.llChecknoLayout.setVisibility(View.GONE);
                 }
-                    // Pirates are the best
+                // Pirates are the best
                 break;
             case R.id.radio_no:
-                if (checked)
-                {
+                if (checked) {
                     binding.llCheckyesLayout.setVisibility(View.GONE);
                     binding.llChecknoLayout.setVisibility(View.VISIBLE);
                 }
-                    // Ninjas rule
+                // Ninjas rule
 
 
                 break;

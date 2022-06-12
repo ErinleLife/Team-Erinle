@@ -686,7 +686,7 @@
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:layout_width="@dimen/_120sdp"
+                                    android:layout_width="@dimen/_100sdp"
                                     android:layout_height="match_parent"
                                     android:paddingRight="@dimen/_15sdp"
                                     android:src="@drawable/pharmacy_locator_icon" />

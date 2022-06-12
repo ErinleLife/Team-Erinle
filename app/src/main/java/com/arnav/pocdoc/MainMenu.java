@@ -117,11 +117,18 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.menu_icon);
+//        toolbar.setNavigationIcon(R.drawable.menu_icon);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        toolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.menu_icon));
+//        drawerLayout.setHomeAsUpIndicator(R.drawable.ic_your_drawer_icon);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_icon);
+
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setCheckedItem(R.id.nav_home);
