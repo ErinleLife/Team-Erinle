@@ -40,7 +40,7 @@ public interface ApiInterface {
 
     @Multipart
     @POST("add-prescription")
-    Observable<Response<ResponseCommon>> addProductReview(@PartMap HashMap<String, RequestBody> params,
+    Observable<Response<ResponseCommon>> addProductReview(@PartMap HashMap<String, String> params,
                                                           @Part MultipartBody.Part part,
                                                           @Part MultipartBody.Part part1);
 

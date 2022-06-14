@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -20,6 +21,10 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.arnav.pocdoc.BaseActivity;
 import com.arnav.pocdoc.R;
 import com.arnav.pocdoc.SimplyRelief.models.DataOTCItem;
@@ -34,18 +39,27 @@ import com.arnav.pocdoc.retrofit.NetworkRequest;
 import com.arnav.pocdoc.utils.Constants;
 import com.arnav.pocdoc.utils.Utils;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.jaiselrahman.filepicker.activity.FilePickerActivity;
 import com.jaiselrahman.filepicker.config.Configurations;
 import com.jaiselrahman.filepicker.model.MediaFile;
 
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
+import io.grpc.netty.shaded.io.netty.util.internal.ObjectPool;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -305,7 +319,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
         compositeSubscription.add(subscription);
     }
 
-    public void onViewClick(View view) {
+    public void onViewClick(View view)  {
         if (view == binding.tvBackImage || view == binding.ivBackImage) {
             isFrontImage = false;
             isBackImage = true;
@@ -314,16 +328,21 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
             isFrontImage = true;
             isBackImage = false;
             openFrontImageDialog();
-        } else if (view == binding.btnNext) {
+        }
+//        else if (view == binding.btnNext) {
 //            if (binding.autoCompleteTextView1.getText().toString().isEmpty()) {
 //                selectedPosition = 0;
 //            }
-//            if (!binding.autoCompleteTextView1.getText().toString().isEmpty() && selectedPosition != -1) {
-//                if (imageFront != null && imageBack != null) {
-//                    showProgress();
-//                    HashMap<String, RequestBody> params = new HashMap<>();
-//                    params.put(Constants.pharmacy_id, createRequestBody(result.getData().get(selectedPosition).getId().toString()));
-//                    params.put(Constants.description, createRequestBody(binding.etDescription.getText().toString().trim()));
+//            if (!binding.autoCompleteTextView1.getText().toString().isEmpty() && selectedPosition != -1)
+            {
+                if (imageFront != null && imageBack != null)
+                {
+//
+//                    HashMap<String, String> params = new HashMap<>();
+//                    params.put(Constants.pharmacy_id, result.getData().get(0).getId().toString());
+//                    params.put(Constants.description, "etDescription");
+//                    params.put(Constants.pharmacy_locatore, "pharmacy_locatore");
+//                    params.put(Constants.have_pharmacy_insurance, "yes");
 //                    MultipartBody.Part bodyPhotoFront = null;
 //                    if (imageFront != null) {
 //                        File file = new File(imageFront.getPath());
@@ -336,14 +355,26 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 //                        bodyPhotoBack = MultipartBody.Part.createFormData(Constants.image_back,
 //                                file.getName(), createRequestBody(file));
 //                    }
+//
+//                    Log.e("TAG", "onViewClick: params >>>>>>>>>>> "+new Gson().toJson(params));
+//                    Log.e("TAG", "onViewClick: bodyPhotoFront >>>>>>>>>>> "+new Gson().toJson(bodyPhotoFront));
+//                    Log.e("TAG", "onViewClick: bodyPhotoBack >>>>>>>>>>> "+new Gson().toJson(bodyPhotoBack));
+//
 //                    Subscription subscription = NetworkRequest.performAsyncRequest(apiService.addProductReview(params, bodyPhotoFront, bodyPhotoBack)
 //                            , response -> {
 //                                hideProgress();
+//                                Log.e("TAG", "onViewClick: >>>>>>>>>>>>>>>> "+response.isSuccessful() );
 //                                if (response.isSuccessful()) {
 //                                    ResponseCommon result = response.body();
-//                                    if (result == null) return;
+//                                    if (result == null)
+//                                        return;
+//                                    Log.e("TAG", "onViewClick: response >>>>>>>>>>>>>>>> "+response);
 //                                    Utils.makeToast(result.getMessage());
 //                                    finish();
+//                                }
+//                                else
+//                                {
+//                                    Log.e("TAG", "onViewClick: error >>>>> "+response.message() );
 //                                }
 //                            }
 //                            , throwable -> {
@@ -351,9 +382,39 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 //                                throwable.printStackTrace();
 //                            });
 //                    compositeSubscription.add(subscription);
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "Please choose a front and back image", Toast.LENGTH_LONG).show();
-//                }
+
+                    try {
+                        
+                        OkHttpClient client = new OkHttpClient().newBuilder().build();
+                        MediaType mediaType = MediaType.parse("text/plain");
+                        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                                .addFormDataPart("pharmacy_id","1")
+                                .addFormDataPart("pharmacy_locatore","368952")
+                                .addFormDataPart("image_front",imageFront.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageFront.getPath())))
+                                .addFormDataPart("image_back",imageBack.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageBack.getPath())))
+                                .addFormDataPart("have_pharmacy_insurance","yes")
+                                .addFormDataPart("type","screenshot_pharmacy")
+//                                .addFormDataPart("info[]","/path/to/file", RequestBody.create(MediaType.parse("application/octet-stream"), new File("/path/to/file")))
+                                .addFormDataPart("description","Testing purpose")
+                                .build();
+                        Request request = new Request.Builder()
+                                .url("http://165.22.45.58/api/add-prescription")
+                                .method("POST", body)
+                                .build();
+                        Response response = client.newCall(request).execute();
+
+                        Log.e("TAG", "onViewClick: response >>> "+response.body().string() );
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                        Log.e("TAG", "onViewClick: error >>>>>>>>>>>> "+e.getMessage());
+                    }
+
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Please choose a front and back image", Toast.LENGTH_LONG).show();
+                }
 //            } else {
 //                Toast.makeText(getApplicationContext(), "Please choose pharmacy", Toast.LENGTH_LONG).show();
 //            }
