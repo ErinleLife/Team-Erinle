@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chips_item_filter"
+    style="@style/Widget.MaterialComponents.Chip.Entry"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:checkable="false"
+    android:clickable="true"
+    android:focusable="true"
+    android:text="@string/app_name"
+    android:textAppearance="@style/BoldTextViewSmall"
+    android:textSize="@dimen/_8ssp"
+    android:theme="@style/AppTheme"
+    app:closeIconEnabled="false" />
