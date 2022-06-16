@@ -50,65 +50,65 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-<!--                                <com.google.android.material.textfield.TextInputLayout-->
-<!--                                    android:id="@+id/tlName"-->
-<!--                                    style="@style/TextInputLayoutStyle"-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:layout_marginStart="@dimen/_12sdp"-->
-<!--                                    android:layout_marginTop="@dimen/_12sdp"-->
-<!--                                    android:layout_marginEnd="@dimen/_12sdp"-->
-<!--                                    android:background="@drawable/bg_edit_text_black"-->
-<!--                                    android:nestedScrollingEnabled="false"-->
-<!--                                    app:endIconDrawable="@drawable/ic_close"-->
-<!--                                    app:endIconMode="clear_text"-->
-<!--                                    app:layout_constraintTop_toBottomOf="@+id/tvTC">-->
-
-<!--                                    <AutoCompleteTextView-->
-<!--                                        android:id="@+id/autoCompleteTextView1"-->
-<!--                                        android:layout_width="match_parent"-->
-<!--                                        android:layout_height="wrap_content"-->
-<!--                                        android:drawableStart="@drawable/ic_search"-->
-<!--                                        android:drawablePadding="@dimen/_8sdp"-->
-<!--                                        android:hint="@string/add_your_hospital_hint"-->
-<!--                                        android:inputType="textCapWords"-->
-<!--                                        android:maxHeight="@dimen/_150sdp"-->
-<!--                                        android:padding="@dimen/_10sdp"-->
-<!--                                        android:paddingStart="@dimen/_12sdp"-->
-<!--                                        android:paddingEnd="@dimen/_12sdp"-->
-<!--                                        android:textColor="@color/black"-->
-<!--                                        android:textColorHint="@color/gray"-->
-<!--                                        android:theme="@style/TextInputLayoutEditTextTheme1"-->
-<!--                                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                                        app:layout_constraintTop_toTopOf="parent" />-->
-<!--                                </com.google.android.material.textfield.TextInputLayout>-->
-
-                <RelativeLayout
-                    android:id="@+id/edtSearch_view"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tlName"
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12sp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:background="@drawable/edittext_bg"
-                    android:backgroundTint="#F9F9FA"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:nestedScrollingEnabled="false"
+                    app:endIconDrawable="@drawable/ic_close"
+                    app:endIconMode="clear_text"
                     app:layout_constraintTop_toBottomOf="@+id/tvTC">
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtSearch"
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextView1"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_43sdp"
-                        android:background="@color/transparent"
                         android:hint="@string/enter_your_zip_code"
-                        android:imeOptions="actionDone"
-                        android:maxLines="1"
-                        android:paddingHorizontal="12dp"
-                        android:singleLine="true" />
+                        android:inputType="textCapWords"
+                        android:maxHeight="@dimen/_150sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_12sdp"
+                        android:background="@drawable/edittext_bg"
+                        android:backgroundTint="#F9F9FA"
+                        android:textColorHint="#AFAFAF"
+                        android:textColor="@color/black"
+                        android:theme="@style/TextInputLayoutEditTextTheme1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                </RelativeLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/edtSearch_view"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginHorizontal="12sp"-->
+<!--                    android:layout_marginTop="@dimen/_5sdp"-->
+<!--                    android:layout_marginBottom="@dimen/_5sdp"-->
+<!--                    android:background="@drawable/edittext_bg"-->
+<!--                    android:backgroundTint="#F9F9FA"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/tvTC">-->
+
+<!--                    <androidx.appcompat.widget.AppCompatEditText-->
+<!--                        android:id="@+id/edtSearch"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_43sdp"-->
+<!--                        android:background="@color/transparent"-->
+<!--                        android:hint="@string/enter_your_zip_code"-->
+<!--                        android:imeOptions="actionDone"-->
+<!--                        android:maxLines="1"-->
+<!--                        android:paddingHorizontal="12dp"-->
+<!--                        android:singleLine="true" />-->
+
+<!--                </RelativeLayout>-->
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/at_description"
@@ -126,7 +126,7 @@
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtSearch_view" />
+                    app:layout_constraintTop_toBottomOf="@+id/tlName" />
 
                 <LinearLayout
                     android:id="@+id/llImages"
@@ -613,41 +613,50 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toRightOf="@+id/cl_iv_upload_image_1">
 
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_upload_image_2"
+<!--                                <com.google.android.material.imageview.ShapeableImageView-->
+<!--                                    android:id="@+id/iv_upload_image_2"-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:background="@drawable/bg_edit_text_black"-->
+<!--                                    android:onClick="@{(v)->activity.onViewClick(v)}"-->
+<!--                                    android:scaleType="centerCrop"-->
+<!--                                    android:visibility="gone"-->
+<!--                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"-->
+<!--                                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_marginEnd="@dimen/_5sdp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:background="@drawable/bg_image_text_black"-->
+<!--                                    android:fontFamily="@font/poppins_regular"-->
+<!--                                    android:gravity="center"-->
+<!--                                    android:text=""-->
+<!--                                    android:textColor="#AFAFAF" />-->
+
+
+<!--                                <ImageView-->
+<!--                                    android:layout_width="@dimen/_35sdp"-->
+<!--                                    android:layout_height="@dimen/_35sdp"-->
+<!--                                    android:src="@drawable/plus_icon"-->
+<!--                                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent"/>-->
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rv_upload_image"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/bg_edit_text_black"
-                                    android:onClick="@{(v)->activity.onViewClick(v)}"
-                                    android:scaleType="centerCrop"
-                                    android:visibility="gone"
-                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"
                                     app:layout_constraintLeft_toLeftOf="parent"
                                     app:layout_constraintRight_toRightOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"/>
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginEnd="@dimen/_5sdp"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/bg_image_text_black"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:gravity="center"
-                                    android:text=""
-                                    android:textColor="#AFAFAF" />
-
-
-                                <ImageView
-                                    android:layout_width="@dimen/_35sdp"
-                                    android:layout_height="@dimen/_35sdp"
-                                    android:src="@drawable/plus_icon"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    app:layout_constraintRight_toRightOf="parent"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"/>
 
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -755,9 +764,8 @@
                                     android:layout_marginEnd="@dimen/_5sdp"
                                     android:layout_weight="1"
                                     android:background="@drawable/bg_edit_text_black"
-                                    android:onClick="@{(v)->activity.onViewClick(v)}"
                                     android:scaleType="centerCrop"
-                                    android:visibility="gone"
+                                    android:visibility="visible"
                                     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"
                                     app:layout_constraintLeft_toLeftOf="parent"
                                     app:layout_constraintRight_toRightOf="parent"
@@ -791,47 +799,55 @@
                                 android:id="@+id/cl_iv_Send_Screen_upload_image_2"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-
                                 android:layout_marginLeft="@dimen/_5sdp"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toRightOf="@+id/cl_iv_Send_Screen_upload_image_1">
 
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_Send_Screen_upload_image_2"
+<!--                                <com.google.android.material.imageview.ShapeableImageView-->
+<!--                                    android:id="@+id/iv_Send_Screen_upload_image_2"-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:background="@drawable/bg_edit_text_black"-->
+<!--                                    android:onClick="@{(v)->activity.onViewClick(v)}"-->
+<!--                                    android:scaleType="centerCrop"-->
+<!--                                    android:visibility="gone"-->
+<!--                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"-->
+<!--                                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:layout_marginEnd="@dimen/_5sdp"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:background="@drawable/bg_image_text_black"-->
+<!--                                    android:fontFamily="@font/poppins_regular"-->
+<!--                                    android:gravity="center"-->
+<!--                                    android:text=""-->
+<!--                                    android:textColor="#AFAFAF" />-->
+
+<!--                                <ImageView-->
+<!--                                    android:layout_width="@dimen/_35sdp"-->
+<!--                                    android:layout_height="@dimen/_35sdp"-->
+<!--                                    android:src="@drawable/plus_icon"-->
+<!--                                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                    app:layout_constraintTop_toTopOf="parent"/>-->
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rv_Send_Screen_upload_image"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/bg_edit_text_black"
-                                    android:onClick="@{(v)->activity.onViewClick(v)}"
-                                    android:scaleType="centerCrop"
-                                    android:visibility="gone"
-                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"
                                     app:layout_constraintLeft_toLeftOf="parent"
                                     app:layout_constraintRight_toRightOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"/>
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginEnd="@dimen/_5sdp"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/bg_image_text_black"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:gravity="center"
-                                    android:text=""
-                                    android:textColor="#AFAFAF" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/_35sdp"
-                                    android:layout_height="@dimen/_35sdp"
-                                    android:src="@drawable/plus_icon"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    app:layout_constraintRight_toRightOf="parent"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"/>
 
 
                             </androidx.constraintlayout.widget.ConstraintLayout>

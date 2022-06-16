@@ -280,7 +280,7 @@
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -365,7 +365,7 @@
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -706,7 +706,7 @@
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
