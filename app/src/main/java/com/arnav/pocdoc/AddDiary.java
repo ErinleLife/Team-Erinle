@@ -237,7 +237,7 @@ public class AddDiary extends AppCompatActivity implements NavigationView.OnNavi
                                 StringBuilder diagnosis = new StringBuilder();
                                 JSONObject mainResponse = new JSONObject(response.body().string());
                                 JSONArray response_json = mainResponse.optJSONArray("conditions");
-                                Log.d("TAG", "onResponse: " + mainResponse.toString());
+                                Log.d("TAG", "onResponse: " + mainResponse);
 
                                 for (int i = 0; i < Objects.requireNonNull(response_json).length(); i++) {
                                     JSONObject condition = response_json.optJSONObject(i);

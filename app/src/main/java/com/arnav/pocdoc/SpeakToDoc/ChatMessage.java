@@ -14,16 +14,16 @@ public class ChatMessage {
         if (message.equals("Are you male or female?")) {
             this.isMine = 2;
         } else {
-            if (message.length() > 4 && message.substring(0, 4).equals("Here")) {
+            if (message.length() > 4 && message.startsWith("Here")) {
                 this.isMine = 3;
             } else {
-                if (message.length() > 4 && message.substring(0, 4).equals("Your")) {
+                if (message.length() > 4 && message.startsWith("Your")) {
                     this.isMine = 4;
                 } else {
-                    if (message.length() > 15 && !message.substring(0, 15).equals("How old are you") && message.substring(message.length() - 1).equals("?") && !message.substring(0, 1).equals("W")) {
+                    if (message.length() > 15 && !message.startsWith("How old are you") && message.endsWith("?") && message.charAt(0) != 'W') {
                         this.isMine = 5;
                     } else {
-                        if (message.length() > 9 && message.substring(0, 10).equals("conditions")) {
+                        if (message.length() > 9 && message.startsWith("conditions")) {
                             this.isMine = 6;
                         } else
                             this.isMine = isMine;

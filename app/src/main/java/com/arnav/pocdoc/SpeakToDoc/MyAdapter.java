@@ -18,7 +18,7 @@ import java.util.ArrayList;
 class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     Button more;
-    private ArrayList<String> myDataset;
+    private final ArrayList<String> myDataset;
     private Context cont;
 
     public MyAdapter(ArrayList<String> myDataset) {

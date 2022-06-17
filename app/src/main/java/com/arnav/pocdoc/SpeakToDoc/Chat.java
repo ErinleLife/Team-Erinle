@@ -13,7 +13,7 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class Chat extends AsyncTask<String, Void, JSONObject> {
-    private Context mContext;
+    private final Context mContext;
 
     public Chat(Context mContext) {
         this.mContext = mContext;

@@ -44,7 +44,7 @@ class ChatArrayAdapter extends ArrayAdapter<ChatMessage> {
     ArrayList<String> myDataset;
     Button start_again;
     List<ChatMessage> data;
-    private Context context;
+    private final Context context;
 
     public ChatArrayAdapter(Context context, List<ChatMessage> data, ListView chatList) {
         super(context, R.layout.sent_msg, data);

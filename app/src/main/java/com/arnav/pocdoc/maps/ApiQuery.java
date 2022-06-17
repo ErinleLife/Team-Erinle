@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class ApiQuery {
-    private static String my_api_key = "AIzaSyBPehXESoTPlWEfMgqyAj08RAuwHuCnxt4";
+    private static final String my_api_key = "AIzaSyBPehXESoTPlWEfMgqyAj08RAuwHuCnxt4";
     //    private static String my_api_key="AIzaSSDFSDF8Kv2eP0PM8adf5dSDFysdfas323SD3HA";
     private static Location location;
     private static StringBuffer sbuff;

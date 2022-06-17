@@ -23,7 +23,7 @@ public class DataOTCItem implements Serializable {
     @Expose
     private List<Recomendation> natural;
 
-    private Object updatedAt = null;
+    private final Object updatedAt = null;
     private boolean select;
 
     public boolean isSelect() {

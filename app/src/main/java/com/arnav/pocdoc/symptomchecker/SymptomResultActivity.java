@@ -113,11 +113,11 @@ public class SymptomResultActivity extends BaseActivity implements RecyclerViewI
 //                    preventionList.add("● " + list.get(i).getPrevention());
 //                }
 //            }
-            if (!strSpecific.toString().contains(list.get(i).getSpecific().toString())) {
+            if (!strSpecific.toString().contains(list.get(i).getSpecific())) {
                 strSpecific.append(list.get(i).getSpecific());
                 specificList.add("● " + list.get(i).getSpecific());
             }
-            if (!strPrimary.toString().contains(list.get(i).getPrimary().toString())) {
+            if (!strPrimary.toString().contains(list.get(i).getPrimary())) {
                 strPrimary.append(list.get(i).getPrimary());
                 primaryList.add("● " + list.get(i).getPrimary());
             }

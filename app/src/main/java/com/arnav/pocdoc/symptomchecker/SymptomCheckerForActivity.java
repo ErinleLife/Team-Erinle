@@ -40,7 +40,7 @@ public class SymptomCheckerForActivity extends BaseActivity {
             } else {
                 if (selectPosition == 1) {
 
-                    if (!AddSymptomActivity.Gender.toLowerCase().equals("male") && !AddSymptomActivity.Gender.toLowerCase().equals("female")) {
+                    if (!AddSymptomActivity.Gender.equalsIgnoreCase("male") && !AddSymptomActivity.Gender.equalsIgnoreCase("female")) {
                         start(SymptomCheckerGenderActivity.class);
                     } else if (AddSymptomActivity.DOB.equals("")) {
                         AddSymptomActivity.userGender = AddSymptomActivity.Gender;

@@ -24,13 +24,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.arnav.pocdoc.Authentication.Login;
 import com.arnav.pocdoc.FoodAllergy.FoodImageInput;
-import com.arnav.pocdoc.activateLocator.ActivateLocatorActivity;
-import com.arnav.pocdoc.hospitalLocator.HospitalLocatorActivity;
-import com.arnav.pocdoc.otc.OTCAndNaturalDrugsActivity;
-import com.arnav.pocdoc.SimplyRelief.SimplyReliefSearch;
 import com.arnav.pocdoc.SpeakToDoc.SpeakToDoc;
+import com.arnav.pocdoc.activateLocator.ActivateLocatorActivity;
 import com.arnav.pocdoc.base.BaseApplication;
+import com.arnav.pocdoc.hospitalLocator.HospitalLocatorActivity;
 import com.arnav.pocdoc.maps.MapsActivity;
+import com.arnav.pocdoc.otc.OTCAndNaturalDrugsActivity;
 import com.arnav.pocdoc.symptomchecker.AddSymptomActivity;
 import com.arnav.pocdoc.symptomchecker.SymptomCheckerActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -56,7 +55,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar;
     ActionBarDrawerToggle toggle;
     CardView emergency;
-    Button  reminder;
+    Button reminder;
 
     RelativeLayout rel_home, rel_speak_doc, rel_rx_management, rel_profile;
     private TextView txtWelcome;
@@ -68,7 +67,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_main_menu);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.toolbar_color));
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.toolbar_color));
 
         FirebaseDatabase.getInstance().getReference().child("medical_id").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).addValueEventListener(new ValueEventListener() {
             @Override
@@ -327,38 +326,27 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     public void symptom_checker_btn(View view) {
-
         startActivity(new Intent(getApplicationContext(), SymptomCheckerActivity.class));
-
     }
 
     public void otc_natural_btn(View view) {
         startActivity(new Intent(getApplicationContext(), OTCAndNaturalDrugsActivity.class));
-
     }
 
     public void fitnes_center_btn(View view) {
-
         startActivity(new Intent(getApplicationContext(), FoodImageInput.class));
-
     }
 
     public void diet_nutiontion_btn(View view) {
-
-        Intent intent = new Intent(getApplicationContext(), Reminder.class);
+        Intent intent = new Intent(getApplicationContext(), ActivateLocatorActivity.class);
         startActivity(intent);
-
     }
 
     public void pharmacy_locator_btn(View view) {
-
         startActivity(new Intent(getApplicationContext(), HospitalLocatorActivity.class));
-
     }
 
     public void activate_locator_btn(View view) {
-
         startActivity(new Intent(getApplicationContext(), ActivateLocatorActivity.class));
-
     }
 }

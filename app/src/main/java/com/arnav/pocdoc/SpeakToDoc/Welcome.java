@@ -16,7 +16,7 @@ import javax.net.ssl.HttpsURLConnection;
  */
 
 public class Welcome extends AsyncTask<String, Void, JSONObject> {
-    private Context mContext;
+    private final Context mContext;
 
     public Welcome(Context mContext) {
         this.mContext = mContext;

@@ -24,7 +24,7 @@ public class SimplyReliefListAdapter extends RecyclerView.Adapter<RecyclerView.V
     private static final int TYPE_DATA = 1;
     public OnItemClick listener;
     Context context;
-    private List<DataReliefItem> details;
+    private final List<DataReliefItem> details;
 
     public SimplyReliefListAdapter(Context context, List<DataReliefItem> events, OnItemClick listener) {
         this.context = context;

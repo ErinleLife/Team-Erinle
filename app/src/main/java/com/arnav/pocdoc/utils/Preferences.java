@@ -11,8 +11,8 @@ import com.google.gson.GsonBuilder;
 
 public class Preferences {
 
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
+    private final SharedPreferences sharedPreferences;
+    private final SharedPreferences.Editor editor;
 
     public Preferences(Context context) {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

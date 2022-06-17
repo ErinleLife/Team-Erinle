@@ -29,7 +29,7 @@ public class DataHospitalItem implements Serializable {
     @Expose
     private String zipcode;
 
-    private Object updatedAt = null;
+    private final Object updatedAt = null;
     private boolean select;
 
     public boolean isSelect() {

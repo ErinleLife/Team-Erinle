@@ -18,9 +18,9 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
 
     private static final String TAG = "SearchHistoryAdapter";
 
-    private List<String> itemList;
-    private Context mContext;
-    private ItemSelectListener itemSelectListener;
+    private final List<String> itemList;
+    private final Context mContext;
+    private final ItemSelectListener itemSelectListener;
 
     public SearchHistoryAdapter(Context mContext, List<String> itemList, ItemSelectListener itemSelectListener) {
         this.mContext = mContext;

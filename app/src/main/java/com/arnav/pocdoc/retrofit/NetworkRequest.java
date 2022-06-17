@@ -13,7 +13,7 @@ public class NetworkRequest {
 
     private static final String TAG = "NetworkRequest";
 
-    private static Action1<Throwable> mOnError = new Action1<Throwable>() {
+    private static final Action1<Throwable> mOnError = new Action1<Throwable>() {
         @Override
         public void call(Throwable throwable) {
             Log.e(TAG, throwable.getMessage());

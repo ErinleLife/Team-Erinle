@@ -33,11 +33,11 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/toolbar_color"
                 android:textAlignment="center"
-                app:navigationIcon="@drawable/menu_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:navigationIcon="@drawable/menu_icon" />
 
             <TextView
                 android:id="@+id/txtWelcome"
@@ -45,15 +45,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text=""
-                android:textSize="@dimen/_16sdp"
                 android:maxLength="25"
+                android:text=""
                 android:textColor="@color/black"
+                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -61,9 +61,9 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_above="@+id/tablayout"
-            android:background="#EDF6FD"
+            android:layout_below="@+id/cl_header_view"
             android:layout_marginBottom="10dp"
-            android:layout_below="@+id/cl_header_view">
+            android:background="#EDF6FD">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -97,19 +97,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/header_layout"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="vertical"
                     android:visibility="visible">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:visibility="visible"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="visible"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -138,22 +138,22 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/how_are_you_feeling"
                                     android:textColor="@color/black"
-                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:textSize="@dimen/_10sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
                                     android:layout_height="@dimen/_32sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:onClick="symptom_checker_btn"
                                     android:src="@color/colorPrimary"
                                     android:text="@string/go"
                                     android:textAllCaps="false"
-                                    android:onClick="symptom_checker_btn"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="@dimen/_10sdp"
-                                    android:fontFamily="@font/poppins_medium"
                                     android:textSize="@dimen/_9sdp"
                                     app:cornerRadius="@dimen/_20sdp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -191,10 +191,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:visibility="visible"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="visible"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -223,23 +223,23 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/keep_track_of_medical_e"
-                                    android:visibility="invisible"
                                     android:textColor="@color/black"
-                                    android:layout_marginTop="@dimen/_10sdp"
-                                    android:textSize="@dimen/_10sdp" />
+                                    android:textSize="@dimen/_10sdp"
+                                    android:visibility="invisible" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
                                     android:layout_height="@dimen/_32sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:onClick="otc_natural_btn"
                                     android:src="@color/colorPrimary"
                                     android:text="@string/go"
                                     android:textAllCaps="false"
-                                    android:onClick="otc_natural_btn"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="@dimen/_10sdp"
-                                    android:fontFamily="@font/poppins_medium"
                                     android:textSize="@dimen/_9sdp"
                                     app:cornerRadius="@dimen/_20sdp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -277,10 +277,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:visibility="gone"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -309,22 +309,22 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/let_s_get_physical"
                                     android:textColor="@color/black"
-                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:textSize="@dimen/_10sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
                                     android:layout_height="@dimen/_32sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:onClick="fitnes_center_btn"
                                     android:src="@color/colorPrimary"
                                     android:text="@string/go"
                                     android:textAllCaps="false"
-                                    android:onClick="fitnes_center_btn"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="@dimen/_10sdp"
-                                    android:fontFamily="@font/poppins_medium"
                                     android:textSize="@dimen/_9sdp"
                                     app:cornerRadius="@dimen/_20sdp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -347,7 +347,7 @@
                                 <ImageView
                                     android:layout_width="@dimen/_120sdp"
                                     android:layout_height="match_parent"
-                                   android:paddingRight="@dimen/_7sdp"
+                                    android:paddingRight="@dimen/_7sdp"
                                     android:src="@drawable/fitnes_center_icon" />
 
 
@@ -362,10 +362,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:visibility="gone"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -394,22 +394,22 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_7sdp"
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/keep_track_of_medication_and_get_remindersa"
                                     android:textColor="@color/black"
-                                    android:layout_marginTop="@dimen/_7sdp"
                                     android:textSize="@dimen/_10sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
                                     android:layout_height="@dimen/_32sdp"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:onClick="diet_nutiontion_btn"
                                     android:src="@color/colorPrimary"
                                     android:text="@string/go"
                                     android:textAllCaps="false"
-                                    android:onClick="diet_nutiontion_btn"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="@dimen/_5sdp"
-                                    android:fontFamily="@font/poppins_medium"
                                     android:textSize="@dimen/_9sdp"
                                     app:cornerRadius="@dimen/_20sdp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -447,10 +447,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:visibility="visible"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="visible"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -479,23 +479,23 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_7sdp"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:visibility="invisible"
                                     android:text=""
                                     android:textColor="@color/black"
-                                    android:layout_marginTop="@dimen/_7sdp"
-                                    android:textSize="@dimen/_10sdp" />
+                                    android:textSize="@dimen/_10sdp"
+                                    android:visibility="invisible" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
                                     android:layout_height="@dimen/_32sdp"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:onClick="diet_nutiontion_btn"
                                     android:src="@color/colorPrimary"
                                     android:text="@string/go"
                                     android:textAllCaps="false"
-                                    android:onClick="diet_nutiontion_btn"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="@dimen/_5sdp"
-                                    android:fontFamily="@font/poppins_medium"
                                     android:textSize="@dimen/_9sdp"
                                     app:cornerRadius="@dimen/_20sdp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -533,10 +533,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:visibility="visible"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="visible"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -565,22 +565,22 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_7sdp"
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/take_image_of_hardcopy_prescription_and_send_to_local_pharmacy"
                                     android:textColor="@color/black"
-                                    android:layout_marginTop="@dimen/_7sdp"
                                     android:textSize="@dimen/_10sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
                                     android:layout_height="@dimen/_32sdp"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:onClick="diet_nutiontion_btn"
                                     android:src="@color/colorPrimary"
                                     android:text="@string/go"
                                     android:textAllCaps="false"
-                                    android:onClick="diet_nutiontion_btn"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="@dimen/_5sdp"
-                                    android:fontFamily="@font/poppins_medium"
                                     android:textSize="@dimen/_9sdp"
                                     app:cornerRadius="@dimen/_20sdp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -618,10 +618,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:visibility="visible"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="visible"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -650,22 +650,22 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/local_pharmacy_search"
                                     android:textColor="@color/black"
-                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:textSize="@dimen/_10sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
                                     android:layout_height="@dimen/_32sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:onClick="pharmacy_locator_btn"
                                     android:src="@color/colorPrimary"
                                     android:text="@string/go"
                                     android:textAllCaps="false"
-                                    android:onClick="pharmacy_locator_btn"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="@dimen/_10sdp"
-                                    android:fontFamily="@font/poppins_medium"
                                     android:textSize="@dimen/_9sdp"
                                     app:cornerRadius="@dimen/_20sdp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -703,10 +703,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:visibility="gone"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="10dp"
-                        android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -735,22 +735,22 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/dummy_text"
                                     android:textColor="@color/black"
-                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:textSize="@dimen/_9sdp" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:layout_width="@dimen/_60sdp"
                                     android:layout_height="@dimen/_32sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:onClick="activate_locator_btn"
                                     android:src="@color/colorPrimary"
                                     android:text="@string/go"
                                     android:textAllCaps="false"
-                                    android:onClick="activate_locator_btn"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="@dimen/_10sdp"
-                                    android:fontFamily="@font/poppins_medium"
                                     android:textSize="@dimen/_9sdp"
                                     app:cornerRadius="@dimen/_20sdp"
                                     app:layout_constraintBottom_toBottomOf="parent"
