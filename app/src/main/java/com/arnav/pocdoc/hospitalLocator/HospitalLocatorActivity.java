@@ -99,7 +99,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
     }
 
     private void getIntentData() {
-        if (getIntent() != null) {
+        if (getIntent().getExtras() != null) {
             pharmacyPosition = getIntent().getExtras().getInt(Constants.pharmacyPosition);
             selectedPosition = pharmacyPosition;
         }

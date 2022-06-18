@@ -1,6 +1,5 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -51,9 +50,9 @@
                 android:id="@+id/close"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:onClick="close"
                 android:padding="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_5sdp"
                 android:src="@drawable/close_bottomsheet_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -68,9 +67,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_2sdp"
         android:background="#F3F3F3"
-        app:layout_constraintTop_toBottomOf="@+id/header_view"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_view" />
 
     <!--    </androidx.cardview.widget.CardView>-->
 
@@ -203,15 +202,16 @@
             android:paddingLeft="@dimen/_10sdp"
             android:text="Recomendation"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp" />
+            android:textSize="@dimen/_13sdp"
+            android:lines="1"
+            android:visibility="gone" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:minHeight="@dimen/_180sdp">
+            android:minHeight="@dimen/_180sdp"
+            android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv"
@@ -253,7 +253,7 @@
 
         <TextView
             android:id="@+id/tvScanSend"
-            android:layout_width="@dimen/_150sdp"
+            android:layout_width="@dimen/_200sdp"
             android:layout_height="@dimen/_35sdp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_10sdp"

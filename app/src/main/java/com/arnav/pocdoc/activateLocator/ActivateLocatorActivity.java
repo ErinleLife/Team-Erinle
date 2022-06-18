@@ -140,7 +140,7 @@ public class ActivateLocatorActivity extends BaseActivity implements OnMapReadyC
         for (int i = 0; i < locationArrayList.size(); i++) {
 
             // below line is use to add marker to each location of our array list.
-            Marker marker = mMap.addMarker(new MarkerOptions().position(locationArrayList.get(i)).title(arr.get(i).toString()).icon(BitmapFromVector(this, R.drawable.google_markers_icon)));
+            Marker marker = mMap.addMarker(new MarkerOptions().position(locationArrayList.get(i)).title(result.getData().get(i).getName().toString()).icon(BitmapFromVector(this, R.drawable.google_markers_icon)));
 
             // below lin is use to zoom our camera on map.
 //            mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
@@ -158,7 +158,7 @@ public class ActivateLocatorActivity extends BaseActivity implements OnMapReadyC
                 String markerName = marker.getTitle();
 
                 for (int i = 0; i < arr.size(); i++) {
-                    if (arr.get(i).equals(markerName)) {
+                    if (result.getData().get(i).getName().equals(markerName)) {
                         showBottomSheet(i);
                     }
                 }

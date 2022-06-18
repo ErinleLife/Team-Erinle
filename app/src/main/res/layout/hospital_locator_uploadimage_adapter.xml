@@ -9,7 +9,6 @@
             android:id="@+id/iv_upload_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
             android:layout_weight="1"
             android:background="@drawable/bg_edit_text_black"
             android:scaleType="centerCrop"
