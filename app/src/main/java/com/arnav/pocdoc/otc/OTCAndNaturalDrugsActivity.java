@@ -32,6 +32,7 @@ public class OTCAndNaturalDrugsActivity extends BaseActivity implements Recycler
     protected ApiInterface apiService;
     protected CompositeSubscription compositeSubscription;
     private ActivityOtcBinding binding;
+    private Boolean isOTC = true;
 
     private OTCAdapter adapter;
 
@@ -44,35 +45,70 @@ public class OTCAndNaturalDrugsActivity extends BaseActivity implements Recycler
         apiService = ApiClient.getClient(this).create(ApiInterface.class);
         compositeSubscription = new CompositeSubscription();
 
+        getIntentData();
+
         setUpHeaderView();
         getSymptomsData();
 
         binding.setLifecycleOwner(this);
     }
 
+    private void getIntentData() {
+        isOTC = getIntent().getExtras().getBoolean(Constants.isOTC);
+    }
+
     private void getSymptomsData() {
         showProgress();
-        Subscription subscription = NetworkRequest.performAsyncRequest(apiService.getOct()
-                , response -> {
-                    hideProgress();
-                    if (response.isSuccessful()) {
 
-                        OtcResponse result = response.body();
-                        listAll.clear();
-                        listAll.addAll(result.getData());
-                        list.addAll(result.getData());
-                        adapter.notifyDataSetChanged();
+        if (isOTC) {
 
+            Subscription subscription = NetworkRequest.performAsyncRequest(apiService.getOct()
+                    , response -> {
+                        hideProgress();
+                        if (response.isSuccessful()) {
+
+                            OtcResponse result = response.body();
+                            listAll.clear();
+                            listAll.addAll(result.getData());
+                            list.addAll(result.getData());
+                            adapter.notifyDataSetChanged();
+
+                        }
                     }
-                }
-                , throwable -> {
-                    hideProgress();
-                    throwable.printStackTrace();
-                });
-        compositeSubscription.add(subscription);
+                    , throwable -> {
+                        hideProgress();
+                        throwable.printStackTrace();
+                    });
+            compositeSubscription.add(subscription);
+        }else {
+            Subscription subscription = NetworkRequest.performAsyncRequest(apiService.getNaturalMedicine()
+                    , response -> {
+                        hideProgress();
+                        if (response.isSuccessful()) {
+
+                            OtcResponse result = response.body();
+                            listAll.clear();
+                            listAll.addAll(result.getData());
+                            list.addAll(result.getData());
+                            adapter.notifyDataSetChanged();
+
+                        }
+                    }
+                    , throwable -> {
+                        hideProgress();
+                        throwable.printStackTrace();
+                    });
+            compositeSubscription.add(subscription);
+        }
     }
 
     private void setUpHeaderView() {
+
+        if (isOTC) {
+            binding.tvTC.setText(getResources().getString(R.string.otc_and_natural_drugs));
+        } else {
+            binding.tvTC.setText(getResources().getString(R.string.natural_alternative_medicine_without_space));
+        }
 
         adapter = new OTCAdapter(list, getApplicationContext());
         binding.rv.setAdapter(adapter);
@@ -91,7 +127,7 @@ public class OTCAndNaturalDrugsActivity extends BaseActivity implements Recycler
     public void onItemClick(int position, int flag, View view) {
         if (flag == 0) {
             Intent intent = new Intent(getApplicationContext(), OTCDetailsActivity.class);
-            intent.putExtra(Constants.position,position);
+            intent.putExtra(Constants.position, position);
             startActivity(intent);
         }
     }

@@ -35,6 +35,9 @@ public interface ApiInterface {
     @GET("get-otc-natural-drugs")
     Observable<Response<OtcResponse>> getOct();
 
+    @GET("get-natural-medicine")
+    Observable<Response<OtcResponse>> getNaturalMedicine();
+
     @GET("get-pharmacy")
     Observable<Response<HospitalLocatorResponse>> getPharmacy();
 

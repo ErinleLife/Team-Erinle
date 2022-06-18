@@ -14,6 +14,8 @@ public class Constants {
     public static final String pharmacy_locatore = "pharmacy_locatore";
     public static final String have_pharmacy_insurance = "have_pharmacy_insurance";
     public static final String type = "type";
-    public static final String info = "info[]";
+    public static final String info = "info";
+    public static final String isOTC = "ISOTC";
+    public static final String pharmacyPosition = "pharmacyPosition";
 
 }

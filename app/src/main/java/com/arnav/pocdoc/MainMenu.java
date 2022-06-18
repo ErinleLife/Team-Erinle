@@ -32,6 +32,7 @@ import com.arnav.pocdoc.maps.MapsActivity;
 import com.arnav.pocdoc.otc.OTCAndNaturalDrugsActivity;
 import com.arnav.pocdoc.symptomchecker.AddSymptomActivity;
 import com.arnav.pocdoc.symptomchecker.SymptomCheckerActivity;
+import com.arnav.pocdoc.utils.Constants;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
@@ -330,7 +331,9 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     public void otc_natural_btn(View view) {
-        startActivity(new Intent(getApplicationContext(), OTCAndNaturalDrugsActivity.class));
+        Intent intent = new Intent(getApplicationContext(), OTCAndNaturalDrugsActivity.class);
+        intent.putExtra(Constants.isOTC,true);
+        startActivity(intent);
     }
 
     public void fitnes_center_btn(View view) {
@@ -338,7 +341,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     public void diet_nutiontion_btn(View view) {
-        Intent intent = new Intent(getApplicationContext(), ActivateLocatorActivity.class);
+        Intent intent = new Intent(getApplicationContext(), OTCAndNaturalDrugsActivity.class);
+        intent.putExtra(Constants.isOTC,false);
         startActivity(intent);
     }
 

@@ -3,61 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable-anydpi-v24/image_upload_bg.xml" value="0.2675925925925926" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable-anydpi/ic_menu.xml" value="0.27282051282051284" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable-hdpi/home_image_bg.xml" value="0.25277777777777777" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable-ldpi/bg_image_text_black.xml" value="0.27708333333333335" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/bg_edit_text_black.xml" value="0.27708333333333335" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.2101851851851852" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/checkbox_selector.xml" value="0.27708333333333335" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/checkbox_selector_pharmacy.xml" value="0.2675925925925926" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/edittext_bg.xml" value="0.23055555555555557" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/google_markers_icon.xml" value="0.27037037037037037" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/ic_checkbox_check.xml" value="0.27708333333333335" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/ic_checkbox_check_pharmacy.xml" value="0.2675925925925926" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/drawable/image_upload_bg.xml" value="0.27708333333333335" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/activity_activate_locator.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/activity_add_diary.xml" value="0.134375" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/activity_exclusions_view.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/activity_hospital_locator.xml" value="0.33" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/activity_main_menu.xml" value="0.25" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/activity_symtom_add.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/activity_symtom_checker.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/activity_symtom_checker_result.xml" value="0.2724306688417618" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/bottom_sheet_activate_locator.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/demo.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/hospital_locator_uploadimage_adapter.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/layout/startingv2.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/ERINLE/app/src/main/res/menu/main_menu.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/drawable-ldpi/bg_image_text_black.xml" value="0.23425925925925925" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/drawable/bg_edit_text_black.xml" value="0.27708333333333335" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.23425925925925925" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/drawable/checkbox_selector.xml" value="0.23425925925925925" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/drawable/edittext_bg.xml" value="0.27708333333333335" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/drawable/ic_checkbox_check.xml" value="0.27708333333333335" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_activate_locator.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_add_diary.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_hospital_locator.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_main.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_main_menu.xml" value="0.1935185185185185" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_maps.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_otc.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_otc_details.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_simply_relief_search.xml" value="0.19166666666666668" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_splash.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_symtom_checker.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/activity_symtom_checker_tc.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/bottom_sheet_activate_locator.xml" value="0.25857275254865614" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/bottom_sheet_bg.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/layout_header_back.xml" value="0.2609375" />
-        <entry key="..\:/Rahul Project/Client Project/erinle-rushal/app/src/main/res/layout/row_recommendation.xml" value="0.2609375" />
+        <entry key="..\:/Rushal/Project/ERINLE/Erinle/app/src/main/res/layout/activity_activate_locator.xml" value="0.358695652173913" />
+        <entry key="..\:/Rushal/Project/ERINLE/Erinle/app/src/main/res/layout/activity_hospital_locator.xml" value="0.358695652173913" />
+        <entry key="..\:/Rushal/Project/ERINLE/Erinle/app/src/main/res/layout/activity_main_menu.xml" value="0.24954710144927536" />
+        <entry key="..\:/Rushal/Project/ERINLE/Erinle/app/src/main/res/layout/activity_natural.xml" value="0.358695652173913" />
+        <entry key="..\:/Rushal/Project/ERINLE/Erinle/app/src/main/res/layout/activity_otc.xml" value="0.358695652173913" />
+        <entry key="..\:/Rushal/Project/ERINLE/Erinle/app/src/main/res/layout/activity_otc_details.xml" value="0.24954710144927536" />
+        <entry key="..\:/Rushal/Project/ERINLE/Erinle/app/src/main/res/layout/bottom_sheet_activate_locator.xml" value="0.358695652173913" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

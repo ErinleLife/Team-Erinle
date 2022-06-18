@@ -178,6 +178,7 @@
     <string name="scan_and_send_rx_here">Scan and\nSend RX Here</string>
     <string name="take_image_of_hardcopy_prescription_and_send_to_local_pharmacy">Take Image of Hardcopy\nPrescription and Send to\nLocal Pharmacy</string>
     <string name="natural_alternative_medicine">Natural/\nAlternative\nMedicine</string>
+    <string name="natural_alternative_medicine_without_space">Natural/Alternative Medicine</string>
     <string name="local_pharmacy_search">Local Pharmacy Search</string>
     <string name="cash_paying_please_apply_a_discount_card_must_bring_in_hard_copy_prescription_to_receive_medicine">Cash paying please apply a discount card, must bring in hard copy prescription to receive medicine.</string>
 

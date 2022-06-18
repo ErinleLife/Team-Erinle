@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class DataHospitalItem implements Serializable {
     @SerializedName("id")
@@ -19,6 +18,12 @@ public class DataHospitalItem implements Serializable {
     @SerializedName("image")
     @Expose
     private String image;
+    @SerializedName("lat")
+    @Expose
+    private String lat;
+    @SerializedName("long")
+    @Expose
+    private String long1;
     @SerializedName("description")
     @Expose
     private String description;
@@ -60,6 +65,14 @@ public class DataHospitalItem implements Serializable {
         return image;
     }
 
+    public String getLat() {
+        return lat;
+    }
+
+    public String getLong1() {
+        return long1;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -82,6 +95,14 @@ public class DataHospitalItem implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public void setLong1(String long1) {
+        this.long1 = long1;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
     public void setAddress(String address) {

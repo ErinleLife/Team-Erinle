@@ -1,16 +1,29 @@
 package com.arnav.pocdoc.activateLocator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 
+import com.arnav.pocdoc.BaseActivity;
 import com.arnav.pocdoc.R;
+import com.arnav.pocdoc.SimplyRelief.models.HospitalLocatorResponse;
+import com.arnav.pocdoc.databinding.ActivityActivateLocatorBinding;
+import com.arnav.pocdoc.hospitalLocator.HospitalLocatorActivity;
+import com.arnav.pocdoc.retrofit.ApiClient;
+import com.arnav.pocdoc.retrofit.ApiInterface;
+import com.arnav.pocdoc.retrofit.NetworkRequest;
+import com.arnav.pocdoc.utils.Constants;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,42 +31,96 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ActivateLocatorActivity extends AppCompatActivity implements OnMapReadyCallback {
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
+
+public class ActivateLocatorActivity extends BaseActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     BottomSheetDialog bottomSheetDialog;
+    protected ApiInterface apiService;
 
     LatLng sydney = new LatLng(-34, 151);
     LatLng TamWorth = new LatLng(-31.083332, 150.916672);
     LatLng NewCastle = new LatLng(-32.916668, 151.750000);
     LatLng Brisbane = new LatLng(-27.470125, 153.021072);
+    ArrayList<String> arr = new ArrayList<>();
+    protected CompositeSubscription compositeSubscription;
+    List<Marker> markers = new ArrayList<>();
 
+    ActivityActivateLocatorBinding binding;
+    SupportMapFragment mapFragment;
+    private HospitalLocatorResponse result;
     ArrayList<LatLng> locationArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activate_locator);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_activate_locator);
+        binding.setActivity(this);
+
+        apiService = ApiClient.getClient(this).create(ApiInterface.class);
+        compositeSubscription = new CompositeSubscription();
+
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.frg_map);
-        mapFragment.getMapAsync(this);
-        // in below line we are initializing our array list.
+//        locationArrayList.add(sydney);
+//        locationArrayList.add(TamWorth);
+//        locationArrayList.add(NewCastle);
+//        locationArrayList.add(Brisbane);
+        getSymptomsData();
+    }
 
-        // on below line we are adding our
-        // locations in our array list.
-        locationArrayList.add(sydney);
-        locationArrayList.add(TamWorth);
-        locationArrayList.add(NewCastle);
-        locationArrayList.add(Brisbane);
+    private void getSymptomsData() {
+        showProgress();
+        Subscription subscription = NetworkRequest.performAsyncRequest(apiService.getPharmacy()
+                , response -> {
+                    hideProgress();
+                    if (response.isSuccessful()) {
+
+                        result = response.body();
+                        for (int i = 0; i < result.getData().size(); i++) {
+                            arr.add(result.getData().get(i).getName() + ", " + result.getData().get(i).getAddress() + ", " + result.getData().get(i).getZipcode());
+                            locationArrayList.add(new LatLng(Double.parseDouble(result.getData().get(i).getLat()), Double.parseDouble(result.getData().get(i).getLong1())));
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.row_hospital, arr);
+                        binding.autoCompleteTextView1.setThreshold(1);
+                        binding.autoCompleteTextView1.setAdapter(adapter);
+
+                        mapFragment.getMapAsync(this);
+
+                        binding.autoCompleteTextView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int ii, long l) {
+                                for (int i = 0; i < arr.size(); i++) {
+                                    if (arr.get(i).equals(binding.autoCompleteTextView1.getText().toString())) {
+                                        mMap.getFocusedBuilding();
+                                        CameraUpdate location = CameraUpdateFactory.newLatLngZoom(
+                                                locationArrayList.get(i), 15);
+                                        mMap.animateCamera(location);
+                                    }
+                                }
+                            }
+                        });
+
+                    }
+                }
+                , throwable -> {
+                    hideProgress();
+                    throwable.printStackTrace();
+                });
+        compositeSubscription.add(subscription);
     }
 
     public void back(View view) {
@@ -63,16 +130,7 @@ public class ActivateLocatorActivity extends AppCompatActivity implements OnMapR
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-//
-//        mMap.addMarker(new MarkerOptions().position(new LatLng(79, 20)).title("Marker"));
-//        mMap.addMarker(new MarkerOptions().position(new LatLng(50, 60)).title("Marker"));
-//        mMap.addMarker(new MarkerOptions().position(new LatLng(90, 20)).title("Marker"));
-//        mMap.getFocusedBuilding();
-//        LatLng latLng = new LatLng(79, 20);
-//        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
-//        mMap.animateCamera(cameraUpdate);
 
-//        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
         boolean success = googleMap.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(
@@ -82,31 +140,38 @@ public class ActivateLocatorActivity extends AppCompatActivity implements OnMapR
         for (int i = 0; i < locationArrayList.size(); i++) {
 
             // below line is use to add marker to each location of our array list.
-            mMap.addMarker(new MarkerOptions().position(locationArrayList.get(i)).title("").icon(BitmapFromVector(this, R.drawable.google_markers_icon)));
+            Marker marker = mMap.addMarker(new MarkerOptions().position(locationArrayList.get(i)).title(arr.get(i).toString()).icon(BitmapFromVector(this, R.drawable.google_markers_icon)));
 
             // below lin is use to zoom our camera on map.
 //            mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
 
             mMap.getFocusedBuilding();
-//            LatLng latLng = new LatLng(locationArrayList.get(i).longitude, locationArrayList.get(i).longitude);
-//            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(locationArrayList.get(i), 17);
-//            mMap.animateCamera(cameraUpdate);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(locationArrayList.get(i)));
+            markers.add(marker);
         }
 
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(6));
-
-//        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 15));
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 String markerName = marker.getTitle();
-                showBottomSheet();
+
+                for (int i = 0; i < arr.size(); i++) {
+                    if (arr.get(i).equals(markerName)) {
+                        showBottomSheet(i);
+                    }
+                }
                 return false;
             }
         });
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (Marker marker : markers) {
+            builder.include(marker.getPosition());
+        }
+        LatLngBounds bounds = builder.build();
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 200));
     }
 
     private BitmapDescriptor BitmapFromVector(Context context, int vectorResId) {
@@ -126,10 +191,30 @@ public class ActivateLocatorActivity extends AppCompatActivity implements OnMapR
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
-    private void showBottomSheet() {
+    private void showBottomSheet(int position) {
         bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(R.layout.bottom_sheet_activate_locator);
         bottomSheetDialog.getBehavior().setPeekHeight(getResources().getDimensionPixelSize(R.dimen._500sdp));
+        TextView tvMedical = bottomSheetDialog.findViewById(R.id.tvMedical);
+        TextView tvEmail = bottomSheetDialog.findViewById(R.id.tvEmail);
+        TextView tvAddress = bottomSheetDialog.findViewById(R.id.tvAddress);
+        TextView tvDesc = bottomSheetDialog.findViewById(R.id.tvDesc);
+        TextView tvScanSend = bottomSheetDialog.findViewById(R.id.tvScanSend);
+
+
+        tvMedical.setText(result.getData().get(position).getName());
+        tvEmail.setText(result.getData().get(position).getEmail());
+        tvAddress.setText(result.getData().get(position).getAddress());
+        tvDesc.setText(result.getData().get(position).getDescription());
+        tvScanSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HospitalLocatorActivity.class);
+                intent.putExtra(Constants.pharmacyPosition, position);
+                startActivity(intent);
+            }
+        });
+
         bottomSheetDialog.show();
     }
 

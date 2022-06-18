@@ -62,9 +62,11 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
     private ActivityHospitalLocatorBinding binding;
     private static final int PICK_FRONT_IMAGE = 100;
     private static final int PICK_BACK_IMAGE = 101;
+    private int pharmacyPosition = -1;
+    ArrayList<String> arr = new ArrayList<>();
 
-    private OTCAdapter adapter;
     private HospitalLocatorResponse result;
+    private OTCAdapter adapter;
     private int selectedPosition = -1;
     ArrayList<String> uploadImageArray = new ArrayList<>();
     ArrayList<String> sendScreen_uploadImageArray = new ArrayList<>();
@@ -85,7 +87,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
         apiService = ApiClient.getClient(this).create(ApiInterface.class);
         compositeSubscription = new CompositeSubscription();
-
+        getIntentData();
         getSymptomsData();
         setDetailEditText();
         setOnCheckBoxChange();
@@ -96,17 +98,20 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
     }
 
-    private void setRecyclerView() {
+    private void getIntentData() {
+        if (getIntent() != null) {
+            pharmacyPosition = getIntent().getExtras().getInt(Constants.pharmacyPosition);
+            selectedPosition = pharmacyPosition;
+        }
+    }
 
+    private void setRecyclerView() {
         binding.rvUploadImage.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         hospitallLocatorUploadImageAdapter = new HospitallLocatorUploadImageAdapter(uploadImageArray, this);
         binding.rvUploadImage.setAdapter(hospitallLocatorUploadImageAdapter);
-
         binding.rvSendScreenUploadImage.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         hospitallLocatorSendScreenUploadImageAdapter = new HospitallLocatorSendScreenUploadImageAdapter(sendScreen_uploadImageArray, this);
         binding.rvSendScreenUploadImage.setAdapter(hospitallLocatorSendScreenUploadImageAdapter);
-
-
     }
 
     private void setOnClickListener() {
@@ -177,7 +182,9 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                     setCheckBoxData();
                     binding.checkboxSendScreen.setChecked(true);
                     binding.checkboxSendScreen.setEnabled(false);
-                    binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
+//                    binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
+                    binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
+
 
                 }
 
@@ -216,7 +223,8 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                 setCheckBoxData();
                 binding.checkboxSendScreen.setChecked(true);
                 binding.checkboxSendScreen.setEnabled(false);
-                binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
+//                binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
+                binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
 
             }
         });
@@ -315,8 +323,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
             }
         });
-
-
     }
 
     private void getSymptomsData() {
@@ -326,7 +332,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                     hideProgress();
                     if (response.isSuccessful()) {
 
-                        ArrayList<String> arr = new ArrayList<>();
                         result = response.body();
                         for (int i = 0; i < result.getData().size(); i++) {
                             arr.add(result.getData().get(i).getName() + ", " + result.getData().get(i).getAddress() + ", " + result.getData().get(i).getZipcode());
@@ -334,7 +339,9 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.row_hospital, arr);
                         binding.autoCompleteTextView1.setThreshold(1);
                         binding.autoCompleteTextView1.setAdapter(adapter);
-                        binding.autoCompleteTextView1.setOnItemClickListener((adapterView, view, position, id) -> selectedPosition = position);
+                        if (getIntent() != null) {
+                            binding.autoCompleteTextView1.setText(arr.get(pharmacyPosition));
+                        }
                     }
                 }
                 , throwable -> {
@@ -361,6 +368,13 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                 ;
 
             if (imageFront != null && imageBack != null) {
+
+                for (int i = 0; i < arr.size(); i++) {
+                    if (arr.get(i).equals(binding.autoCompleteTextView1.getText().toString())) {
+                        selectedPosition = i;
+                    }
+                }
+
 //
 //                    HashMap<String, String> params = new HashMap<>();
 //                    params.put(Constants.pharmacy_id, result.getData().get(0).getId().toString());
@@ -419,7 +433,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                             String discription = "";
                             String have_pharmacy_insurance = "";
 
-
                             if (binding.llCheckyesLayout.isShown()) {
                                 have_pharmacy_insurance = "yes";
                                 if (binding.checkboxEitherEnterPharmacyInsurance.isChecked()) {
@@ -435,7 +448,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                                     type = "scan_pharmacy";
                                     discription = binding.uploadImageDescription.getText().toString();
                                 } else if (binding.checkboxSendScreen.isChecked()) {
-                                    infoDataArray.addAll(sendScreen_uploadImageArray);
+                                    infoDataArray.addAll(uploadImageArray);
                                     type = "screenshot_pharmacy";
                                     discription = binding.uploadImageDescriptionSendScreen.getText().toString();
                                 }
@@ -445,32 +458,60 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                                 discription = binding.etCheckNODescription.getText().toString();
                             }
 
-//                            if (binding.llCheckyesLayout.isShown())
-//                            {
-//
-//                            }
-//                            else
-//                            {
-//                            }
-
                             Log.e("TAG", " onViewClick >>>>>>>>>>>>>>>>>>>>>>>> check array >>>>>>>>>>>> " + new Gson().toJson(infoDataArray));
+
+//                            OkHttpClient client = new OkHttpClient().newBuilder().build();
+//                            MediaType mediaType = MediaType.parse("text/plain");
+//                            RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+//                                    .addFormDataPart(Constants.pharmacy_id, result.getData().get(selectedPosition).getId().toString())
+//                                    .addFormDataPart(Constants.pharmacy_locatore, result.getData().get(selectedPosition).getZipcode().toString())
+//                                    .addFormDataPart(Constants.image_front, imageFront.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageFront.getPath())))
+//                                    .addFormDataPart(Constants.image_back, imageBack.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageBack.getPath())))
+//                                    .addFormDataPart(Constants.have_pharmacy_insurance, have_pharmacy_insurance)
+//                                    .addFormDataPart(Constants.type, type)
+//                                    .addFormDataPart(Constants.info, String.valueOf(infoDataArray))
+////                                    .addFormDataPart(Constants.info, imageBack.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageBack.getPath())))
+//                                    .addFormDataPart(Constants.description, discription)
+//                                    .build();
+//                            Request request = new Request.Builder()
+//                                    .url("http://165.22.45.58/api/add-prescription")
+//                                    .method("POST", body)
+//                                    .build();
+//                            Response response = client.newCall(request).execute();
 
                             OkHttpClient client = new OkHttpClient().newBuilder().build();
                             MediaType mediaType = MediaType.parse("text/plain");
-                            RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                            MultipartBody.Builder body = new MultipartBody.Builder().setType(MultipartBody.FORM)
                                     .addFormDataPart(Constants.pharmacy_id, result.getData().get(selectedPosition).getId().toString())
-                                    .addFormDataPart(Constants.pharmacy_locatore, "368952")
+                                    .addFormDataPart(Constants.pharmacy_locatore, result.getData().get(selectedPosition).getZipcode().toString())
                                     .addFormDataPart(Constants.image_front, imageFront.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageFront.getPath())))
                                     .addFormDataPart(Constants.image_back, imageBack.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageBack.getPath())))
                                     .addFormDataPart(Constants.have_pharmacy_insurance, have_pharmacy_insurance)
                                     .addFormDataPart(Constants.type, type)
-                                    .addFormDataPart(Constants.info, String.valueOf(infoDataArray))
+//                                    .addFormDataPart(Constants.info, String.valueOf(infoDataArray))
 //                                    .addFormDataPart(Constants.info, imageBack.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageBack.getPath())))
-                                    .addFormDataPart(Constants.description, discription)
-                                    .build();
+                                    .addFormDataPart(Constants.description, discription);
+
+                            if (have_pharmacy_insurance == "yes") {
+                                if (binding.checkboxEitherEnterPharmacyInsurance.isChecked()) {
+                                    body.addFormDataPart(Constants.info, String.valueOf(infoDataArray));
+
+                                } else if (binding.checkboxScanPharmacy.isChecked()) {
+                                    for (int i = 0; i < infoDataArray.size(); i++) {
+                                        body.addFormDataPart(Constants.info + "[" + i + "]", infoDataArray.get(i), RequestBody.create(MediaType.parse("application/octet-stream"), new File(infoDataArray.get(i))));
+                                    }
+                                } else if (binding.checkboxSendScreen.isChecked()) {
+                                    for (int i = 0; i < infoDataArray.size(); i++) {
+                                        body.addFormDataPart(Constants.info + "[" + i + "]", infoDataArray.get(i), RequestBody.create(MediaType.parse("application/octet-stream"), new File(infoDataArray.get(i))));
+                                    }
+                                }
+                            }
+
+                            RequestBody requestBody = body.build();
+
                             Request request = new Request.Builder()
                                     .url("http://165.22.45.58/api/add-prescription")
-                                    .method("POST", body)
+                                    .method("POST", requestBody)
                                     .build();
                             Response response = client.newCall(request).execute();
 
