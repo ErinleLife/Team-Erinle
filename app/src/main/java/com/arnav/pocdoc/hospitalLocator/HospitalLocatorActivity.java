@@ -374,60 +374,12 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                         selectedPosition = i;
                     }
                 }
-
-//
-//                    HashMap<String, String> params = new HashMap<>();
-//                    params.put(Constants.pharmacy_id, result.getData().get(0).getId().toString());
-//                    params.put(Constants.description, "etDescription");
-//                    params.put(Constants.pharmacy_locatore, "pharmacy_locatore");
-//                    params.put(Constants.have_pharmacy_insurance, "yes");
-//                    MultipartBody.Part bodyPhotoFront = null;
-//                    if (imageFront != null) {
-//                        File file = new File(imageFront.getPath());
-//                        bodyPhotoFront = MultipartBody.Part.createFormData(Constants.image_front,
-//                                file.getName(), createRequestBody(file));
-//                    }
-//                    MultipartBody.Part bodyPhotoBack = null;
-//                    if (imageBack != null) {
-//                        File file = new File(imageBack.getPath());
-//                        bodyPhotoBack = MultipartBody.Part.createFormData(Constants.image_back,
-//                                file.getName(), createRequestBody(file));
-//                    }
-//
-//                    Log.e("TAG", "onViewClick: params >>>>>>>>>>> "+new Gson().toJson(params));
-//                    Log.e("TAG", "onViewClick: bodyPhotoFront >>>>>>>>>>> "+new Gson().toJson(bodyPhotoFront));
-//                    Log.e("TAG", "onViewClick: bodyPhotoBack >>>>>>>>>>> "+new Gson().toJson(bodyPhotoBack));
-//
-//                    Subscription subscription = NetworkRequest.performAsyncRequest(apiService.addProductReview(params, bodyPhotoFront, bodyPhotoBack)
-//                            , response -> {
-//                                hideProgress();
-//                                Log.e("TAG", "onViewClick: >>>>>>>>>>>>>>>> "+response.isSuccessful() );
-//                                if (response.isSuccessful()) {
-//                                    ResponseCommon result = response.body();
-//                                    if (result == null)
-//                                        return;
-//                                    Log.e("TAG", "onViewClick: response >>>>>>>>>>>>>>>> "+response);
-//                                    Utils.makeToast(result.getMessage());
-//                                    finish();
-//                                }
-//                                else
-//                                {
-//                                    Log.e("TAG", "onViewClick: error >>>>> "+response.message() );
-//                                }
-//                            }
-//                            , throwable -> {
-//                                hideProgress();
-//                                throwable.printStackTrace();
-//                            });
-//                    compositeSubscription.add(subscription);
-
-
+                showProgress();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
 
                         try {
-
                             ArrayList<String> infoDataArray = new ArrayList<>();
                             String type = "";
                             String discription = "";
@@ -516,12 +468,14 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                             Response response = client.newCall(request).execute();
 
                             Log.e("TAG", "onViewClick: response >>> " + response.body().string());
+                            hideProgress();
 
                             if (response.isSuccessful()) {
                                 finish();
                             }
 
                         } catch (Exception e) {
+                            hideProgress();
                             e.printStackTrace();
                             Log.e("TAG", "onViewClick: error >>>>>>>>>>>> " + e.getMessage());
                         }
