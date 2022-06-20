@@ -29,24 +29,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvTC"
-                    style="@style/BoldTextViewExtraSmall"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:drawablePadding="@dimen/_4sdp"
-                    android:text="@string/otc_and_natural_drugs"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv"
@@ -60,7 +43,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tlName"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:spanCount="2"
                     tools:itemCount="4"
                     tools:listitem="@layout/row_symptoms" />

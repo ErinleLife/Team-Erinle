@@ -24,15 +24,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.arnav.pocdoc.BaseActivity;
 import com.arnav.pocdoc.R;
-import com.arnav.pocdoc.SimplyRelief.models.DataOTCItem;
 import com.arnav.pocdoc.SimplyRelief.models.HospitalLocatorResponse;
 import com.arnav.pocdoc.databinding.ActivityHospitalLocatorBinding;
 import com.arnav.pocdoc.implementor.RecyclerViewItemClickListener;
-import com.arnav.pocdoc.otc.Adapter.OTCAdapter;
 import com.arnav.pocdoc.retrofit.ApiClient;
 import com.arnav.pocdoc.retrofit.ApiInterface;
 import com.arnav.pocdoc.retrofit.NetworkRequest;
 import com.arnav.pocdoc.utils.Constants;
+import com.arnav.pocdoc.utils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.jaiselrahman.filepicker.activity.FilePickerActivity;
@@ -42,7 +41,6 @@ import com.jaiselrahman.filepicker.model.MediaFile;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -55,28 +53,22 @@ import rx.subscriptions.CompositeSubscription;
 
 public class HospitalLocatorActivity extends BaseActivity implements RecyclerViewItemClickListener {
 
-    public static final List<DataOTCItem> listAll = new ArrayList<>();
-    private final List<DataOTCItem> list = new ArrayList<>();
     protected ApiInterface apiService;
     protected CompositeSubscription compositeSubscription;
     private ActivityHospitalLocatorBinding binding;
-    private static final int PICK_FRONT_IMAGE = 100;
-    private static final int PICK_BACK_IMAGE = 101;
     private int pharmacyPosition = -1;
-    ArrayList<String> arr = new ArrayList<>();
+    private final ArrayList<String> arr = new ArrayList<>();
 
     private HospitalLocatorResponse result;
-    private OTCAdapter adapter;
     private int selectedPosition = -1;
-    ArrayList<String> uploadImageArray = new ArrayList<>();
-    ArrayList<String> sendScreen_uploadImageArray = new ArrayList<>();
-    ArrayList<String> inputTableArrayList = new ArrayList<>();
-    boolean isClickUploadImage;
-    HospitallLocatorUploadImageAdapter hospitallLocatorUploadImageAdapter;
-    HospitallLocatorSendScreenUploadImageAdapter hospitallLocatorSendScreenUploadImageAdapter;
+    private final ArrayList<String> uploadImageArray = new ArrayList<>();
+    private final ArrayList<String> sendScreen_uploadImageArray = new ArrayList<>();
+    private boolean isClickUploadImage;
+    private HospitallLocatorUploadImageAdapter hospitallLocatorUploadImageAdapter;
+    private HospitallLocatorSendScreenUploadImageAdapter hospitallLocatorSendScreenUploadImageAdapter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedI nstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_hospital_locator);
         binding.setActivity(this);
@@ -103,6 +95,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
             pharmacyPosition = getIntent().getExtras().getInt(Constants.pharmacyPosition);
             selectedPosition = pharmacyPosition;
         }
+        binding.header.tvTitle.setText(getResources().getString(R.string.pharmacy_locator));
     }
 
     private void setRecyclerView() {
@@ -115,120 +108,72 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
     }
 
     private void setOnClickListener() {
-
-        binding.ivUploadImage1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                isFrontImage = false;
-                isBackImage = false;
-                isClickUploadImage = true;
-                openFrontImageDialog();
-
-            }
+        binding.ivUploadImage1.setOnClickListener(view -> {
+            isFrontImage = false;
+            isBackImage = false;
+            isClickUploadImage = true;
+            openFrontImageDialog();
         });
 
-        binding.ivSendScreenUploadImage1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.ivSendScreenUploadImage1.setOnClickListener(view -> {
+            isFrontImage = false;
+            isBackImage = false;
+            isClickUploadImage = false;
+            openFrontImageDialog();
 
-                isFrontImage = false;
-                isBackImage = false;
-                isClickUploadImage = false;
-                openFrontImageDialog();
-
-            }
         });
-
     }
 
     private void setOnCheckBoxChange() {
-
-        binding.checkboxEitherEnterPharmacyInsurance.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-
-                    setCheckBoxData();
-                    binding.checkboxEitherEnterPharmacyInsurance.setChecked(true);
-                    binding.checkboxEitherEnterPharmacyInsurance.setEnabled(false);
-                    binding.llInputTablelayout.setVisibility(View.VISIBLE);
-
-                }
-
-            }
-        });
-
-        binding.checkboxScanPharmacy.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-
-                    setCheckBoxData();
-                    binding.checkboxScanPharmacy.setChecked(true);
-                    binding.checkboxScanPharmacy.setEnabled(false);
-                    binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
-
-                }
-
-            }
-        });
-
-        binding.checkboxSendScreen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-
-                    setCheckBoxData();
-                    binding.checkboxSendScreen.setChecked(true);
-                    binding.checkboxSendScreen.setEnabled(false);
-//                    binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
-                    binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
-
-
-                }
-
-            }
-        });
-
-        binding.clEitherEnterPharmacyInsurance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        binding.checkboxEitherEnterPharmacyInsurance.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
                 setCheckBoxData();
                 binding.checkboxEitherEnterPharmacyInsurance.setChecked(true);
                 binding.checkboxEitherEnterPharmacyInsurance.setEnabled(false);
                 binding.llInputTablelayout.setVisibility(View.VISIBLE);
-
-
             }
         });
 
-        binding.clScanPharmacy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        binding.checkboxScanPharmacy.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
                 setCheckBoxData();
                 binding.checkboxScanPharmacy.setChecked(true);
                 binding.checkboxScanPharmacy.setEnabled(false);
                 binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
-
             }
         });
 
-        binding.clSendScreenShotInsuranceInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        binding.checkboxSendScreen.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
                 setCheckBoxData();
                 binding.checkboxSendScreen.setChecked(true);
                 binding.checkboxSendScreen.setEnabled(false);
-//                binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
+//                    binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
                 binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
-
             }
         });
 
+        binding.clEitherEnterPharmacyInsurance.setOnClickListener(view -> {
+            setCheckBoxData();
+            binding.checkboxEitherEnterPharmacyInsurance.setChecked(true);
+            binding.checkboxEitherEnterPharmacyInsurance.setEnabled(false);
+            binding.llInputTablelayout.setVisibility(View.VISIBLE);
+        });
+
+        binding.clScanPharmacy.setOnClickListener(view -> {
+            setCheckBoxData();
+            binding.checkboxScanPharmacy.setChecked(true);
+            binding.checkboxScanPharmacy.setEnabled(false);
+            binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
+        });
+
+        binding.clSendScreenShotInsuranceInfo.setOnClickListener(view -> {
+            setCheckBoxData();
+            binding.checkboxSendScreen.setChecked(true);
+            binding.checkboxSendScreen.setEnabled(false);
+//                binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
+            binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
+        });
     }
 
     private void setCheckBoxData() {
@@ -243,7 +188,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
         binding.llUploadImageTablelayout.setVisibility(View.GONE);
         binding.llInputTablelayout.setVisibility(View.GONE);
         binding.llUploadImageSendScreen.setVisibility(View.GONE);
-
     }
 
     private void setDetailEditText() {
@@ -365,8 +309,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                 selectedPosition = 0;
             }
             if (!binding.autoCompleteTextView1.getText().toString().isEmpty() && selectedPosition != -1)
-                ;
-
             if (imageFront != null && imageBack != null) {
 
                 for (int i = 0; i < arr.size(); i++) {
@@ -375,42 +317,40 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                     }
                 }
                 showProgress();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
+                new Thread(() -> {
 
-                        try {
-                            ArrayList<String> infoDataArray = new ArrayList<>();
-                            String type = "";
-                            String discription = "";
-                            String have_pharmacy_insurance = "";
+                    try {
+                        ArrayList<String> infoDataArray = new ArrayList<>();
+                        String type = "";
+                        String discription = "";
+                        String have_pharmacy_insurance = "";
 
-                            if (binding.llCheckyesLayout.isShown()) {
-                                have_pharmacy_insurance = "yes";
-                                if (binding.checkboxEitherEnterPharmacyInsurance.isChecked()) {
+                        if (binding.llCheckyesLayout.isShown()) {
+                            have_pharmacy_insurance = "yes";
+                            if (binding.checkboxEitherEnterPharmacyInsurance.isChecked()) {
 
-                                    infoDataArray.add("rx_bin " + binding.etRxbin.getText().toString());
-                                    infoDataArray.add("rx_pcn " + binding.etRxpcn.getText().toString());
-                                    infoDataArray.add("rx_id " + binding.etRxid.getText().toString());
-                                    infoDataArray.add("rx_group " + binding.etRxgroup.getText().toString());
-                                    type = "pharmacy_insurance";
-                                    discription = binding.inputDescription.getText().toString();
-                                } else if (binding.checkboxScanPharmacy.isChecked()) {
-                                    infoDataArray.addAll(uploadImageArray);
-                                    type = "scan_pharmacy";
-                                    discription = binding.uploadImageDescription.getText().toString();
-                                } else if (binding.checkboxSendScreen.isChecked()) {
-                                    infoDataArray.addAll(uploadImageArray);
-                                    type = "screenshot_pharmacy";
-                                    discription = binding.uploadImageDescriptionSendScreen.getText().toString();
-                                }
-                            } else {
-
-                                have_pharmacy_insurance = "no";
-                                discription = binding.etCheckNODescription.getText().toString();
+                                infoDataArray.add("rx_bin " + binding.etRxbin.getText().toString());
+                                infoDataArray.add("rx_pcn " + binding.etRxpcn.getText().toString());
+                                infoDataArray.add("rx_id " + binding.etRxid.getText().toString());
+                                infoDataArray.add("rx_group " + binding.etRxgroup.getText().toString());
+                                type = "pharmacy_insurance";
+                                discription = binding.inputDescription.getText().toString();
+                            } else if (binding.checkboxScanPharmacy.isChecked()) {
+                                infoDataArray.addAll(uploadImageArray);
+                                type = "scan_pharmacy";
+                                discription = binding.uploadImageDescription.getText().toString();
+                            } else if (binding.checkboxSendScreen.isChecked()) {
+                                infoDataArray.addAll(uploadImageArray);
+                                type = "screenshot_pharmacy";
+                                discription = binding.uploadImageDescriptionSendScreen.getText().toString();
                             }
+                        } else {
 
-                            Log.e("TAG", " onViewClick >>>>>>>>>>>>>>>>>>>>>>>> check array >>>>>>>>>>>> " + new Gson().toJson(infoDataArray));
+                            have_pharmacy_insurance = "no";
+                            discription = binding.etCheckNODescription.getText().toString();
+                        }
+
+                        LogUtils.Print("TAG", " onViewClick >>>>>>>>>>>>>>>>>>>>>>>> check array >>>>>>>>>>>> " + new Gson().toJson(infoDataArray));
 
 //                            OkHttpClient client = new OkHttpClient().newBuilder().build();
 //                            MediaType mediaType = MediaType.parse("text/plain");
@@ -431,66 +371,59 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 //                                    .build();
 //                            Response response = client.newCall(request).execute();
 
-                            OkHttpClient client = new OkHttpClient().newBuilder().build();
-                            MediaType mediaType = MediaType.parse("text/plain");
-                            MultipartBody.Builder body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                                    .addFormDataPart(Constants.pharmacy_id, result.getData().get(selectedPosition).getId().toString())
-                                    .addFormDataPart(Constants.pharmacy_locatore, result.getData().get(selectedPosition).getZipcode().toString())
-                                    .addFormDataPart(Constants.image_front, imageFront.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageFront.getPath())))
-                                    .addFormDataPart(Constants.image_back, imageBack.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageBack.getPath())))
-                                    .addFormDataPart(Constants.have_pharmacy_insurance, have_pharmacy_insurance)
-                                    .addFormDataPart(Constants.type, type)
+                        OkHttpClient client = new OkHttpClient().newBuilder().build();
+                        MediaType mediaType = MediaType.parse("text/plain");
+                        MultipartBody.Builder body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                                .addFormDataPart(Constants.pharmacy_id, result.getData().get(selectedPosition).getId().toString())
+                                .addFormDataPart(Constants.pharmacy_locatore, result.getData().get(selectedPosition).getZipcode())
+                                .addFormDataPart(Constants.image_front, imageFront.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageFront.getPath())))
+                                .addFormDataPart(Constants.image_back, imageBack.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageBack.getPath())))
+                                .addFormDataPart(Constants.have_pharmacy_insurance, have_pharmacy_insurance)
+                                .addFormDataPart(Constants.type, type)
 //                                    .addFormDataPart(Constants.info, String.valueOf(infoDataArray))
 //                                    .addFormDataPart(Constants.info, imageBack.getPath(), RequestBody.create(MediaType.parse("application/octet-stream"), new File(imageBack.getPath())))
-                                    .addFormDataPart(Constants.description, discription);
+                                .addFormDataPart(Constants.description, discription);
 
-                            if (have_pharmacy_insurance == "yes") {
-                                if (binding.checkboxEitherEnterPharmacyInsurance.isChecked()) {
-                                    body.addFormDataPart(Constants.info, String.valueOf(infoDataArray));
+                        if (have_pharmacy_insurance == "yes") {
+                            if (binding.checkboxEitherEnterPharmacyInsurance.isChecked()) {
+                                body.addFormDataPart(Constants.info, String.valueOf(infoDataArray));
 
-                                } else if (binding.checkboxScanPharmacy.isChecked()) {
-                                    for (int i = 0; i < infoDataArray.size(); i++) {
-                                        body.addFormDataPart(Constants.info + "[" + i + "]", infoDataArray.get(i), RequestBody.create(MediaType.parse("application/octet-stream"), new File(infoDataArray.get(i))));
-                                    }
-                                } else if (binding.checkboxSendScreen.isChecked()) {
-                                    for (int i = 0; i < infoDataArray.size(); i++) {
-                                        body.addFormDataPart(Constants.info + "[" + i + "]", infoDataArray.get(i), RequestBody.create(MediaType.parse("application/octet-stream"), new File(infoDataArray.get(i))));
-                                    }
+                            } else if (binding.checkboxScanPharmacy.isChecked()) {
+                                for (int i = 0; i < infoDataArray.size(); i++) {
+                                    body.addFormDataPart(Constants.info + "[" + i + "]", infoDataArray.get(i), RequestBody.create(MediaType.parse("application/octet-stream"), new File(infoDataArray.get(i))));
+                                }
+                            } else if (binding.checkboxSendScreen.isChecked()) {
+                                for (int i = 0; i < infoDataArray.size(); i++) {
+                                    body.addFormDataPart(Constants.info + "[" + i + "]", infoDataArray.get(i), RequestBody.create(MediaType.parse("application/octet-stream"), new File(infoDataArray.get(i))));
                                 }
                             }
-
-                            RequestBody requestBody = body.build();
-
-                            Request request = new Request.Builder()
-                                    .url("http://165.22.45.58/api/add-prescription")
-                                    .method("POST", requestBody)
-                                    .build();
-                            Response response = client.newCall(request).execute();
-
-                            Log.e("TAG", "onViewClick: response >>> " + response.body().string());
-                            hideProgress();
-
-                            if (response.isSuccessful()) {
-                                finish();
-                            }
-
-                        } catch (Exception e) {
-                            hideProgress();
-                            e.printStackTrace();
-                            Log.e("TAG", "onViewClick: error >>>>>>>>>>>> " + e.getMessage());
                         }
 
+                        RequestBody requestBody = body.build();
+
+                        Request request = new Request.Builder()
+                                .url("http://165.22.45.58/api/add-prescription")
+                                .method("POST", requestBody)
+                                .build();
+                        Response response = client.newCall(request).execute();
+
+                        LogUtils.Print("TAG", "onViewClick: response >>> " + response.body().string());
+                        hideProgress();
+
+                        if (response.isSuccessful()) {
+                            finish();
+                        }
+
+                    } catch (Exception e) {
+                        hideProgress();
+                        e.printStackTrace();
+                        LogUtils.Print("TAG", "onViewClick: error >>>>>>>>>>>> " + e.getMessage());
                     }
+
                 }).start();
             } else {
                 Toast.makeText(getApplicationContext(), "Please choose a front and back image", Toast.LENGTH_LONG).show();
             }
-        }
-        {
-
-//            } else {
-//                Toast.makeText(getApplicationContext(), "Please choose pharmacy", Toast.LENGTH_LONG).show();
-//            }
         }
     }
 
@@ -545,7 +478,7 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 //                                        .centerCrop()
 //                                        .into(binding.ivUploadImage1);
 
-                                Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>> : " + isClickUploadImage);
+                                LogUtils.Print("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>> : " + isClickUploadImage);
 
                                 if (isClickUploadImage) {
                                     uploadImageArray.add(files.get(0).getPath());

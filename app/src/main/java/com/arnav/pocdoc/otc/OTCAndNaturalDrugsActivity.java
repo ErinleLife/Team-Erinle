@@ -105,9 +105,9 @@ public class OTCAndNaturalDrugsActivity extends BaseActivity implements Recycler
     private void setUpHeaderView() {
 
         if (isOTC) {
-            binding.tvTC.setText(getResources().getString(R.string.otc_and_natural_drugs));
+            binding.header.tvTitle.setText(getResources().getString(R.string.otc_and_natural_drugs));
         } else {
-            binding.tvTC.setText(getResources().getString(R.string.natural_alternative_medicine_without_space));
+            binding.header.tvTitle.setText(getResources().getString(R.string.natural_alternative_medicine_without_space));
         }
 
         adapter = new OTCAdapter(list, getApplicationContext());

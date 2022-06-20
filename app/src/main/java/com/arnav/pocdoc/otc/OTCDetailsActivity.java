@@ -53,7 +53,7 @@ public class OTCDetailsActivity extends BaseActivity implements RecyclerViewItem
         list.clear();
         if (selectedPosition > -1) {
             binding.etBreed.addTextChangedListener(onTextWatcherListener);
-            binding.tvTitle.setText(OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getTitle());
+            binding.header.tvTitle.setText(OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getTitle());
 
             list.add(OTCAndNaturalDrugsActivity.listAll.get(selectedPosition));
 

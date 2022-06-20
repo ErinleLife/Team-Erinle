@@ -29,22 +29,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvTitle"
-                    style="@style/BoldTextViewExtraSmall"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:drawablePadding="@dimen/_4sdp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tlName"
                     style="@style/TextInputLayoutStyle"
@@ -57,7 +41,7 @@
                     android:nestedScrollingEnabled="false"
                     app:endIconDrawable="@drawable/ic_close"
                     app:endIconMode="clear_text"
-                    app:layout_constraintTop_toBottomOf="@id/tvTitle">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etBreed"
