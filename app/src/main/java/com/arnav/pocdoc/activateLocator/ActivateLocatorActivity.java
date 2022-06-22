@@ -191,7 +191,7 @@ public class ActivateLocatorActivity extends BaseActivity implements OnMapReadyC
             if (bottomSheetDialog != null)
                 bottomSheetDialog.hide();
             Intent intent = new Intent(getApplicationContext(), HospitalLocatorActivity.class);
-            intent.putExtra(Constants.pharmacyPosition, position);
+            intent.putExtra(Constants.pharmacyPosition, result.getData().get(position).getId());
             startActivity(intent);
         });
 

@@ -26,6 +26,8 @@ public class Constants {
     public static final int FLAG_CROP = 1314;
     public static final int REQUEST_CODE_CAMERA = 504;
 
+    public static final int ITEM_CLICK = 1;
+
     /**
      * CROP
      */
