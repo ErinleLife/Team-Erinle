@@ -180,6 +180,21 @@
     <string name="natural_alternative_medicine">Natural/\nAlternative\nMedicine</string>
     <string name="natural_alternative_medicine_without_space">Natural/Alternative Medicine</string>
     <string name="local_pharmacy_search">Local Pharmacy Search</string>
-    <string name="cash_paying_please_apply_a_discount_card_must_bring_in_hard_copy_prescription_to_receive_medicine">Cash paying please apply a discount card, must bring in hard copy prescription to receive medicine.</string>
+    <string name="cash_paying_desc">Cash paying please apply a discount card, must bring in hard copy prescription to receive medicine.</string>
 
+    <string name="text_camera">Take Photo</string>
+    <string name="text_gallery">Gallery</string>
+    <string name="text_i_am_sure">I\'M SURE</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="dialog_file_not_found">image not found please try again.</string>
+    <string name="text_camera_permission_msg_profile">Without CAMERA permission the app is unable to send image.
+        Are you sure you want to deny this permission?
+        \n\nif you deny before and alert are not showing for allow permission then follow below steps.
+        \n\nTap Setting > Apps > Erinle > Permissions, and turn on.</string>
+    <string name="text_save_profile_picture_msg">You must allow access Photos, media and files (storage) permission to set your profile picture.
+        Are you sure you want to deny this permission?
+        \n\nif you deny before and alert are not showing for allow permission then follow below steps.
+        \n\nTap Setting > Apps > Erinle > Permissions, and turn on.</string>
+    <string name="text_retry">RETRY</string>
+    <string name="text_settings">Settings</string>
 </resources>

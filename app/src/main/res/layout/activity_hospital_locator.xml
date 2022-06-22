@@ -66,32 +66,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!--                <RelativeLayout-->
-                <!--                    android:id="@+id/edtSearch_view"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginHorizontal="12sp"-->
-                <!--                    android:layout_marginTop="@dimen/_5sdp"-->
-                <!--                    android:layout_marginBottom="@dimen/_5sdp"-->
-                <!--                    android:background="@drawable/edittext_bg"-->
-                <!--                    android:backgroundTint="#F9F9FA"-->
-                <!--                    app:layout_constraintLeft_toLeftOf="parent"-->
-                <!--                    app:layout_constraintRight_toRightOf="parent"-->
-                <!--                    app:layout_constraintTop_toBottomOf="@+id/tvTC">-->
-
-                <!--                    <androidx.appcompat.widget.AppCompatEditText-->
-                <!--                        android:id="@+id/edtSearch"-->
-                <!--                        android:layout_width="match_parent"-->
-                <!--                        android:layout_height="@dimen/_43sdp"-->
-                <!--                        android:background="@color/transparent"-->
-                <!--                        android:hint="@string/enter_your_zip_code"-->
-                <!--                        android:imeOptions="actionDone"-->
-                <!--                        android:maxLines="1"-->
-                <!--                        android:paddingHorizontal="12dp"-->
-                <!--                        android:singleLine="true" />-->
-
-                <!--                </RelativeLayout>-->
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/at_description"
                     style="@style/BoldTextViewExtraSmall"
@@ -177,7 +151,6 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     android:background="@drawable/bg_edit_text_black"
                     android:orientation="vertical"
-                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/llImages">
@@ -198,7 +171,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    <RadioGroup
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start"
@@ -229,9 +202,7 @@
 
                     </RadioGroup>
 
-
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:id="@+id/ll_checkyes_layout"
@@ -247,8 +218,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:orientation="vertical"
-                        android:visibility="visible">
+                        android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/cl_either_enter_pharmacy_insurance"
@@ -267,7 +237,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_7sdp"
+                                android:layout_marginStart="@dimen/_7sdp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:text="@string/either_enter_pharmacy_insurance"
                                 android:textColor="#333D48"
@@ -307,7 +277,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_7sdp"
+                                android:layout_marginStart="@dimen/_7sdp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:text="@string/scan_pharmacy"
                                 android:textColor="#333D48"
@@ -345,7 +315,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_7sdp"
+                                android:layout_marginStart="@dimen/_7sdp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:text="@string/send_screen_shot_insurance_info"
                                 android:textColor="#333D48"
@@ -363,9 +333,7 @@
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-
                         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                     </LinearLayout>
 
@@ -373,6 +341,7 @@
                         android:id="@+id/ll_input_tablelayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_7sdp"
                         android:orientation="vertical"
                         android:padding="@dimen/_3sdp"
                         android:visibility="visible"
@@ -450,56 +419,6 @@
                             android:paddingHorizontal="12dp"
                             android:singleLine="true" />
 
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/input_description"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="12sp"
-                                android:layout_marginTop="@dimen/_7sdp"
-                                android:background="@drawable/edittext_bg"
-                                android:fontFamily="@font/poppins_regular"
-                                android:gravity="top"
-                                android:hint="@string/enter_description"
-                                android:inputType="textMultiLine"
-                                android:lines="3"
-                                android:maxLength="150"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:paddingTop="@dimen/_10sdp"
-                                android:paddingRight="@dimen/_10sdp"
-                                android:paddingBottom="@dimen/_30sdp"
-                                android:textColorHint="#AFAFAF"
-                                android:textSize="@dimen/_11sdp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tv_inputtext_count"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10sdp"
-                                android:layout_marginTop="@dimen/_20sdp"
-                                android:layout_marginRight="@dimen/_15sdp"
-                                android:drawablePadding="@dimen/_4sdp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:padding="@dimen/_10sdp"
-                                android:paddingBottom="@dimen/_6sdp"
-                                android:text="0/150"
-                                android:textColor="#AFAFAF"
-                                android:textSize="@dimen/_10sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintRight_toRightOf="parent" />
-
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -526,7 +445,6 @@
                             android:textSize="@dimen/_12ssp"
                             android:textStyle="bold" />
 
-
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_150sdp"
@@ -537,7 +455,7 @@
                                 android:id="@+id/cl_iv_upload_image_1"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginRight="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toLeftOf="@+id/cl_iv_upload_image_2"
@@ -558,30 +476,16 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent" />
 
-
-                                <TextView
-                                    android:id="@+id/tv_upload_image_1_bg"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginEnd="@dimen/_5sdp"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:gravity="center"
-                                    android:text=""
-                                    android:textColor="#AFAFAF"
-                                    android:visibility="visible" />
-
-
                                 <ImageView
                                     android:id="@+id/iv_upload_image_plus_icon"
                                     android:layout_width="@dimen/_35sdp"
                                     android:layout_height="@dimen/_35sdp"
+                                    android:contentDescription="@string/app_name"
                                     android:src="@drawable/plus_icon"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintLeft_toLeftOf="parent"
                                     app:layout_constraintRight_toRightOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
-
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -589,47 +493,11 @@
                                 android:id="@+id/cl_iv_upload_image_2"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_marginStart="@dimen/_5sdp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toRightOf="@+id/cl_iv_upload_image_1"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
-
-                                <!--                                <com.google.android.material.imageview.ShapeableImageView-->
-                                <!--                                    android:id="@+id/iv_upload_image_2"-->
-                                <!--                                    android:layout_width="0dp"-->
-                                <!--                                    android:layout_height="match_parent"-->
-                                <!--                                    android:layout_weight="1"-->
-                                <!--                                    android:background="@drawable/bg_edit_text_black"-->
-                                <!--                                    android:onClick="@{(v)->activity.onViewClick(v)}"-->
-                                <!--                                    android:scaleType="centerCrop"-->
-                                <!--                                    android:visibility="gone"-->
-                                <!--                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"-->
-                                <!--                                    app:layout_constraintLeft_toLeftOf="parent"-->
-                                <!--                                    app:layout_constraintRight_toRightOf="parent"-->
-                                <!--                                    app:layout_constraintTop_toTopOf="parent"-->
-                                <!--                                    app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-                                <!--                                <TextView-->
-                                <!--                                    android:layout_width="match_parent"-->
-                                <!--                                    android:layout_height="match_parent"-->
-                                <!--                                    android:layout_marginEnd="@dimen/_5sdp"-->
-                                <!--                                    android:layout_weight="1"-->
-                                <!--                                    android:background="@drawable/bg_image_text_black"-->
-                                <!--                                    android:fontFamily="@font/poppins_regular"-->
-                                <!--                                    android:gravity="center"-->
-                                <!--                                    android:text=""-->
-                                <!--                                    android:textColor="#AFAFAF" />-->
-
-
-                                <!--                                <ImageView-->
-                                <!--                                    android:layout_width="@dimen/_35sdp"-->
-                                <!--                                    android:layout_height="@dimen/_35sdp"-->
-                                <!--                                    android:src="@drawable/plus_icon"-->
-                                <!--                                    app:layout_constraintLeft_toLeftOf="parent"-->
-                                <!--                                    app:layout_constraintRight_toRightOf="parent"-->
-                                <!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
-                                <!--                                    app:layout_constraintTop_toTopOf="parent"/>-->
 
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/rv_upload_image"
@@ -640,249 +508,7 @@
                                     app:layout_constraintRight_toRightOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-
                             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/upload_image_description"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="12sp"
-                                android:layout_marginTop="@dimen/_7sdp"
-                                android:background="@drawable/edittext_bg"
-                                android:fontFamily="@font/poppins_regular"
-                                android:gravity="top"
-                                android:hint="@string/enter_description"
-                                android:inputType="textMultiLine"
-                                android:lines="3"
-                                android:maxLength="150"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:paddingTop="@dimen/_10sdp"
-                                android:paddingRight="@dimen/_10sdp"
-                                android:paddingBottom="@dimen/_30sdp"
-                                android:textColorHint="#AFAFAF"
-                                android:textSize="@dimen/_11sdp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tv_upload_image_text_count"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10sdp"
-                                android:layout_marginTop="@dimen/_20sdp"
-                                android:layout_marginRight="@dimen/_15sdp"
-                                android:drawablePadding="@dimen/_4sdp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:padding="@dimen/_10sdp"
-                                android:paddingBottom="@dimen/_6sdp"
-                                android:text="0/150"
-                                android:textColor="#AFAFAF"
-                                android:textSize="@dimen/_10sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintRight_toRightOf="parent" />
-
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_upload_image_Send_Screen"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_7sdp"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ll_allCheckbox_view">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:drawablePadding="@dimen/_4sdp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:text="@string/upload_image"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp"
-                            android:textStyle="bold" />
-
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_margin="@dimen/_12sdp"
-                            app:layout_constraintTop_toBottomOf="@+id/at_description">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/cl_iv_Send_Screen_upload_image_1"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="@dimen/_5sdp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toLeftOf="@+id/cl_iv_Send_Screen_upload_image_2"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/iv_Send_Screen_upload_image_1"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginEnd="@dimen/_5sdp"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/bg_edit_text_black"
-                                    android:scaleType="centerCrop"
-                                    android:visibility="visible"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    app:layout_constraintRight_toRightOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginEnd="@dimen/_5sdp"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/bg_image_text_black"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:gravity="center"
-                                    android:text=""
-                                    android:textColor="#AFAFAF" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/_35sdp"
-                                    android:layout_height="@dimen/_35sdp"
-                                    android:src="@drawable/plus_icon"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    app:layout_constraintRight_toRightOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/cl_iv_Send_Screen_upload_image_2"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/_5sdp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintLeft_toRightOf="@+id/cl_iv_Send_Screen_upload_image_1"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <!--                                <com.google.android.material.imageview.ShapeableImageView-->
-                                <!--                                    android:id="@+id/iv_Send_Screen_upload_image_2"-->
-                                <!--                                    android:layout_width="0dp"-->
-                                <!--                                    android:layout_height="match_parent"-->
-                                <!--                                    android:layout_weight="1"-->
-                                <!--                                    android:background="@drawable/bg_edit_text_black"-->
-                                <!--                                    android:onClick="@{(v)->activity.onViewClick(v)}"-->
-                                <!--                                    android:scaleType="centerCrop"-->
-                                <!--                                    android:visibility="gone"-->
-                                <!--                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"-->
-                                <!--                                    app:layout_constraintLeft_toLeftOf="parent"-->
-                                <!--                                    app:layout_constraintRight_toRightOf="parent"-->
-                                <!--                                    app:layout_constraintTop_toTopOf="parent"-->
-                                <!--                                    app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-                                <!--                                <TextView-->
-                                <!--                                    android:layout_width="match_parent"-->
-                                <!--                                    android:layout_height="match_parent"-->
-                                <!--                                    android:layout_marginEnd="@dimen/_5sdp"-->
-                                <!--                                    android:layout_weight="1"-->
-                                <!--                                    android:background="@drawable/bg_image_text_black"-->
-                                <!--                                    android:fontFamily="@font/poppins_regular"-->
-                                <!--                                    android:gravity="center"-->
-                                <!--                                    android:text=""-->
-                                <!--                                    android:textColor="#AFAFAF" />-->
-
-                                <!--                                <ImageView-->
-                                <!--                                    android:layout_width="@dimen/_35sdp"-->
-                                <!--                                    android:layout_height="@dimen/_35sdp"-->
-                                <!--                                    android:src="@drawable/plus_icon"-->
-                                <!--                                    app:layout_constraintLeft_toLeftOf="parent"-->
-                                <!--                                    app:layout_constraintRight_toRightOf="parent"-->
-                                <!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
-                                <!--                                    app:layout_constraintTop_toTopOf="parent"/>-->
-
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/rv_Send_Screen_upload_image"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    app:layout_constraintRight_toRightOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/upload_image_description_Send_Screen"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="12sp"
-                                android:layout_marginTop="@dimen/_7sdp"
-                                android:background="@drawable/edittext_bg"
-                                android:fontFamily="@font/poppins_regular"
-                                android:gravity="top"
-                                android:hint="@string/enter_description"
-                                android:inputType="textMultiLine"
-                                android:lines="3"
-                                android:maxLength="150"
-                                android:paddingLeft="@dimen/_10sdp"
-                                android:paddingTop="@dimen/_10sdp"
-                                android:paddingRight="@dimen/_10sdp"
-                                android:paddingBottom="@dimen/_30sdp"
-                                android:textColorHint="#AFAFAF"
-                                android:textSize="@dimen/_11sdp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tv_Send_Screen_upload_image_text_count"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10sdp"
-                                android:layout_marginTop="@dimen/_20sdp"
-                                android:layout_marginRight="@dimen/_15sdp"
-                                android:drawablePadding="@dimen/_4sdp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:padding="@dimen/_10sdp"
-                                android:paddingBottom="@dimen/_6sdp"
-                                android:text="0/150"
-                                android:textColor="#AFAFAF"
-                                android:textSize="@dimen/_10sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintRight_toRightOf="parent" />
-
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -890,70 +516,57 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/ll_checkno_layout"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ll_pharmacy_insurance_layout">
+                    app:layout_constraintTop_toBottomOf="@id/ll_checkyes_layout">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDesc"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_bg"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="top"
+                        android:hint="@string/enter_description"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:maxLength="500"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_30sdp"
+                        android:text="@string/cash_paying_desc"
+                        android:textColorHint="#AFAFAF"
+                        android:textSize="@dimen/_11sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <EditText
-                            android:id="@+id/et_checkNO_description"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="12sp"
-                            android:layout_marginStart="@dimen/_12sdp"
-                            android:layout_marginTop="@dimen/_7sdp"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:background="@drawable/edittext_bg"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="top"
-                            android:hint="@string/enter_description"
-                            android:inputType="textMultiLine"
-                            android:lines="3"
-                            android:maxLength="500"
-                            android:paddingLeft="@dimen/_10sdp"
-                            android:paddingTop="@dimen/_10sdp"
-                            android:paddingRight="@dimen/_10sdp"
-                            android:paddingBottom="@dimen/_30sdp"
-                            android:text="@string/cash_paying_please_apply_a_discount_card_must_bring_in_hard_copy_prescription_to_receive_medicine"
-                            android:textColorHint="#AFAFAF"
-                            android:textSize="@dimen/_11sdp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_checkNOtext_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_4sdp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="0/500"
+                        android:textColor="#AFAFAF"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_checkNOtext_count"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_20sdp"
-                            android:layout_marginRight="@dimen/_15sdp"
-                            android:drawablePadding="@dimen/_4sdp"
-                            android:fontFamily="@font/poppins_regular"
-                            android:padding="@dimen/_10sdp"
-                            android:paddingBottom="@dimen/_6sdp"
-                            android:text="0/500"
-                            android:textColor="#AFAFAF"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintRight_toRightOf="parent" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </LinearLayout>
-
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

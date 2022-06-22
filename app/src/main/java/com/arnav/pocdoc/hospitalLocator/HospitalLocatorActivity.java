@@ -1,8 +1,6 @@
 package com.arnav.pocdoc.hospitalLocator;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,12 +8,9 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -27,16 +22,13 @@ import com.arnav.pocdoc.R;
 import com.arnav.pocdoc.SimplyRelief.models.HospitalLocatorResponse;
 import com.arnav.pocdoc.databinding.ActivityHospitalLocatorBinding;
 import com.arnav.pocdoc.implementor.RecyclerViewItemClickListener;
+import com.arnav.pocdoc.otc.Adapter.OTCAdapter;
 import com.arnav.pocdoc.retrofit.ApiClient;
 import com.arnav.pocdoc.retrofit.ApiInterface;
 import com.arnav.pocdoc.retrofit.NetworkRequest;
+import com.arnav.pocdoc.utils.CameraGalleryActivity;
 import com.arnav.pocdoc.utils.Constants;
-import com.arnav.pocdoc.utils.LogUtils;
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
-import com.jaiselrahman.filepicker.activity.FilePickerActivity;
-import com.jaiselrahman.filepicker.config.Configurations;
-import com.jaiselrahman.filepicker.model.MediaFile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -51,8 +43,16 @@ import okhttp3.Response;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-public class HospitalLocatorActivity extends BaseActivity implements RecyclerViewItemClickListener {
+public class HospitalLocatorActivity extends BaseActivity {
 
+    public static final List<DataOTCItem> listAll = new ArrayList<>();
+    private static final int PICK_FRONT_IMAGE = 100;
+    private static final int PICK_BACK_IMAGE = 101;
+    /**
+     * MULTIPLE IMAGE UPLOAD WITH MULTIPART
+     */
+    private static final String MULTIPART_FORM_DATA = "multipart/form-data";
+    private final List<DataOTCItem> list = new ArrayList<>();
     protected ApiInterface apiService;
     protected CompositeSubscription compositeSubscription;
     private ActivityHospitalLocatorBinding binding;
@@ -66,6 +66,68 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
     private boolean isClickUploadImage;
     private HospitallLocatorUploadImageAdapter hospitallLocatorUploadImageAdapter;
     private HospitallLocatorSendScreenUploadImageAdapter hospitallLocatorSendScreenUploadImageAdapter;
+    ArrayList<String> uploadImageArray = new ArrayList<>();
+    ArrayList<String> sendScreen_uploadImageArray = new ArrayList<>();
+    ArrayList<String> inputTableArrayList = new ArrayList<>();
+    boolean isClickUploadImage;
+    HospitallLocatorUploadImageAdapter hospitallLocatorUploadImageAdapter;
+    HospitallLocatorSendScreenUploadImageAdapter hospitallLocatorSendScreenUploadImageAdapter;
+    private ActivityHospitalLocatorBinding binding;
+    private OTCAdapter adapter;
+    private HospitalLocatorResponse result;
+    private int selectedPosition = -1;
+    private String imageFront, imageBack;
+    private boolean isFrontImage = false;
+    private boolean isBackImage = false;
+//    @SuppressLint("NotifyDataSetChanged")
+//    private final ActivityResultLauncher<Intent> imageResultLauncher = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(), result -> {
+//                if (result.getResultCode() == Activity.RESULT_OK) {
+//                    if (result.getData() != null) {
+//                        if (result.getData().getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES) != null) {
+//                            ArrayList<MediaFile> files = result.getData().getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES);
+//                            if (files == null || files.size() == 0) return;
+//                            if (isFrontImage || isBackImage) {
+//                                if (isFrontImage) {
+//                                    imageFront = files.get(0);
+//                                    binding.tvFrontImage.setVisibility(View.GONE);
+//                                    binding.ivFrontImage.setVisibility(View.VISIBLE);
+//                                } else {
+//                                    imageBack = files.get(0);
+//                                    binding.tvBackImage.setVisibility(View.GONE);
+//                                    binding.ivBackImage.setVisibility(View.VISIBLE);
+//                                }
+//                                Glide.with(this)
+//                                        .load(files.get(0).getPath())
+//                                        .centerCrop()
+//                                        .into(isFrontImage ? binding.ivFrontImage : binding.ivBackImage);
+//
+//                            } else {
+//
+//                                if (isClickUploadImage) {
+//                                    uploadImageArray.add(files.get(0).getPath());
+//                                    Collections.reverse(uploadImageArray);
+//                                    hospitallLocatorUploadImageAdapter.notifyDataSetChanged();
+//                                } else {
+//                                    sendScreen_uploadImageArray.add(files.get(0).getPath());
+//                                    Collections.reverse(sendScreen_uploadImageArray);
+//                                    hospitallLocatorSendScreenUploadImageAdapter.notifyDataSetChanged();
+//                                }
+//
+//                            }
+//
+//                        }
+//                    }
+//                }
+//            });
+
+    public static RequestBody createRequestBody(@NonNull String s) {
+        return RequestBody.create(s, MediaType.parse(MULTIPART_FORM_DATA));
+    }
+
+    public static RequestBody createRequestBody(@NonNull File file) {
+        return RequestBody.create(file, MediaType.parse(MULTIPART_FORM_DATA));
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedI nstanceState) {
@@ -102,9 +164,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
         binding.rvUploadImage.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         hospitallLocatorUploadImageAdapter = new HospitallLocatorUploadImageAdapter(uploadImageArray, this);
         binding.rvUploadImage.setAdapter(hospitallLocatorUploadImageAdapter);
-        binding.rvSendScreenUploadImage.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        hospitallLocatorSendScreenUploadImageAdapter = new HospitallLocatorSendScreenUploadImageAdapter(sendScreen_uploadImageArray, this);
-        binding.rvSendScreenUploadImage.setAdapter(hospitallLocatorSendScreenUploadImageAdapter);
     }
 
     private void setOnClickListener() {
@@ -112,67 +171,63 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
             isFrontImage = false;
             isBackImage = false;
             isClickUploadImage = true;
-            openFrontImageDialog();
-        });
-
-        binding.ivSendScreenUploadImage1.setOnClickListener(view -> {
-            isFrontImage = false;
-            isBackImage = false;
-            isClickUploadImage = false;
-            openFrontImageDialog();
-
+            CameraGalleryActivity.image = CameraGalleryActivity.IMAGE.CAMERA;
+            Intent intent = new Intent(this, CameraGalleryActivity.class);
+            startActivityForResult(intent, Constants.REQUEST_CODE_CAMERA);
         });
     }
 
     private void setOnCheckBoxChange() {
+        binding.clEitherEnterPharmacyInsurance.setOnClickListener(view -> {
+            setCheckBoxData();
+            binding.checkboxEitherEnterPharmacyInsurance.setChecked(true);
+            binding.checkboxEitherEnterPharmacyInsurance.setEnabled(false);
+            binding.llUploadImageTablelayout.setVisibility(View.GONE);
+            binding.llInputTablelayout.setVisibility(View.VISIBLE);
+        });
         binding.checkboxEitherEnterPharmacyInsurance.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 setCheckBoxData();
                 binding.checkboxEitherEnterPharmacyInsurance.setChecked(true);
                 binding.checkboxEitherEnterPharmacyInsurance.setEnabled(false);
+                binding.llUploadImageTablelayout.setVisibility(View.GONE);
                 binding.llInputTablelayout.setVisibility(View.VISIBLE);
             }
         });
 
-        binding.checkboxScanPharmacy.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                setCheckBoxData();
-                binding.checkboxScanPharmacy.setChecked(true);
-                binding.checkboxScanPharmacy.setEnabled(false);
-                binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
-            }
-        });
-
-        binding.checkboxSendScreen.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                setCheckBoxData();
-                binding.checkboxSendScreen.setChecked(true);
-                binding.checkboxSendScreen.setEnabled(false);
-//                    binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
-                binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
-            }
-        });
-
-        binding.clEitherEnterPharmacyInsurance.setOnClickListener(view -> {
-            setCheckBoxData();
-            binding.checkboxEitherEnterPharmacyInsurance.setChecked(true);
-            binding.checkboxEitherEnterPharmacyInsurance.setEnabled(false);
-            binding.llInputTablelayout.setVisibility(View.VISIBLE);
-        });
 
         binding.clScanPharmacy.setOnClickListener(view -> {
             setCheckBoxData();
             binding.checkboxScanPharmacy.setChecked(true);
             binding.checkboxScanPharmacy.setEnabled(false);
             binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
+            binding.llInputTablelayout.setVisibility(View.GONE);
+        });
+        binding.checkboxScanPharmacy.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                setCheckBoxData();
+                binding.checkboxScanPharmacy.setChecked(true);
+                binding.checkboxScanPharmacy.setEnabled(false);
+                binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
+                binding.llInputTablelayout.setVisibility(View.GONE);
+            }
         });
 
         binding.clSendScreenShotInsuranceInfo.setOnClickListener(view -> {
             setCheckBoxData();
             binding.checkboxSendScreen.setChecked(true);
             binding.checkboxSendScreen.setEnabled(false);
-//                binding.llUploadImageSendScreen.setVisibility(View.VISIBLE);
             binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
+            binding.llInputTablelayout.setVisibility(View.GONE);
+        });
+        binding.checkboxSendScreen.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                setCheckBoxData();
+                binding.checkboxSendScreen.setChecked(true);
+                binding.checkboxSendScreen.setEnabled(false);
+                binding.llUploadImageTablelayout.setVisibility(View.VISIBLE);
+                binding.llInputTablelayout.setVisibility(View.GONE);
+            }
         });
     }
 
@@ -187,50 +242,10 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
 
         binding.llUploadImageTablelayout.setVisibility(View.GONE);
         binding.llInputTablelayout.setVisibility(View.GONE);
-        binding.llUploadImageSendScreen.setVisibility(View.GONE);
     }
 
     private void setDetailEditText() {
-
-        binding.inputDescription.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                binding.tvInputtextCount.setText(charSequence.length() + "/" + "150");
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        binding.uploadImageDescription.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                binding.tvUploadImageTextCount.setText(charSequence.length() + "/" + "150");
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        binding.etCheckNODescription.addTextChangedListener(new TextWatcher() {
+        binding.etDesc.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -240,25 +255,6 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                 binding.tvCheckNOtextCount.setText(charSequence.length() + "/" + "500");
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        binding.uploadImageDescriptionSendScreen.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                binding.tvSendScreenUploadImageTextCount.setText(charSequence.length() + "/" + "150");
 
             }
 
@@ -283,9 +279,10 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.row_hospital, arr);
                         binding.autoCompleteTextView1.setThreshold(1);
                         binding.autoCompleteTextView1.setAdapter(adapter);
-                        if (getIntent() != null) {
-                            binding.autoCompleteTextView1.setText(arr.get(pharmacyPosition));
-                        }
+                        binding.autoCompleteTextView1.setOnItemClickListener((adapterView, view, position, id) -> {
+                            selectedPosition = position;
+                            Utils.hideKeyBoard(this);
+                        });
                     }
                 }
                 , throwable -> {
@@ -299,16 +296,23 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
         if (view == binding.tvBackImage || view == binding.ivBackImage) {
             isFrontImage = false;
             isBackImage = true;
-            openFrontImageDialog();
+//            openFrontImageDialog();
+            CameraGalleryActivity.image = CameraGalleryActivity.IMAGE.CAMERA;
+            Intent intent = new Intent(this, CameraGalleryActivity.class);
+            startActivityForResult(intent, Constants.REQUEST_CODE_CAMERA);
         } else if (view == binding.tvFrontImage || view == binding.ivFrontImage) {
             isFrontImage = true;
             isBackImage = false;
-            openFrontImageDialog();
+//            openFrontImageDialog();
+            CameraGalleryActivity.image = CameraGalleryActivity.IMAGE.CAMERA;
+            Intent intent = new Intent(this, CameraGalleryActivity.class);
+            startActivityForResult(intent, Constants.REQUEST_CODE_CAMERA);
         } else if (view == binding.btnNext) {
             if (binding.autoCompleteTextView1.getText().toString().isEmpty()) {
                 selectedPosition = 0;
             }
             if (!binding.autoCompleteTextView1.getText().toString().isEmpty() && selectedPosition != -1)
+                ;
             if (imageFront != null && imageBack != null) {
 
                 for (int i = 0; i < arr.size(); i++) {
@@ -427,121 +431,62 @@ public class HospitalLocatorActivity extends BaseActivity implements RecyclerVie
         }
     }
 
-    private MediaFile imageFront, imageBack;
-    private boolean isFrontImage = false;
-    private boolean isBackImage = false;
-
-
-    private void openFrontImageDialog() {
-        Intent intent = new Intent(this, FilePickerActivity.class);
-        intent.putExtra(FilePickerActivity.CONFIGS, new Configurations.Builder()
-                .setCheckPermission(true)
-                .setShowImages(true)
-                .setShowVideos(false)
-                .enableImageCapture(true)
-                .enableVideoCapture(false)
-                .setSingleChoiceMode(false)
-                .setMaxSelection(1)
-                .build());
-        imageResultLauncher.launch(intent);
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private final ActivityResultLauncher<Intent> imageResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    if (result.getData() != null) {
-                        if (result.getData().getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES) != null) {
-                            ArrayList<MediaFile> files = result.getData().getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES);
-                            if (files == null || files.size() == 0) return;
-                            if (isFrontImage || isBackImage) {
-                                if (isFrontImage) {
-                                    imageFront = files.get(0);
-                                    binding.tvFrontImage.setVisibility(View.GONE);
-                                    binding.ivFrontImage.setVisibility(View.VISIBLE);
-                                } else {
-                                    imageBack = files.get(0);
-                                    binding.tvBackImage.setVisibility(View.GONE);
-                                    binding.ivBackImage.setVisibility(View.VISIBLE);
-                                }
-                                Glide.with(this)
-                                        .load(files.get(0).getPath())
-                                        .centerCrop()
-                                        .into(isFrontImage ? binding.ivFrontImage : binding.ivBackImage);
-
-                            } else {
-//
-//                                binding.ivUploadImagePlusIcon.setVisibility(View.GONE);
-//                                binding.tvUploadImage1Bg.setVisibility(View.GONE);
-//                                Glide.with(this)
-//                                        .load(files.get(0).getPath())
-//                                        .centerCrop()
-//                                        .into(binding.ivUploadImage1);
-
-                                LogUtils.Print("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>> : " + isClickUploadImage);
-
-                                if (isClickUploadImage) {
-                                    uploadImageArray.add(files.get(0).getPath());
-                                    Collections.reverse(uploadImageArray);
-                                    hospitallLocatorUploadImageAdapter.notifyDataSetChanged();
-                                } else {
-                                    sendScreen_uploadImageArray.add(files.get(0).getPath());
-                                    Collections.reverse(sendScreen_uploadImageArray);
-                                    hospitallLocatorSendScreenUploadImageAdapter.notifyDataSetChanged();
-                                }
-
-                            }
-
-                        }
-                    }
-                }
-            });
-
     public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
         switch (view.getId()) {
             case R.id.radio_yes:
                 if (checked) {
                     binding.llCheckyesLayout.setVisibility(View.VISIBLE);
-                    binding.llChecknoLayout.setVisibility(View.GONE);
                 }
-                // Pirates are the best
                 break;
             case R.id.radio_no:
                 if (checked) {
                     binding.llCheckyesLayout.setVisibility(View.GONE);
-                    binding.llChecknoLayout.setVisibility(View.VISIBLE);
                 }
-                // Ninjas rule
-
-
                 break;
         }
-
     }
 
     @Override
-    public void onItemClick(int position, int flag, View view) {
-        if (flag == 0) {
-//            Intent intent = new Intent(getApplicationContext(), OTCDetailsActivity.class);
-//            intent.putExtra(Constants.position,position);
-//            startActivity(intent);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.REQUEST_CODE_CAMERA) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
+                    try {
+                        if (data.getStringExtra(Constants.image) != null) {
+                            if (isFrontImage || isBackImage) {
+                                if (isFrontImage) {
+                                    imageFront = data.getStringExtra(Constants.image);
+                                    binding.tvFrontImage.setVisibility(View.GONE);
+                                    binding.ivFrontImage.setVisibility(View.VISIBLE);
+                                } else {
+                                    imageBack = data.getStringExtra(Constants.image);
+                                    binding.tvBackImage.setVisibility(View.GONE);
+                                    binding.ivBackImage.setVisibility(View.VISIBLE);
+                                }
+                                Glide.with(this)
+                                        .load(data.getStringExtra(Constants.image))
+                                        .centerCrop()
+                                        .into(isFrontImage ? binding.ivFrontImage : binding.ivBackImage);
+                            } else {
+                                if (isClickUploadImage) {
+                                    uploadImageArray.add(data.getStringExtra(Constants.image));
+                                    Collections.reverse(uploadImageArray);
+                                    hospitallLocatorUploadImageAdapter.notifyDataSetChanged();
+                                } else {
+                                    sendScreen_uploadImageArray.add(data.getStringExtra(Constants.image));
+                                    Collections.reverse(sendScreen_uploadImageArray);
+                                    hospitallLocatorSendScreenUploadImageAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Utils.makeToast(getResources().getString(R.string.server_error));
+                    }
+                }
+            }
         }
-    }
-
-    /**
-     * MULTIPLE IMAGE UPLOAD WITH MULTIPART
-     */
-    private static final String MULTIPART_FORM_DATA = "multipart/form-data";
-
-    public static RequestBody createRequestBody(@NonNull String s) {
-        return RequestBody.create(s, MediaType.parse(MULTIPART_FORM_DATA));
-    }
-
-    public static RequestBody createRequestBody(@NonNull File file) {
-        return RequestBody.create(file, MediaType.parse(MULTIPART_FORM_DATA));
     }
 }
