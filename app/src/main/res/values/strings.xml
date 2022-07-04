@@ -175,7 +175,9 @@
     <string name="activate_locator_">Activate\nLocator</string>
     <string name="dummy_text">Dummy Text</string>
     <string name="otc_product">OTC\nProduct</string>
+    <string name="otc_product_title">OTC Product</string>
     <string name="scan_and_send_rx_here">Scan and\nSend RX Here</string>
+    <string name="scan_and_send_rx_here_title">Scan and Send RX Here</string>
     <string name="take_image_of_hardcopy_prescription_and_send_to_local_pharmacy">Take Image of Hardcopy\nPrescription and Send to\nLocal Pharmacy</string>
     <string name="natural_alternative_medicine">Natural/\nAlternative\nMedicine</string>
     <string name="natural_alternative_medicine_without_space">Natural/Alternative Medicine</string>

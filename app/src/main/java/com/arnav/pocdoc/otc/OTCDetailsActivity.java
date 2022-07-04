@@ -57,19 +57,24 @@ public class OTCDetailsActivity extends BaseActivity implements RecyclerViewItem
 
             list.add(OTCAndNaturalDrugsActivity.listAll.get(selectedPosition));
 
-            for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().size(); j++) {
-                Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().get(j);
-                if (!listRecommendation.contains(recomendation)) {
-                    listRecommendation.add(recomendation);
+            if(OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation() != null) {
+                for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().size(); j++) {
+                    Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().get(j);
+                    if (!listRecommendation.contains(recomendation)) {
+                        listRecommendation.add(recomendation);
+                    }
                 }
             }
-            for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().size(); j++) {
-                Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().get(j);
-                if (!listNatural.contains(recomendation)) {
-                    listNatural.add(recomendation);
+            binding.tvRecommendationItemTitle.setVisibility(listRecommendation.size() == 0?View.GONE:View.VISIBLE);
+            if(OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural() != null) {
+                for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().size(); j++) {
+                    Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().get(j);
+                    if (!listNatural.contains(recomendation)) {
+                        listNatural.add(recomendation);
+                    }
                 }
             }
-
+            binding.tvNaturalTitle.setVisibility(listNatural.size() == 0?View.GONE:View.VISIBLE);
             RecommendationAdapter adapter = new RecommendationAdapter(this, listRecommendation);
             NaturalAdapter adapterNatural = new NaturalAdapter(this, listNatural);
             binding.rv.setAdapter(adapter);
@@ -91,27 +96,33 @@ public class OTCDetailsActivity extends BaseActivity implements RecyclerViewItem
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (s.toString().length() == 0) {
                 listRecommendation.clear();
-                for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().size(); j++) {
-                    Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().get(j);
-                    if (!listRecommendation.contains(recomendation)) {
-                        listRecommendation.add(recomendation);
+                if(OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation() != null) {
+                    for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().size(); j++) {
+                        Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().get(j);
+                        if (!listRecommendation.contains(recomendation)) {
+                            listRecommendation.add(recomendation);
+                        }
                     }
                 }
                 listNatural.clear();
-                for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().size(); j++) {
-                    Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().get(j);
-                    if (!listNatural.contains(recomendation)) {
-                        listNatural.add(recomendation);
+                if(OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural() != null) {
+                    for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().size(); j++) {
+                        Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().get(j);
+                        if (!listNatural.contains(recomendation)) {
+                            listNatural.add(recomendation);
+                        }
                     }
                 }
             } else {
                 listRecommendation.clear();
                 final ArrayList<Recomendation> dataBreedList = new ArrayList<>();
 
-                for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().size(); j++) {
-                    Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().get(j);
-                    if (recomendation.getName().toLowerCase().contains(s.toString().toLowerCase())) {
-                        dataBreedList.add(recomendation);
+                if(OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation() != null) {
+                    for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().size(); j++) {
+                        Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getRecomendation().get(j);
+                        if (recomendation.getName().toLowerCase().contains(s.toString().toLowerCase())) {
+                            dataBreedList.add(recomendation);
+                        }
                     }
                 }
                 listRecommendation.addAll(dataBreedList);
@@ -120,10 +131,12 @@ public class OTCDetailsActivity extends BaseActivity implements RecyclerViewItem
                 listNatural.clear();
                 final ArrayList<Recomendation> dataBreedListNatural = new ArrayList<>();
 
-                for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().size(); j++) {
-                    Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().get(j);
-                    if (recomendation.getName().toLowerCase().contains(s.toString().toLowerCase())) {
-                        dataBreedListNatural.add(recomendation);
+                if(OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural() != null) {
+                    for (int j = 0; j < OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().size(); j++) {
+                        Recomendation recomendation = OTCAndNaturalDrugsActivity.listAll.get(selectedPosition).getNatural().get(j);
+                        if (recomendation.getName().toLowerCase().contains(s.toString().toLowerCase())) {
+                            dataBreedListNatural.add(recomendation);
+                        }
                     }
                 }
                 listNatural.addAll(dataBreedListNatural);

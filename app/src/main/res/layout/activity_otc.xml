@@ -61,7 +61,7 @@
                     android:nestedScrollingEnabled="false"
                     app:endIconDrawable="@drawable/ic_close"
                     app:endIconMode="clear_text"
-                    app:layout_constraintTop_toBottomOf="@id/tvTC">
+                    app:layout_constraintTop_toBottomOf="@id/rv">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etBreed"

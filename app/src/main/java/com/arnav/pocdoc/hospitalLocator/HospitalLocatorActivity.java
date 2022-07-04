@@ -85,7 +85,7 @@ public class HospitalLocatorActivity extends BaseActivity {
             pharmacyPosition = getIntent().getExtras().getInt(Constants.pharmacyPosition);
 //            selectedPosition = pharmacyPosition;
         }
-        binding.header.tvTitle.setText(getResources().getString(R.string.pharmacy_locator));
+        binding.header.tvTitle.setText(getResources().getString(R.string.scan_and_send_rx_here_title));
     }
 
     private void setRecyclerView() {
@@ -312,10 +312,10 @@ public class HospitalLocatorActivity extends BaseActivity {
 
                     hideProgress();
                     if (response.isSuccessful()) {
-                        showMessage("Prescription successfully added.");
+                        runOnUiThread(() -> showMessage("Prescription successfully added."));
                         finish();
                     } else {
-                        showMessage(getResources().getString(R.string.server_error));
+                        runOnUiThread(() -> showMessage(getResources().getString(R.string.server_error)));
                     }
                 } catch (Exception e) {
                     hideProgress();

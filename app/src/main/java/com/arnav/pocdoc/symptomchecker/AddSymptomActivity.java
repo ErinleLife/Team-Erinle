@@ -59,7 +59,7 @@ public class AddSymptomActivity extends BaseActivity implements RecyclerViewItem
     private ActivitySymtomAddBinding binding;
 
 
-    public static void resetValue(){
+    public static void resetValue() {
         userType = "";
         Gender = "";
         userDOB = "";
@@ -75,6 +75,7 @@ public class AddSymptomActivity extends BaseActivity implements RecyclerViewItem
         alcohol_use = "";
         liver_damage = "";
     }
+
     /**
      * CHECK VALIDATION
      *
@@ -232,6 +233,7 @@ public class AddSymptomActivity extends BaseActivity implements RecyclerViewItem
                 }
                 , throwable -> {
                     hideProgress();
+                    showMessage(getResources().getString(R.string.server_error));
                     throwable.printStackTrace();
                 });
         compositeSubscription.add(subscription);

@@ -2,30 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-//    signingConfigs {
-//        release {
-//            storeFile file('F:\\Android\\WorkSpace\\Android\\erinle-rushal\\keystore\\erinle_new.jks')
-//            storePassword 'erinle'
-//            keyAlias 'erinle'
-//            keyPassword 'erinle'
-//        }
-//    }
-
-
-//    signingConfigs {
-//        debug {
-//            keyAlias 'erinle'
-//            keyPassword 'erinle'
-//            storeFile 'F:\\Android\\WorkSpace\\Android\\erinle-rushal\\keystore\\erinle_new.jks'
-//            storePassword 'erinle'
-//        }
-//        release {
-//            storeFile file('F:\\Android\\WorkSpace\\Android\\erinle-rushal\\keystore\\erinle_new.jks')
-//            storePassword 'erinle'
-//            keyAlias 'erinle'
-//            keyPassword 'erinle'
-//        }
-//    }
+    signingConfigs {
+        release {
+            storeFile file('../keystore/erinle_new.jks')
+            storePassword 'erinle'
+            keyAlias 'erinle'
+            keyPassword 'erinle'
+        }
+    }
 
     compileSdkVersion 32
     buildToolsVersion "30.0.3"
@@ -34,12 +18,12 @@ android {
         applicationId "com.erinle"
         minSdkVersion 23
         targetSdkVersion 32
-        versionCode 4
-        versionName "1.0.2"
+        versionCode 6
+        versionName "1.0.3"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-//        signingConfig signingConfigs.release
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
@@ -50,7 +34,6 @@ android {
 
         release {
             minifyEnabled false
-//            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
