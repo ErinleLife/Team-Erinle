@@ -1,0 +1,117 @@
+{
+  "project_info": {
+    "project_number": "778355160739",
+    "firebase_url": "https://symptoms-171e6-default-rtdb.firebaseio.com",
+    "project_id": "symptoms-171e6",
+    "storage_bucket": "symptoms-171e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778355160739:android:183114e3c1a15efe187116",
+        "android_client_info": {
+          "package_name": "com.erinle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778355160739-76j6jo8na51oblh53quljbqt38t0ljf1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.erinle",
+            "certificate_hash": "577410c3a9e6d1e814d9fc5ae22cbefec646e145"
+          }
+        },
+        {
+          "client_id": "778355160739-keu3ll1afj9nnjefl8ra5sjuo1r8ria5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.erinle",
+            "certificate_hash": "082bb84278d66d38c2f3e806d5d91549b68069aa"
+          }
+        },
+        {
+          "client_id": "778355160739-oas9usi78dna9srp7c8l5rgdcenc30o6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.erinle",
+            "certificate_hash": "d4e0eeab4978907f7cc8773ef5233c92162e1d6e"
+          }
+        },
+        {
+          "client_id": "778355160739-8nvfjbnkfv3b5u564p31igj4udfed8im.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBeS2obr7c2CPxUjIYXUbJw89Use9QYDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778355160739-8nvfjbnkfv3b5u564p31igj4udfed8im.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778355160739:android:c81097203eb1cdd3187116",
+        "android_client_info": {
+          "package_name": "com.fitz.symptomcheck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778355160739-h68brn13i22lejrgkqvnkesidfb0nblv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fitz.symptomcheck",
+            "certificate_hash": "9f530fc720685ffd9cfa4d8994c546e0a55a774c"
+          }
+        },
+        {
+          "client_id": "778355160739-o31jcls612cci2sqagqpe5flq8lkj148.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fitz.symptomcheck",
+            "certificate_hash": "d4e0eeab4978907f7cc8773ef5233c92162e1d6e"
+          }
+        },
+        {
+          "client_id": "778355160739-rnaef755id9k9d5dlp74k0lbv86htlc5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fitz.symptomcheck",
+            "certificate_hash": "082bb84278d66d38c2f3e806d5d91549b68069aa"
+          }
+        },
+        {
+          "client_id": "778355160739-8nvfjbnkfv3b5u564p31igj4udfed8im.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBeS2obr7c2CPxUjIYXUbJw89Use9QYDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778355160739-8nvfjbnkfv3b5u564p31igj4udfed8im.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

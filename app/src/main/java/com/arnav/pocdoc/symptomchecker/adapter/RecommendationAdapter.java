@@ -1,0 +1,87 @@
+package com.arnav.pocdoc.symptomchecker.adapter;
+
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.arnav.pocdoc.R;
+import com.arnav.pocdoc.SimplyRelief.models.Recomendation;
+import com.arnav.pocdoc.databinding.RowRecommendationBinding;
+import com.arnav.pocdoc.implementor.RecyclerViewItemClickListener;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import java.util.List;
+
+public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAdapter.ViewHolder> {
+    private final List<Recomendation> list;
+    public Activity activity;
+    private RecyclerViewItemClickListener listener;
+
+    public RecommendationAdapter(Activity activity, List<Recomendation> list) {
+        this.list = list;
+        this.activity = activity;
+    }
+
+    @NonNull
+    @Override
+    public RecommendationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        RowRecommendationBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.row_recommendation, parent, false);
+        return new ViewHolder(binding);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecommendationAdapter.ViewHolder holder, int position) {
+        holder.binding.tvTitle.setText(list.get(position).getName());
+        if(list.get(position).getFrontImage() != null && !list.get(position).getFrontImage().equals("")) {
+            Glide.with(activity)
+                    .load(list.get(position).getFrontImage())
+                    .apply(new RequestOptions().dontAnimate())
+                    .into(holder.binding.iv);
+        }else{
+            holder.binding.iv.setImageResource(R.drawable.app_icon);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    public void setRecyclerViewItemClickListener(RecyclerViewItemClickListener recyclerViewItemClickListener) {
+        listener = recyclerViewItemClickListener;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        public RowRecommendationBinding binding;
+
+        public ViewHolder(@NonNull RowRecommendationBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+
+            itemView.setOnClickListener(this);
+            binding.ivDelete.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == R.id.ivDelete) {
+                if (listener != null) {
+                    listener.onItemClick(getAdapterPosition(), 2, v);
+                }
+            } else {
+                if (listener != null) {
+                    listener.onItemClick(getAdapterPosition(), 1, v);
+                }
+            }
+
+        }
+    }
+}
