@@ -14,9 +14,12 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.androidbuts.multispinnerfilter.KeyPairBoolData;
 import com.arnav.pocdoc.Authentication.Login;
 import com.arnav.pocdoc.base.BaseApplication;
+import com.arnav.pocdoc.utils.Constants;
+import com.arnav.pocdoc.utils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,7 +61,7 @@ public class SplashActivity extends AppCompatActivity {
 
         ivSplash = findViewById(R.id.ivSplash);
         Glide.with(this).asGif().load(R.drawable.splash_logo).into(ivSplash);
-
+        getFireBaseToken();
 //        request = new Request.Builder()
 //                .url(getString(R.string.base_api_url) + "/symptoms")
 //                .get()
@@ -128,6 +131,19 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         }, 6000);
+    }
+
+    /**
+     * GET FIRE-BASE TOKEN REGISTRATION ID AND SAVE INTO PREFERENCE FOR PUSH NOTIFICATION
+     */
+    private void getFireBaseToken() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) return;
+                    String deviceToken = task.getResult();
+                    LogUtils.Print("TAG", "fcm_registration_id --> $deviceToken");
+                    BaseApplication.preferences.putString(Constants.fcm_registration_id, deviceToken);
+                });
     }
 
     public String loadJSONFromAsset() {

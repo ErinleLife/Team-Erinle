@@ -4,67 +4,45 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class DataChat {
-    @SerializedName("id")
-    @Expose
-    private String id;
-    @SerializedName("type")
-    @Expose
-    private String type;
     @SerializedName("from_id")
     @Expose
-    private Integer fromId;
+    private Integer from_id;
     @SerializedName("to_id")
     @Expose
-    private Integer toId;
+    private Integer to_id;
     @SerializedName("body")
     @Expose
     private String body;
     @SerializedName("attachment")
     @Expose
-    private Object attachment;
+    private String attachment;
     @SerializedName("seen")
     @Expose
     private Integer seen;
+    @SerializedName("time")
+    @Expose
+    private String time;
+    @SerializedName("type")
+    @Expose
+    private String type;
     @SerializedName("created_at")
     @Expose
     private String created_at;
-    @SerializedName("updated_at")
-    @Expose
-    private String updated_at;
-    @SerializedName("message_type")
-    @Expose
-    private String message_type;
 
-    public String getId() {
-        return id;
+    public Integer getFrom_id() {
+        return from_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setFrom_id(Integer from_id) {
+        this.from_id = from_id;
     }
 
-    public String getType() {
-        return type;
+    public Integer getTo_id() {
+        return to_id;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Integer getFromId() {
-        return fromId;
-    }
-
-    public void setFromId(Integer fromId) {
-        this.fromId = fromId;
-    }
-
-    public Integer getToId() {
-        return toId;
-    }
-
-    public void setToId(Integer toId) {
-        this.toId = toId;
+    public void setTo_id(Integer to_id) {
+        this.to_id = to_id;
     }
 
     public String getBody() {
@@ -75,11 +53,11 @@ public class DataChat {
         this.body = body;
     }
 
-    public Object getAttachment() {
+    public String getAttachment() {
         return attachment;
     }
 
-    public void setAttachment(Object attachment) {
+    public void setAttachment(String attachment) {
         this.attachment = attachment;
     }
 
@@ -91,27 +69,27 @@ public class DataChat {
         this.seen = seen;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getCreated_at() {
-        return created_at;
+        return created_at == null ? "2022-07-14 12:40:00" : created_at;
     }
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
-    }
-
-    public String getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
-    }
-
-    public String getMessage_type() {
-        return message_type;
-    }
-
-    public void setMessage_type(String message_type) {
-        this.message_type = message_type;
     }
 }

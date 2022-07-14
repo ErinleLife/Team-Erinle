@@ -64,7 +64,6 @@ import androidx.databinding.BindingAdapter;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.arnav.pocdoc.R;
-import com.arnav.pocdoc.data.network.APIClient;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
@@ -1848,12 +1847,15 @@ public class Utils {
         textView.setText(Utils.utcToLocalDateInString(date, Constants.DATE_YYYY_MM_DD_HH_MM_AA_FORMAT, Constants.DATE_HH_MM_AA_FORMAT));
     }
 
-    @BindingAdapter({"imageUrl"})
-    public static void loadImage(ImageView view, String url) {
-        Glide.with(view.getContext())
-                .load((APIClient.USER_PROFILE) + url)
-                .apply(new RequestOptions().placeholder(R.drawable.app_icon).diskCacheStrategy(DiskCacheStrategy.ALL))
-                .into(view);
+    @BindingAdapter({"imageUrl", "baseURL"})
+    public static void loadImage(ImageView view, String url, String baseURL) {
+        if (!url.isEmpty()) {
+            Glide.with(view.getContext())
+                    .load(baseURL + url)
+                    .apply(new RequestOptions().placeholder(R.drawable.app_icon).diskCacheStrategy(DiskCacheStrategy.ALL))
+                    .into(view);
+        } else {
+            view.setImageResource(R.drawable.app_icon);
+        }
     }
-
 }

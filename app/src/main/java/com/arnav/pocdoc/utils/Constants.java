@@ -25,6 +25,8 @@ public class Constants {
     public static final String from_id = "from_id";
     public static final String file = "file";
     public static final String message = "message";
+    public static final String fcm_token = "fcm_token";
+    public static final String fcm_registration_id = "fcm_registration_id";
 
     public static final int REQUEST_CODE_STORAGE_PERMISSION = 111;
     public static final int REQUEST_CODE_CAMERA_PERMISSION = 110;
@@ -57,6 +59,7 @@ public class Constants {
     public static final String AUDIO_NAME_PREFIX = "AUDIO" + "_X" + ".mp3";
 
     public static final String DATE_YYYY_MM_DD_HH_MM_AA_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_PUSH_NOTIFICATION_FORMAT = "HHmmssSSS";
     public static final String DATE_EEE_DD_MM_FORMAT = "EEE dd/MM";
     public static final String DATE_HH_MM_AA_FORMAT = "hh:mm aa";
 

@@ -19,10 +19,11 @@ import com.arnav.pocdoc.SimplyRelief.models.ResponseCommon;
 import com.arnav.pocdoc.base.BaseApplication;
 import com.arnav.pocdoc.data.model.chat.DataChat;
 import com.arnav.pocdoc.data.model.chat.ResponseChat;
-import com.arnav.pocdoc.data.model.cosultantlist.DataConsultant;
+import com.arnav.pocdoc.data.model.conversation.DataConversation;
 import com.arnav.pocdoc.data.network.APIClient;
 import com.arnav.pocdoc.databinding.ActivityChatBinding;
 import com.arnav.pocdoc.implementor.RecyclerViewItemClickListener;
+import com.arnav.pocdoc.services.MyFirebaseMessagingService;
 import com.arnav.pocdoc.utils.CameraGalleryActivity;
 import com.arnav.pocdoc.utils.Constants;
 import com.arnav.pocdoc.utils.EndlessScrollRecyclerViewListener;
@@ -63,7 +64,7 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
     private String isFirstDate = "";
 
     private ActivityChatBinding binding;
-    private DataConsultant data;
+    private DataConversation data;
 
     private final AtomicBoolean mIsFirstListener = new AtomicBoolean(true);
     private DatabaseReference mReference;
@@ -91,11 +92,34 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
      * Get the data from intent
      */
     private void getDataFromIntent() {
-//        data = getIntent().getParcelableExtra(Constants.data);
-
-        int fromId = 43;
+        data = getIntent().getParcelableExtra(Constants.data);
+        int fromId = data.getId();
         int toID = Integer.parseInt(BaseApplication.preferences.getUserId());
         conversationId = (fromId > toID) ? toID + "_" + fromId : fromId + "_" + toID;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyFirebaseMessagingService.setOnChatMessageListener(true, conversationId);
+        LogUtils.Print(TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyFirebaseMessagingService.setOnChatMessageListener(true, "");
+        LogUtils.Print(TAG, "onPause");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyFirebaseMessagingService.setOnChatMessageListener(true, "");
+        if (mReference != null) {
+            mReference.removeEventListener(mPostListener);
+        }
+        LogUtils.Print(TAG, "onDestroy");
     }
 
     /**
@@ -188,7 +212,7 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
     private void sendMessage(String from, String imagePath) {
         HashMap<String, RequestBody> params = new HashMap<>();
         params.put(Constants.from_id, APIClient.createRequestBody(BaseApplication.preferences.getUserId()));
-        params.put(Constants.to_id, APIClient.createRequestBody("43"));
+        params.put(Constants.to_id, APIClient.createRequestBody(String.valueOf(data.getId())));
         params.put(Constants.message, APIClient.createRequestBody(binding.etMessage.getText().toString().trim()));
 
         MultipartBody.Part[] body = null;
@@ -240,26 +264,31 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
         if (from == 0) {
             offset = Constants.pagination_start_offset;
         }
+        mIsLoading = true;
         showProgress();
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put(Constants.from_id, String.valueOf(6));
-        hashMap.put(Constants.to_id, String.valueOf(43));
+        hashMap.put(Constants.from_id, String.valueOf(BaseApplication.preferences.getUserId()));
+        hashMap.put(Constants.to_id, String.valueOf(data.getId()));
         hashMap.put(Constants.per_page, String.valueOf(Constants.PAGE_LIMIT));
         hashMap.put(Constants.page, String.valueOf(offset));
-        Call<ResponseChat> call = apiInterface.fetchMessages(hashMap);
+        Call<ResponseChat> call = apiInterface.chatList(hashMap);
         call.enqueue(new Callback<ResponseChat>() {
             @Override
             public void onResponse(@NotNull Call<ResponseChat> call, @NonNull Response<ResponseChat> response) {
+                mIsLoading = false;
                 hideProgress();
                 ResponseChat result = response.body();
                 if (result == null) return;
                 if (offset == Constants.pagination_start_offset) {
                     list.clear();
+                    if (result.getData().size() == 0)
+                        mIsFirstListener.set(false);
                 }
+                adapter.setBaseURL(result.getAttachmentUrl());
 
                 List<DataChat> tempChat = new ArrayList<>();
 
-                for (DataChat chat : result.getMessages()) {
+                for (DataChat chat : result.getData()) {
                     if (dateHeaders.equals("")) {
                         isFirstDate = Utils.GetDateOnRequireFormat(chat.getCreated_at(), Constants.DATE_YYYY_MM_DD_HH_MM_AA_FORMAT, Constants.DATE_EEE_DD_MM_FORMAT);
                         dateHeaders = Utils.GetDateOnRequireFormat(chat.getCreated_at(), Constants.DATE_YYYY_MM_DD_HH_MM_AA_FORMAT, Constants.DATE_EEE_DD_MM_FORMAT);
@@ -270,20 +299,20 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
                     if (!dateString.equals(dateHeaders)) {
                         DataChat temp = new DataChat();
                         temp.setCreated_at(tempDateDateHeaders);
-                        temp.setMessage_type(Constants.HEADER);
+                        temp.setType(Constants.HEADER);
                         tempDateDateHeaders = chat.getCreated_at();
                         dateHeaders = Utils.GetDateOnRequireFormat(chat.getCreated_at(), Constants.DATE_YYYY_MM_DD_HH_MM_AA_FORMAT, Constants.DATE_EEE_DD_MM_FORMAT);
                         tempChat.add(temp);
                     }
-                    chat.setMessage_type(chat.getAttachment() != null && !chat.getAttachment().toString().isEmpty() ? Constants.IMAGE : Constants.TEXT);
+                    chat.setType(chat.getAttachment() != null && !chat.getAttachment().isEmpty() ? Constants.IMAGE : Constants.TEXT);
                     tempChat.add(chat);
                 }
 
-                if (result.getMessages().size() < Constants.PAGE_LIMIT) {
-                    if (adapter.getItemCount() != 0 || result.getMessages().size() != 0) {
+                if (result.getData().size() < Constants.PAGE_LIMIT) {
+                    if (adapter.getItemCount() != 0 || result.getData().size() != 0) {
                         DataChat temp = new DataChat();
                         temp.setCreated_at(tempDateDateHeaders);
-                        temp.setMessage_type(Constants.HEADER);
+                        temp.setType(Constants.HEADER);
                         dateHeaders = Utils.GetDateOnRequireFormat(tempDateDateHeaders, Constants.DATE_YYYY_MM_DD_HH_MM_AA_FORMAT, Constants.DATE_EEE_DD_MM_FORMAT);
                         tempChat.add(temp);
                     }
@@ -293,7 +322,7 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
                 //Set Offset
                 if (offset == Constants.pagination_start_offset)
                     scrollRecyclerView();
-                if (result.getMessages().size() == 0 || result.getMessages().size() != Constants.PAGE_LIMIT) {
+                if (result.getData().size() == 0 || result.getData().size() != Constants.PAGE_LIMIT) {
                     offset = Constants.pagination_last_offset;
                 } else {
                     offset = offset + 1;
@@ -302,6 +331,7 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
 
             @Override
             public void onFailure(@NonNull Call<ResponseChat> call, @NonNull Throwable t) {
+                mIsLoading = false;
                 hideProgress();
                 call.cancel();
                 showMessage(getResources().getString(R.string.server_error));
@@ -319,14 +349,6 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
     @Override
     public void onItemClick(int position, int flag, View view) {
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mReference != null) {
-            mReference.removeEventListener(mPostListener);
-        }
     }
 
     @Override
@@ -367,7 +389,7 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
                 if (!isFirstDate.equals(dateString)) {
                     DataChat temp = new DataChat();
                     temp.setCreated_at(tempDateDateHeaders);
-                    temp.setMessage_type(Constants.HEADER);
+                    temp.setType(Constants.HEADER);
                     tempDateDateHeaders = dataChat.getCreated_at();
                     dateHeaders = Utils.GetDateOnRequireFormat(dataChat.getCreated_at(), Constants.DATE_YYYY_MM_DD_HH_MM_AA_FORMAT, Constants.DATE_EEE_DD_MM_FORMAT);
                     adapter.addItem(temp);
@@ -376,12 +398,14 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
                 if (adapter.getItemCount() < 2) {
                     DataChat temp = new DataChat();
                     temp.setCreated_at(tempDateDateHeaders);
-                    temp.setMessage_type(Constants.HEADER);
+                    temp.setType(Constants.HEADER);
                     tempDateDateHeaders = dataChat.getCreated_at();
                     dateHeaders = Utils.GetDateOnRequireFormat(dataChat.getCreated_at(), Constants.DATE_YYYY_MM_DD_HH_MM_AA_FORMAT, Constants.DATE_EEE_DD_MM_FORMAT);
                     adapter.addItem(temp);
                 }
             }
+
+            dataChat.setType(dataChat.getAttachment() != null && !dataChat.getAttachment().isEmpty() ? Constants.IMAGE : Constants.TEXT);
             adapter.addItem(dataChat);
             scrollRecyclerView();
         }

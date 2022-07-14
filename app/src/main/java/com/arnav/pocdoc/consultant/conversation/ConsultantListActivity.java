@@ -12,11 +12,12 @@ import androidx.databinding.DataBindingUtil;
 
 import com.arnav.pocdoc.BaseActivity;
 import com.arnav.pocdoc.R;
+import com.arnav.pocdoc.base.BaseApplication;
 import com.arnav.pocdoc.consultant.chat.ChatActivity;
 import com.arnav.pocdoc.consultant.conversation.adapter.ConsultantListAdapter;
 import com.arnav.pocdoc.consultant.newconversation.NewConsultantListActivity;
-import com.arnav.pocdoc.data.model.cosultantlist.DataConsultant;
-import com.arnav.pocdoc.data.model.cosultantlist.ResponseConsultantList;
+import com.arnav.pocdoc.data.model.conversation.DataConversation;
+import com.arnav.pocdoc.data.model.conversation.ResponseConversation;
 import com.arnav.pocdoc.databinding.ActivityConsultantListBinding;
 import com.arnav.pocdoc.implementor.RecyclerViewItemClickListener;
 import com.arnav.pocdoc.utils.Constants;
@@ -33,7 +34,7 @@ import retrofit2.Response;
 
 public class ConsultantListActivity extends BaseActivity implements RecyclerViewItemClickListener {
     private ConsultantListAdapter adapter;
-    private final List<DataConsultant> list = new ArrayList<>();
+    private final List<DataConversation> list = new ArrayList<>();
 
     private ActivityConsultantListBinding binding;
 
@@ -49,60 +50,43 @@ public class ConsultantListActivity extends BaseActivity implements RecyclerView
     private void setUpHeaderView() {
         binding.header.tvTitle.setText(getResources().getString(R.string.consultant));
 
-        list.add(new DataConsultant());
-        list.add(new DataConsultant());
-        list.add(new DataConsultant());
-        list.add(new DataConsultant());
-        list.add(new DataConsultant());
-        list.add(new DataConsultant());
-
         adapter = new ConsultantListAdapter(this, list);
         binding.rv.setAdapter(adapter);
         adapter.setRecyclerViewItemClickListener(this);
 
-        binding.mSwipeRefreshLayout.setOnRefreshListener(() -> {
-            getChatList();
-        });
+        getChatList();
+
+        binding.mSwipeRefreshLayout.setOnRefreshListener(this::getChatList);
     }
 
     public void getChatList() {
-        showProgress();
+        if (!binding.mSwipeRefreshLayout.isRefreshing())
+            showProgress();
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put(Constants.type, "");
-        Call<ResponseConsultantList> call = apiInterface.getContacts(hashMap);
-        call.enqueue(new Callback<ResponseConsultantList>() {
+        hashMap.put(Constants.user_id, BaseApplication.preferences.getUserId());
+        Call<ResponseConversation> call = apiInterface.getConversation(hashMap);
+        call.enqueue(new Callback<ResponseConversation>() {
             @Override
-            public void onResponse(@NotNull Call<ResponseConsultantList> call, @NonNull Response<ResponseConsultantList> response) {
+            public void onResponse(@NotNull Call<ResponseConversation> call, @NonNull Response<ResponseConversation> response) {
                 hideLoaders();
-                ResponseConsultantList result = response.body();
-//                if (result == null) return;
-//                if (result.getStatus() == Constants.RESPONSE_SUCCESS_FLAG) {
-//                    if (result.getData() != null) {
-//                        if (offset == Constants.pagination_start_offset) {
-//                            list.clear();
-//                        }
-//                        list.addAll(result.getData());
-//                        adapter.notifyDataSetChanged();
-//
-//                        if (result.getData().size() == 0 || result.getData().size() != Constants.PAGINATION_LIMIT) {
-//                            offset = Constants.pagination_last_offset;
-//                        } else {
-//                            offset = offset + 1;
-//                        }
-//
-//                        if (list.size() > 0) {
-//                            binding.error.emptyView.setVisibility(View.GONE);
-//                        } else {
-//                            binding.error.emptyView.setVisibility(View.VISIBLE);
-//                        }
-//                    }
-//                } else {
-//                    binding.error.emptyView.setVisibility(View.VISIBLE);
-//                }
+                ResponseConversation result = response.body();
+                if (result == null) return;
+                if (result.getData() != null) {
+                    adapter.setBaseURL(result.getImageUrl());
+                    list.clear();
+                    list.addAll(result.getData());
+                    adapter.notifyDataSetChanged();
+
+                    if (list.size() > 0) {
+                        binding.tvEmpty.setVisibility(View.GONE);
+                    } else {
+                        binding.tvEmpty.setVisibility(View.VISIBLE);
+                    }
+                }
             }
 
             @Override
-            public void onFailure(@NonNull Call<ResponseConsultantList> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ResponseConversation> call, @NonNull Throwable t) {
                 hideLoaders();
                 call.cancel();
                 showMessage(getResources().getString(R.string.server_error));
@@ -132,6 +116,8 @@ public class ConsultantListActivity extends BaseActivity implements RecyclerView
 
     @Override
     public void onItemClick(int position, int flag, View view) {
-        start(ChatActivity.class);
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra(Constants.data, list.get(position));
+        startActivity(intent);
     }
 }

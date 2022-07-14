@@ -11,6 +11,7 @@ import com.arnav.pocdoc.databinding.ItemChatImageReceivedBinding;
 public class ChatImageReceivedViewHolder extends RecyclerView.ViewHolder {
 
     private final ItemChatImageReceivedBinding mBinding;
+    public String baseURL;
 
     public void bind(DataChat bean) {
         mBinding.getRoot().setOnClickListener(new View.OnClickListener() {
@@ -24,13 +25,14 @@ public class ChatImageReceivedViewHolder extends RecyclerView.ViewHolder {
 //                EventBus.getDefault().post(chatItem);
             }
         });
+        mBinding.setBaseURL(baseURL);
         mBinding.setBean(bean);
         mBinding.executePendingBindings();
     }
 
-    public ChatImageReceivedViewHolder(ItemChatImageReceivedBinding binding) {
+    public ChatImageReceivedViewHolder(ItemChatImageReceivedBinding binding, String baseURL) {
         super(binding.getRoot());
         mBinding = binding;
+        this.baseURL = baseURL;
     }
-
 }

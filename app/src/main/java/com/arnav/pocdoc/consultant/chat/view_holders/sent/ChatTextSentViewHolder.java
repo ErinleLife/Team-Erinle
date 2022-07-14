@@ -15,7 +15,7 @@ public class ChatTextSentViewHolder extends RecyclerView.ViewHolder {
         mBinding.executePendingBindings();
     }
 
-    public ChatTextSentViewHolder(ItemChatTextSentBinding binding, RecyclerViewItemClickListener listener) {
+    public ChatTextSentViewHolder(ItemChatTextSentBinding binding) {
         super(binding.getRoot());
         mBinding = binding;
     }

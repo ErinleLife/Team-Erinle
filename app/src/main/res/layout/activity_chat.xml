@@ -19,7 +19,7 @@
 
         <include
             android:id="@+id/header"
-            layout="@layout/layout_header_back"
+            layout="@layout/layout_header_back_shadow"
             app:activity="@{activity}" />
 
         <ProgressBar

@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
@@ -24,7 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.arnav.pocdoc.Authentication.Login;
 import com.arnav.pocdoc.FoodAllergy.FoodImageInput;
-import com.arnav.pocdoc.SpeakToDoc.SpeakToDoc;
+import com.arnav.pocdoc.SimplyRelief.models.ResponseCommon;
 import com.arnav.pocdoc.activateLocator.ActivateLocatorActivity;
 import com.arnav.pocdoc.base.BaseApplication;
 import com.arnav.pocdoc.consultant.conversation.ConsultantListActivity;
@@ -45,12 +44,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
-public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainMenu extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -238,7 +241,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             public void onCancelled(DatabaseError error) {
             }
         });
-
+        updateDeviceToken();
     }
 
     @Override
@@ -328,13 +331,31 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
     }
 
+    private void updateDeviceToken() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put(Constants.user_id, BaseApplication.preferences.getUserId());
+        params.put(Constants.fcm_token, BaseApplication.preferences.getString(Constants.fcm_registration_id));
+        Call<ResponseCommon> call = apiInterface.updateToken(params);
+        call.enqueue(new Callback<ResponseCommon>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseCommon> call, @NonNull Response<ResponseCommon> response) {
+                ResponseCommon result = response.body();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseCommon> call, @NonNull Throwable t) {
+                call.cancel();
+            }
+        });
+    }
+
     public void symptom_checker_btn(View view) {
         startActivity(new Intent(getApplicationContext(), SymptomCheckerActivity.class));
     }
 
     public void otc_natural_btn(View view) {
         Intent intent = new Intent(getApplicationContext(), OTCAndNaturalDrugsActivity.class);
-        intent.putExtra(Constants.isOTC,true);
+        intent.putExtra(Constants.isOTC, true);
         startActivity(intent);
     }
 
@@ -344,7 +365,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
     public void diet_nutiontion_btn(View view) {
         Intent intent = new Intent(getApplicationContext(), OTCAndNaturalDrugsActivity.class);
-        intent.putExtra(Constants.isOTC,false);
+        intent.putExtra(Constants.isOTC, false);
         startActivity(intent);
     }
 

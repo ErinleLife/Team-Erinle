@@ -15,9 +15,12 @@ public class ResponseChat {
     @SerializedName("last_message_id")
     @Expose
     private Integer lastMessageId;
-    @SerializedName("messages")
+    @SerializedName("data")
     @Expose
-    private List<DataChat> messages = null;
+    private List<DataChat> data = null;
+    @SerializedName("attachment_url")
+    @Expose
+    private String attachmentUrl;
 
     public Integer getTotal() {
         return total;
@@ -43,11 +46,19 @@ public class ResponseChat {
         this.lastMessageId = lastMessageId;
     }
 
-    public List<DataChat> getMessages() {
-        return messages;
+    public List<DataChat> getData() {
+        return data;
     }
 
-    public void setMessages(List<DataChat> messages) {
-        this.messages = messages;
+    public void setData(List<DataChat> messages) {
+        this.data = messages;
+    }
+
+    public String getAttachmentUrl() {
+        return attachmentUrl;
+    }
+
+    public void setAttachmentUrl(String attachmentUrl) {
+        this.attachmentUrl = attachmentUrl;
     }
 }

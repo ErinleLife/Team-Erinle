@@ -204,4 +204,6 @@
     <string name="consultant">Consultant</string>
     <string name="new_consultant">New Consultant</string>
     <string name="write_your_message">Write your message</string>
+    <string name="no_record_found">No record found!</string>
+    <string name="default_notification_channel_id" translatable="false">erinle_channel</string>
 </resources>

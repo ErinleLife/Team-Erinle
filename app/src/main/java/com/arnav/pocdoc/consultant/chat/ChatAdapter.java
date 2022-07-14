@@ -35,6 +35,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int CHAT_TEXT_SENT = 3;
     private static final int CHAT_IMAGE_RECEIVED = 4;
     private static final int CHAT_IMAGE_SENT = 5;
+    public String baseURL = "";
+
+    public void setBaseURL(String baseURL) {
+        this.baseURL = baseURL;
+    }
 
     public ChatAdapter(Context context) {
         mContext = context;
@@ -54,14 +59,14 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case CHAT_HEADER:
                 return new ChatHeaderViewHolder(ItemChatHeaderBinding.inflate(LayoutInflater.from(mContext), parent, false));
             case CHAT_IMAGE_RECEIVED:
-                return new ChatImageReceivedViewHolder(ItemChatImageReceivedBinding.inflate(LayoutInflater.from(mContext), parent, false));
+                return new ChatImageReceivedViewHolder(ItemChatImageReceivedBinding.inflate(LayoutInflater.from(mContext), parent, false), baseURL);
             case CHAT_IMAGE_SENT:
-                return new ChatImageSentViewHolder(ItemChatImageSentBinding.inflate(LayoutInflater.from(mContext), parent, false));
+                return new ChatImageSentViewHolder(ItemChatImageSentBinding.inflate(LayoutInflater.from(mContext), parent, false), baseURL);
             case CHAT_TEXT_RECEIVED:
-                return new ChatTextReceivedViewHolder(ItemChatTextReceivedBinding.inflate(LayoutInflater.from(mContext), parent, false), listener);
+                return new ChatTextReceivedViewHolder(ItemChatTextReceivedBinding.inflate(LayoutInflater.from(mContext), parent, false));
             case CHAT_TEXT_SENT:
             default:
-                return new ChatTextSentViewHolder(ItemChatTextSentBinding.inflate(LayoutInflater.from(mContext), parent, false), listener);
+                return new ChatTextSentViewHolder(ItemChatTextSentBinding.inflate(LayoutInflater.from(mContext), parent, false));
         }
     }
 
@@ -83,7 +88,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        switch (mBeans.get(position).getMessage_type()) {
+        switch (mBeans.get(position).getType()) {
             case Constants.HEADER:
                 return CHAT_HEADER;
             case Constants.IMAGE:
@@ -101,7 +106,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private boolean isMe(int position) {
-        return BaseApplication.preferences.getUserId().equals(mBeans.get(position).getFromId());
+        return BaseApplication.preferences.getUserId().equals(String.valueOf(mBeans.get(position).getFrom_id()));
     }
 
     @Override

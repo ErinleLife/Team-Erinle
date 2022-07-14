@@ -7,7 +7,9 @@
             name="bean"
             type="com.arnav.pocdoc.data.model.chat.DataChat" />
 
-        <import type="android.view.View" />
+        <variable
+            name="baseURL"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -35,6 +37,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerCrop"
+                    app:baseURL="@{baseURL}"
                     app:imageUrl="@{bean.attachment}"
                     tools:src="@drawable/app_icon" />
 
