@@ -47,6 +47,9 @@ public class DataConversation implements Parcelable {
     @Expose
     private String lastMessage;
 
+    public DataConversation() {
+    }
+
     protected DataConversation(Parcel in) {
         if (in.readByte() == 0) {
             id = null;

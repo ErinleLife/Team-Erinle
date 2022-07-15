@@ -667,6 +667,13 @@ public class Utils {
         return timeInMilliseconds;
     }
 
+    public static String getCurrentUTCTime() {
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.DATE_YYYY_MM_DD_HH_MM_AA_FORMAT);
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return simpleDateFormat.format(date);
+    }
+
     public static Date getOneDayMinusFromStringDate(String strDate, String format) {
         final SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.ENGLISH);
         Date date = null;

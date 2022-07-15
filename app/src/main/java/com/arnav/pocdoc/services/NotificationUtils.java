@@ -64,14 +64,15 @@ public class NotificationUtils {
         notificationManager.cancelAll();
     }
 
-    public void showNotificationMessage(final String title, final String message, Intent intent) {
+    public void showNotificationMessage(final String title, final String message, Intent intent, boolean needToClearScreens) {
         // Check for empty push message
         if (TextUtils.isEmpty(message))
             return;
 
         // notification icon
         final int icon = R.mipmap.ic_launcher;
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (needToClearScreens)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         final PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         mContext,

@@ -22,6 +22,7 @@ import com.arnav.pocdoc.data.model.chat.ResponseChat;
 import com.arnav.pocdoc.data.model.conversation.DataConversation;
 import com.arnav.pocdoc.data.network.APIClient;
 import com.arnav.pocdoc.databinding.ActivityChatBinding;
+import com.arnav.pocdoc.implementor.PushUpdateListener;
 import com.arnav.pocdoc.implementor.RecyclerViewItemClickListener;
 import com.arnav.pocdoc.services.MyFirebaseMessagingService;
 import com.arnav.pocdoc.utils.CameraGalleryActivity;
@@ -50,7 +51,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ChatActivity extends BaseActivity implements RecyclerViewItemClickListener {
+public class ChatActivity extends BaseActivity implements RecyclerViewItemClickListener, PushUpdateListener {
 
     private static final String TAG = "ChatActivity";
 
@@ -101,21 +102,21 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
     @Override
     protected void onResume() {
         super.onResume();
-        MyFirebaseMessagingService.setOnChatMessageListener(true, conversationId);
+        MyFirebaseMessagingService.setOnChatMessageListener(true, conversationId, this);
         LogUtils.Print(TAG, "onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MyFirebaseMessagingService.setOnChatMessageListener(true, "");
+        MyFirebaseMessagingService.setOnChatMessageListener(true, "pause", this);
         LogUtils.Print(TAG, "onPause");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MyFirebaseMessagingService.setOnChatMessageListener(true, "");
+        MyFirebaseMessagingService.setOnChatMessageListener(true, "", null);
         if (mReference != null) {
             mReference.removeEventListener(mPostListener);
         }
@@ -415,4 +416,11 @@ public class ChatActivity extends BaseActivity implements RecyclerViewItemClickL
             LogUtils.Print(TAG, "loadPost:onCancelled" + databaseError.toException());
         }
     };
+
+    @Override
+    public void onPushReceived(DataChat dataChat) {
+        mDatabase.child("Conversation")
+                .child(String.valueOf(conversationId))
+                .setValue(dataChat);
+    }
 }

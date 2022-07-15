@@ -55,6 +55,10 @@ public class Preferences {
         return getString(Constants.user_id);
     }
 
+    public boolean isUserLoggedIn() {
+        return !getString(Constants.user_id).equals("");
+    }
+
     public void storeUserDetails(ResponseRegistration response) {
         putString(Constants.auth_token, response.getToken());
         putString(Constants.user_id, "" + response.getData().getId());

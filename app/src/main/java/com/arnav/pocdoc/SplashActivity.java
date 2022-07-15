@@ -4,16 +4,14 @@ package com.arnav.pocdoc;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.androidbuts.multispinnerfilter.KeyPairBoolData;
 import com.arnav.pocdoc.Authentication.Login;
 import com.arnav.pocdoc.base.BaseApplication;
+import com.arnav.pocdoc.data.model.conversation.DataConversation;
 import com.arnav.pocdoc.utils.Constants;
 import com.arnav.pocdoc.utils.LogUtils;
 import com.bumptech.glide.Glide;
@@ -33,14 +31,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
-
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
     public static final List<KeyPairBoolData> foods = new ArrayList<>();
     static final ArrayList<Symptom> symptoms = new ArrayList<>();
     ImageView ivSplash;
@@ -58,7 +50,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
-
         ivSplash = findViewById(R.id.ivSplash);
         Glide.with(this).asGif().load(R.drawable.splash_logo).into(ivSplash);
         getFireBaseToken();
@@ -68,7 +59,6 @@ public class SplashActivity extends AppCompatActivity {
 //                .build();
 
         context = this;
-
         try {
             JSONArray jArray = new JSONArray(loadJSONFromAsset());
 
@@ -85,52 +75,32 @@ public class SplashActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-//        client.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                runOnUiThread(() -> {
-//                    e.printStackTrace();
-////                    Toast.makeText(getApplicationContext(), "Check your internet connection", Toast.LENGTH_SHORT).show();
-//                });
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                try {
-//                    JSONArray response_json = new JSONObject(response.body().string()).optJSONArray("symptoms");
-//                    for (int i = 0; i < response_json.length(); i++) {
-//                        JSONObject symptom = response_json.getJSONObject(i);
-//                        String id = symptom.optString("id");
-//                        String name = symptom.optString("name");
-//                        Log.e("NAME-->", "-->" + name);
-//                        symptoms.add(new Symptom(id, name));
-//                    }
-//                } catch (JSONException exception) {
-//                    exception.printStackTrace();
-//                }
-//
-//            }
-//        });
-
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                SplashActivity.this.runOnUiThread(() -> {
-                    if (!TextUtils.isEmpty(BaseApplication.preferences.getUserId())) {
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                        intent.putExtra("user", user);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    } else {
-                        startActivity(new Intent(SplashActivity.this, Login.class));
-                    }
-                    finish();
-                });
-
+        if (getIntent() != null && getIntent().hasExtra(Constants.from) &&
+                getIntent().getIntExtra(Constants.from, 0) == Constants.fromPush) {
+            if (BaseApplication.preferences.isUserLoggedIn()) {
+                DataConversation conversation = getIntent().getParcelableExtra(Constants.data);
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                intent.putExtra(Constants.from, Constants.fromPush);
+                intent.putExtra(Constants.data, conversation);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            } else {
+                startWithClearStack(Login.class);
             }
-        }, 6000);
+        } else {
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    SplashActivity.this.runOnUiThread(() -> {
+                        if (BaseApplication.preferences.isUserLoggedIn()) {
+                            startWithClearStack(MainMenu.class);
+                        } else {
+                            startWithClearStack(Login.class);
+                        }
+                    });
+                }
+            }, 6000);
+        }
     }
 
     /**

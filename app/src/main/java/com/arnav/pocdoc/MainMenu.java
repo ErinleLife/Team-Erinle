@@ -26,7 +26,9 @@ import com.arnav.pocdoc.FoodAllergy.FoodImageInput;
 import com.arnav.pocdoc.SimplyRelief.models.ResponseCommon;
 import com.arnav.pocdoc.activateLocator.ActivateLocatorActivity;
 import com.arnav.pocdoc.base.BaseApplication;
+import com.arnav.pocdoc.consultant.chat.ChatActivity;
 import com.arnav.pocdoc.consultant.conversation.ConsultantListActivity;
+import com.arnav.pocdoc.data.model.conversation.DataConversation;
 import com.arnav.pocdoc.hospitalLocator.HospitalLocatorActivity;
 import com.arnav.pocdoc.maps.MapsActivity;
 import com.arnav.pocdoc.otc.OTCAndNaturalDrugsActivity;
@@ -242,6 +244,17 @@ public class MainMenu extends BaseActivity implements NavigationView.OnNavigatio
             }
         });
         updateDeviceToken();
+        handleIntent();
+    }
+
+    private void handleIntent() {
+        if (getIntent() != null && getIntent().hasExtra(Constants.from) &&
+                getIntent().getIntExtra(Constants.from, 0) == Constants.fromPush) {
+            DataConversation conversation = getIntent().getParcelableExtra(Constants.data);
+            Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+            intent.putExtra(Constants.data, conversation);
+            startActivity(intent);
+        }
     }
 
     @Override

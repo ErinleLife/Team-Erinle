@@ -9,6 +9,8 @@ public class Constants {
     public static final String auth_token = "auth_token";
     public static final String position = "position";
     public static final String data = "data";
+    public static final String from = "from";
+    public static final int fromPush = 1;
     public static final String pharmacy_id = "pharmacy_id";
     public static final String description = "description";
     public static final String image_back = "image_back";
@@ -27,6 +29,10 @@ public class Constants {
     public static final String message = "message";
     public static final String fcm_token = "fcm_token";
     public static final String fcm_registration_id = "fcm_registration_id";
+    public static final String push_type = "push_type";
+    public static final String push_type_pharmacy = "pharmacy_chat";
+    public static final String title = "title";
+    public static final String body = "body";
 
     public static final int REQUEST_CODE_STORAGE_PERMISSION = 111;
     public static final int REQUEST_CODE_CAMERA_PERMISSION = 110;
