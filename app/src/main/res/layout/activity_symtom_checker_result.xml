@@ -215,7 +215,7 @@
                         android:gravity="center_vertical"
                         android:onClick="@{(v)->activity.onViewClick(v)}"
                         android:padding="@dimen/_6sdp"
-                        android:text="@string/hey_doc"
+                        android:text="@string/consultation"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12ssp" />

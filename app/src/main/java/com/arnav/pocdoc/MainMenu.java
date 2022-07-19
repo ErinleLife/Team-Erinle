@@ -74,7 +74,7 @@ public class MainMenu extends BaseActivity implements NavigationView.OnNavigatio
         setContentView(R.layout.activity_main_menu);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.toolbar_color));
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
 
         FirebaseDatabase.getInstance().getReference().child("medical_id").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).addValueEventListener(new ValueEventListener() {
             @Override
