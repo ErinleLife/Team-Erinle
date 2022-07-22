@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">ERINLÉ</string>
+
+    <string name="empty_text">N/A</string>
+
+    <string name="firebase_url">https://fcm.googleapis.com/fcm/send</string>
+    <array name="medication_types">
+        <item>Pill</item>
+        <item>Liquid</item>
+        <item>Tablet</item>
+        <item>Capsule</item>
+        <item>Inhaler</item>
+        <item>Injection</item>
+        <item>Other</item>
+    </array>
+    <string name="base_api_url">http://pocdocapi.herokuapp.com</string>
+    <string name="bullet_point">\u2022</string>
+    <string name="disclaimer">*ERINLE is not a replacement for a doctor. Please consult a doctor or health professional before taking any action or medication</string>
+    <string name="navigation_drawer_open">Open the Navigation Drawer</string>
+    <string name="navigation_drawer_close">Open the Navigation Drawer</string>
+    <string name="dialog_emg_title">Make an Emergency Call</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_activity_maps">Map</string>
+
+    <array name="arrSymptomsChecker">
+        <item>Step 1</item>
+        <item>Step 2</item>
+        <item>Step 3</item>
+        <item>Step 4</item>
+        <item>Step 5</item>
+        <item>Step 6</item>
+    </array>
+
+    <!--Symptoms-->
+    <string name="back">Back</string>
+    <string name="hello_">Hello!</string>
+    <string name="hello_desc">You’re about to use a short (90 secs), safe and anonymous health checkup. Your answers will be carefully analyzed and you’ll learn about possible causes of your symptoms.</string>
+    <string name="next">Next</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="terms_of_service_desc">Before using the checkup, please read Terms of Service. Remember that: </string>
+    <string name="terms_of_service_desc1"><b>Checkup is not a diagnosis.</b> Checkup is for informational purposes and is not a qualified medical opinion.</string>
+    <string name="terms_of_service_desc2"><b>Do not use in emergencies.</b> In case of health emergency, call your local emergency number immediately.</string>
+    <string name="terms_of_service_desc3"><b>Your data is safe.</b> Information that you provide is anonymous and not shared with anyone.</string>
+
+    <string name="i_read_accept">I read and accept</string>
+    <string name="pp_desc">I read and accept Terms of Service and Privacy Policy</string>
+    <string name="pp_invalid">Please read and accept Terms of Service and Privacy Policy</string>
+    <string name="health_desc">I agree to the processing of my health information for the purpose of performing the interview.</string>
+    <string name="health_desc_invalid">Please agree to the processing of my health information for the purpose of performing the interview.</string>
+
+    <string name="checkup_for_title">Who is the checkup for?</string>
+    <string name="myself">Myself</string>
+    <string name="someone_else">Someone\nelse</string>
+    <string name="check_up_for_empty">Please select checkup for</string>
+
+    <string name="what_is_your_sex">What is your sex?</string>
+    <string name="what_should_i_select">What should I select?</string>
+    <string name="what_should_i_select_desc">Gender and sex are a spectrum broader than just female and male. However, this diagnostic engine can currently differentiate between female and male sexes only. To continue the interview, please select the sex assigned to you at birth.</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="gender_empty">Please select your gender</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="do_not_know">Don\'t know</string>
+    <string name="dialog_logout">Are you sure you wan\'t to logout?</string>
+
+    <string name="what_is_dob">What is date of birth?</string>
+    <string name="dd">DD</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="mm">MM</string>
+    <string name="year">Year</string>
+    <string name="yyyy">YYYY</string>
+
+    <string name="patient_title">Please check all the statements below that apply to you/them</string>
+    <string name="patient_desc">Select one answer in each row.</string>
+    <string-array name="arrStatements">
+        <item>(1) Overweight or Obese</item>
+        <item>(2) Hypertension</item>
+        <item>(3) Smoke Cigarettes</item>
+        <item>(4) Any lung damage</item>
+        <item>(5) Recently Suffered an Injury</item>
+        <item>(6) Pregnant</item>
+        <item>(7) High Cholesterol</item>
+        <item>(8) Diabetes</item>
+        <item>(9) Recreational Drug Use</item>
+        <item>(10) Alcohol Use</item>
+    </string-array>
+
+    <string-array name="arrStatementsMale">
+        <item>(1) Overweight or Obese</item>
+        <item>(2) Hypertension</item>
+        <item>(3) Smoke Cigarettes</item>
+        <item>(4) Any lung damage</item>
+        <item>(5) Recently Suffered an Injury</item>
+        <item>(6) Pregnant</item>
+        <item>(6) High Cholesterol</item>
+        <item>(7) Diabetes</item>
+        <item>(8) Recreational Drug Use</item>
+        <item>(9) Alcohol Use</item>
+    </string-array>
+
+    <string name="add_your_symptoms">Add your symptoms</string>
+    <string name="add_your_symptoms_desc">Add as many symptoms as you can fourth most accurate results.</string>
+    <string name="add_your_symptoms_hint">Search, e.g. headache</string>
+    <string name="add_your_hospital_hint">Search Pharmacy</string>
+    <string name="add_your_otc_hint">Search, e.g. Recommendation &amp; Natural</string>
+    <string name="add_your_symptoms_error">Please try to add more than one symptom.</string>
+
+    <string name="go_to_emergency">Go to the nearest emergency department</string>
+    <string name="monitory_exclusions_desc">Inform to monitor exclusions or consult with Healthcare Professional in "Hey Doc"</string>
+    <string name="recommendation">Recommendation</string>
+    <string name="recommendation_desc">Your symptoms are worrisome and you may require urgent care. If you can\'t get to an emergency department, please call an ambulance.</string>
+    <string name="primary_symptom">Symptoms Selected</string>
+    <string name="symptom_group">Selected Associated Symptoms</string>
+    <string name="assessment">Possible Assessment</string>
+    <string name="exclusions">Exclusions</string>
+    <string name="natural">Natural</string>
+    <string name="specific">Specific</string>
+    <string name="prevention">Healthy Symptom Prevention</string>
+    <string name="start_over">Start over</string>
+    <string name="feedback">Feedback</string>
+    <string name="feedback_desc">Is the information on this site helpful?</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="select_rating_error">Please add at least one rate</string>
+    <string name="enter_title_err">Please enter title</string>
+    <string name="enter_review">Write a review…</string>
+    <string name="enter_review_err">Please write a review</string>
+    <string name="submit">Submit</string>
+    <string name="details_wrong">Please check your details.</string>
+    <string name="server_error">Something went wrong, Please try again latter.</string>
+    <string name="hey_doc">Hey Doc</string>
+    <string name="consultation">Consultation</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="close">Close</string>
+    <string name="you_dont_text">You don\'t have account please first register your account</string>
+    <string name="auth_client_id">778355160739-k0208pc69ivogdvc5llu6u5sspc2q9q0.apps.googleusercontent.com</string>
+    <string name="otc_and_natural_drugs">OTC and Natural Drugs</string>
+    <string name="front_image">Front Image</string>
+    <string name="back_image">Back Image</string>
+    <string name="enter_description">Enter Description</string>
+    <string name="pharmacy_locator">Pharmacy Locator</string>
+    <string name="search_pharmacy">Search pharmacy</string>
+    <string name="medical_detail">Medical detail</string>
+    <string name="medical_name">Medical name :</string>
+    <string name="email_id">Email ID :</string>
+    <string name="address">Address :</string>
+    <string name="discription">Discription :</string>
+    <string name="scan_send_rx_here"><![CDATA[Scan & Send RX Here]]></string>
+    <string name="activate_locator">Activate Locator</string>
+    <string name="enter_your_zip_code">Enter Your Zip Code</string>
+    <string name="_1_you_have_pharmacy_insurance">(1) You have pharmacy insurance?</string>
+    <string name="either_enter_pharmacy_insurance">Either enter pharmacy insurance.</string>
+    <string name="scan_pharmacy">Scan Pharmacy.</string>
+    <string name="input_tablet">Input Tablet</string>
+    <string name="rx_bin">RX Bin#</string>
+    <string name="rx_pcn">RX PCN #</string>
+    <string name="rx_id">RX ID #</string>
+    <string name="rx_group">RX Group #</string>
+    <string name="upload_image">Upload image</string>
+    <string name="send_screen_shot_insurance_info">Send Screen Shot insurance info.</string>
+    <string name="exclusions_no_scan_of_controlled_drugs_or_scheduled_drugs_hard_copies_prescriptions">Exclusions: No scan of controlled drugs or \nscheduled drugs hard copies prescriptions</string>
+    <string name="symtom_checker">Symtom\nChecker</string>
+    <string name="symtom_checker_desc">Symptom Checker with\nRecommendations\nand Delivery</string>
+    <string name="text_slogan">The Local Pharmacy Express</string>
+    <string name="text_tagline">“All  the  Health  You  Need”</string>
+    <string name="how_are_you_feeling">How are you\nfeeling?</string>
+    <string name="go">Go</string>
+    <string name="keep_track_of_medical_e">Keep Track of medical e</string>
+    <string name="fitness_center">Fitness\nCenter</string>
+    <string name="let_s_get_physical">Let’s Get Physical</string>
+    <string name="diet_nutiontion">Diet/\nNutiontion</string>
+    <string name="keep_track_of_medication_and_get_remindersa">Keep Track of Medication\nand get Remindersa</string>
+    <string name="pharmacy_locator_">Pharmacy\nLocator</string>
+    <string name="activate_locator_">Activate\nLocator</string>
+    <string name="dummy_text">Dummy Text</string>
+    <string name="otc_product">OTC\nProduct</string>
+    <string name="otc_product_title">OTC Product</string>
+    <string name="scan_and_send_rx_here">Scan and\nSend RX Here</string>
+    <string name="scan_and_send_rx_here_title">Scan and Send RX Here</string>
+    <string name="take_image_of_hardcopy_prescription_and_send_to_local_pharmacy">Take Image of Hardcopy\nPrescription and Send to\nLocal Pharmacy</string>
+    <string name="natural_alternative_medicine">Natural/\nAlternative\nMedicine</string>
+    <string name="natural_alternative_medicine_without_space">Natural/Alternative Medicine</string>
+    <string name="local_pharmacy_search">Local Pharmacy Search</string>
+    <string name="cash_paying_desc">Cash paying please apply a discount card, must bring in hard copy prescription to receive medicine.</string>
+
+    <string name="text_camera">Take Photo</string>
+    <string name="text_gallery">Gallery</string>
+    <string name="text_i_am_sure">I\'M SURE</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="dialog_file_not_found">image not found please try again.</string>
+    <string name="text_camera_permission_msg_profile">Without CAMERA permission the app is unable to send image.
+        Are you sure you want to deny this permission?
+        \n\nif you deny before and alert are not showing for allow permission then follow below steps.
+        \n\nTap Setting > Apps > Erinle > Permissions, and turn on.</string>
+    <string name="text_save_profile_picture_msg">You must allow access Photos, media and files (storage) permission to set your profile picture.
+        Are you sure you want to deny this permission?
+        \n\nif you deny before and alert are not showing for allow permission then follow below steps.
+        \n\nTap Setting > Apps > Erinle > Permissions, and turn on.</string>
+    <string name="text_retry">RETRY</string>
+    <string name="text_settings">Settings</string>
+
+    <!--Consultant-->
+    <string name="consultant">Consultant</string>
+    <string name="new_consultant">New Consultant</string>
+    <string name="write_your_message">Write your message</string>
+    <string name="no_record_found">No record found!</string>
+    <string name="default_notification_channel_id" translatable="false">erinle_channel</string>
+</resources>

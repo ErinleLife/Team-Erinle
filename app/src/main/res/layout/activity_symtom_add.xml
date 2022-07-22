@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.arnav.pocdoc.symptomchecker.AddSymptomActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/layout_header_back"
+            app:activity="@{activity}" />
+
+        <com.badoualy.stepperindicator.StepperIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:stpi_animDuration="2000"
+            app:stpi_circleColor="@color/colorGray"
+            app:stpi_circleRadius="@dimen/_6sdp"
+            app:stpi_doneIconDrawable="@drawable/app_icon"
+            app:stpi_indicatorColor="@color/colorPrimary"
+            app:stpi_labelColor="@color/black"
+            app:stpi_labels="@array/arrSymptomsChecker"
+            app:stpi_lineColor="@color/colorGray"
+            app:stpi_lineDoneColor="@color/black"
+            app:stpi_showDoneIcon="true"
+            app:stpi_showLabels="true"
+            app:stpi_stepCount="6"
+            app:stpi_useBottomIndicator="false" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@id/btnNext"
+            app:layout_constraintTop_toBottomOf="@id/indicator">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTC"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:text="@string/add_your_symptoms"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSubTitle"
+                    style="@style/BoldTextViewExtraSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:text="@string/add_your_symptoms_desc"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTC" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:overScrollMode="never"
+                    app:spanCount="2"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tlName"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/row_symptoms" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tlName"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/bg_edit_text_black"
+                    android:nestedScrollingEnabled="false"
+                    app:endIconDrawable="@drawable/ic_close"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintTop_toBottomOf="@id/tvSubTitle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etBreed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_search"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:hint="@string/add_your_symptoms_hint"
+                        android:inputType="textCapWords"
+                        android:maxHeight="@dimen/_150sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_12sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:theme="@style/TextInputLayoutEditTextTheme"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--                    <androidx.core.widget.NestedScrollView-->
+                    <!--                        android:id="@+id/clMain"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content">-->
+
+                    <!--                        <com.google.android.material.chip.ChipGroup-->
+                    <!--                            android:id="@+id/chipGroup"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="@dimen/_150sdp"-->
+                    <!--                            android:layout_marginStart="@dimen/_5sdp"-->
+                    <!--                            android:layout_marginEnd="@dimen/_5sdp"-->
+                    <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                            app:layout_constraintTop_toTopOf="parent"-->
+                    <!--                            app:selectionRequired="false"-->
+                    <!--                            app:singleSelection="true" />-->
+
+                    <!--                    </androidx.core.widget.NestedScrollView>-->
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:onClick="@{(v)->activity.onViewClick(v)}"
+            android:padding="@dimen/_8sdp"
+            android:paddingStart="@dimen/_60sdp"
+            android:paddingEnd="@dimen/_60sdp"
+            android:src="@color/colorPrimary"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            app:cornerRadius="@dimen/_6sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
